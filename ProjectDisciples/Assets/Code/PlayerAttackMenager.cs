@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public enum EPlayerElement
+public enum EGameElement
 {
     Fire = 0,
+    Magma,
     Water,
+    Ice,
     wind,
     earth,
 }
 
 public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
 {
-    [SerializeField] private List<EPlayerElement> _KnownElements;
-    [SerializeField] private EPlayerElement _CurrentElement = EPlayerElement.Fire;
-    [SerializeField] private Animator _animetor;
+    [SerializeField] private List<EGameElement> _KnownElements;
+    [SerializeField] private EGameElement _CurrentElement = EGameElement.Fire;
 
     [Header("renderer")]
     [SerializeField] private SpriteRenderer _SpriteRenderer;
@@ -34,18 +35,16 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     {
         if (_KnownElements == null)
         {
-            _KnownElements = new List<EPlayerElement>();
+            _KnownElements = new List<EGameElement>();
         }
     }
-
-    public void TestShoot() => this.Attack1();
 
     /// <summary>
     /// Sets the player element to the given element.
     /// </summary>
     /// <param name="Element"></param>
     /// <param name="AddToKnownElements">adds it to the known elements if it isn't in it.</param>
-    public void SetElement(EPlayerElement Element, bool AddToKnownElements = false)
+    public void SetElement(EGameElement Element, bool AddToKnownElements = false)
     {
         if (!_KnownElements.Contains(Element) && AddToKnownElements)
         {
@@ -68,15 +67,15 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     /// <param name="AddToKnownElements">adds it to the known elements if it isn't in it.</param>
     public void SetElement(bool AddToKnownElements = false)
     {
-        int MaxLength = System.Enum.GetValues(typeof(EPlayerElement)).Length;
+        int MaxLength = System.Enum.GetValues(typeof(EGameElement)).Length;
         int I = UnityEngine.Random.Range(0, MaxLength * System.DateTime.Now.Millisecond) % MaxLength;
-        SetElement((EPlayerElement)I, AddToKnownElements);
+        SetElement((EGameElement)I, AddToKnownElements);
     }
 
     /// <summary>
     /// adds a new element to the known element List.
     /// </summary>
-    public EPlayerElement AddKnownElement
+    public EGameElement AddKnownElement
     {
         set
         {
@@ -89,16 +88,16 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     {
         switch (_CurrentElement)
         {
-            case EPlayerElement.Fire:
+            case EGameElement.Fire:
                 FireAttack1();
                 break;
-            case EPlayerElement.Water:
+            case EGameElement.Water:
                 WaterAttack1();
                 break;
-            case EPlayerElement.wind:
+            case EGameElement.wind:
                 WindAttack1();
                 break;
-            case EPlayerElement.earth:
+            case EGameElement.earth:
                 EarthAttack1();
                 break;
             default:
@@ -111,16 +110,16 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     {
         switch (_CurrentElement)
         {
-            case EPlayerElement.Fire:
+            case EGameElement.Fire:
                 FireAttack2();
                 break;
-            case EPlayerElement.Water:
+            case EGameElement.Water:
                 WaterAttack2();
                 break;
-            case EPlayerElement.wind:
+            case EGameElement.wind:
                 WindAttack2();
                 break;
-            case EPlayerElement.earth:
+            case EGameElement.earth:
                 EarthAttack2();
                 break;
             default:
@@ -132,7 +131,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     public void SwitchPreviousElement()
     {
         int Current = (int)_CurrentElement;
-        int Enumength = System.Enum.GetNames(typeof(EPlayerElement)).Length;
+        int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
         {
             Current -= i;
@@ -140,10 +139,9 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
             {
                 Current = Enumength + Current;
             }
-            Debug.Log(Current, this);
-            if (_KnownElements.Contains((EPlayerElement)Current))
+            if (_KnownElements.Contains((EGameElement)Current))
             {
-                SetElement((EPlayerElement)Current);
+                SetElement((EGameElement)Current);
                 break;
             }
         }
@@ -152,15 +150,13 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     public void SwitchNextElement()
     {
         int Current = (int)_CurrentElement;
-        int Enumength = System.Enum.GetNames(typeof(EPlayerElement)).Length;
+        int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
         {
             Current = (Current + i) % Enumength;
-            
-            Debug.Log(Current, this);
-            if (_KnownElements.Contains((EPlayerElement)Current))
+            if (_KnownElements.Contains((EGameElement)Current))
             {
-                SetElement((EPlayerElement)Current);
+                SetElement((EGameElement)Current);
                 break;
             }
         }
@@ -184,7 +180,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
         Rigidbody2D RB = G.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
-            Vector2 NewVelocity = new Vector2(_firevelocity.x * (_SpriteRenderer.flipY ? 1 : -1), _firevelocity.y);
+            Vector2 NewVelocity = new Vector2(_firevelocity.x * (_SpriteRenderer.flipX ? -1 : 1), _firevelocity.y);
             RB.velocity = NewVelocity;
         }
 
@@ -221,7 +217,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
         Rigidbody2D RB = G.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
-            Vector2 NewVelocity = new Vector2(_Watervelocity.x * (_SpriteRenderer.flipY ? 1 : -1), _Watervelocity.y);
+            Vector2 NewVelocity = new Vector2(_Watervelocity.x * (_SpriteRenderer.flipX ? -1 : 1), _Watervelocity.y);
             RB.velocity = NewVelocity;
         }
 

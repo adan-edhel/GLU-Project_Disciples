@@ -6,6 +6,6 @@ public interface IHealth
 {
     float Health { get; set; }
 
-    void DealDamage(float Damage, EPlayerElement Element);
+    void DealDamage(float Damage, EGameElement Element);
     
 }

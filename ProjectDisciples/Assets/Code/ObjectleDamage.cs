@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectleDamage : MonoBehaviour
 {
-    [SerializeField] private EPlayerElement _Element;
+    [SerializeField] private EGameElement _Element;
     [SerializeField] private float _damageAmmound;
     [SerializeField] private GameObject _sender;
     [SerializeField] private LayerMask _playerLayers;

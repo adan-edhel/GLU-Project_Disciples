@@ -7,19 +7,19 @@ public class PlayerHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private float _health;
     [SerializeField] private float _MaxStatesEfect;
-    [SerializeField] private Dictionary<EPlayerElement, float> _statesEfects;
+    [SerializeField] private Dictionary<EGameElement, float> _statesEfects;
     [SerializeField] private ElementInteraction[] _elementInteractions;
 
     public float Health { get { return _health;} set { _health = value; } }
 
-    public void DealDamage(float Damage, EPlayerElement Element)
+    public void DealDamage(float Damage, EGameElement Element)
     {
         CheckIfPlayerHasStatesEfect(Element);
         Damage *= Multiplier;
         _health -= Damage;
     }
 
-    private void CheckIfPlayerHasStatesEfect(EPlayerElement Element)
+    private void CheckIfPlayerHasStatesEfect(EGameElement Element)
     {
         if (!_statesEfects.ContainsKey(Element))
         {
@@ -52,19 +52,19 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     private void Start()
     {
-        _statesEfects = new Dictionary<EPlayerElement, float>();
+        _statesEfects = new Dictionary<EGameElement, float>();
     }
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < Enum.GetNames(typeof(EPlayerElement)).Length; i++)
+        for (int i = 0; i < Enum.GetNames(typeof(EGameElement)).Length; i++)
         {
-            if (_statesEfects.ContainsKey((EPlayerElement)i))
+            if (_statesEfects.ContainsKey((EGameElement)i))
             {
-                _statesEfects[(EPlayerElement)i] -= Time.fixedDeltaTime;
-                if (_statesEfects[(EPlayerElement)i] <= 0)
+                _statesEfects[(EGameElement)i] -= Time.fixedDeltaTime;
+                if (_statesEfects[(EGameElement)i] <= 0)
                 {
-                    _statesEfects.Remove((EPlayerElement)i);
+                    _statesEfects.Remove((EGameElement)i);
                 }
             }
         }
