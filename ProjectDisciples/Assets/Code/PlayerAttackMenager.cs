@@ -40,33 +40,6 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
 
     public void TestShoot() => this.Attack1();
 
-
-    private void FixedUpdate()
-    {
-
-        //update animator;
-        //_animetor.SetFloat("Element", (float)_CurrentElement);
-        //switch (_CurrentElement)
-        //{
-        //    case EPlayerElement.Fire:
-        //        _bandana.color = _FireColor;
-        //        break;
-        //    case EPlayerElement.Water:
-        //        _bandana.color = _WaterColor;
-        //        break;
-        //    case EPlayerElement.wind:
-        //        _bandana.color = _WindColor;
-        //        break;
-        //    case EPlayerElement.earth:
-        //        _bandana.color = _EarthColor;
-        //        break;
-        //    default:
-        //        _bandana.color = Color.magenta;
-        //        break;
-        //}
-    }
-
-
     /// <summary>
     /// Sets the player element to the given element.
     /// </summary>
@@ -96,7 +69,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     public void SetElement(bool AddToKnownElements = false)
     {
         int MaxLength = System.Enum.GetValues(typeof(EPlayerElement)).Length;
-        int I = Random.Range(0, MaxLength * System.DateTime.Now.Millisecond) % MaxLength;
+        int I = UnityEngine.Random.Range(0, MaxLength * System.DateTime.Now.Millisecond) % MaxLength;
         SetElement((EPlayerElement)I, AddToKnownElements);
     }
 
@@ -158,12 +131,39 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
 
     public void SwitchPreviousElement()
     {
-        
+        int Current = (int)_CurrentElement;
+        int Enumength = System.Enum.GetNames(typeof(EPlayerElement)).Length;
+        for (int i = 1; i < Enumength; i++)
+        {
+            Current -= i;
+            if (Current < 0)
+            {
+                Current = Enumength + Current;
+            }
+            Debug.Log(Current, this);
+            if (_KnownElements.Contains((EPlayerElement)Current))
+            {
+                SetElement((EPlayerElement)Current);
+                break;
+            }
+        }
     }
 
     public void SwitchNextElement()
     {
-        
+        int Current = (int)_CurrentElement;
+        int Enumength = System.Enum.GetNames(typeof(EPlayerElement)).Length;
+        for (int i = 1; i < Enumength; i++)
+        {
+            Current = (Current + i) % Enumength;
+            
+            Debug.Log(Current, this);
+            if (_KnownElements.Contains((EPlayerElement)Current))
+            {
+                SetElement((EPlayerElement)Current);
+                break;
+            }
+        }
     }
 
     #region Fire

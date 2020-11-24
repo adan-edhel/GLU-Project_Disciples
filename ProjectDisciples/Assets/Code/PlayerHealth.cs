@@ -57,29 +57,16 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     private void FixedUpdate()
     {
-        string D = ""; //remove this line later.
-       
-
         for (int i = 0; i < Enum.GetNames(typeof(EPlayerElement)).Length; i++)
         {
             if (_statesEfects.ContainsKey((EPlayerElement)i))
             {
                 _statesEfects[(EPlayerElement)i] -= Time.fixedDeltaTime;
-                D += $"states effect {(EPlayerElement)i} has {_statesEfects[(EPlayerElement)i]} seconds remaining.\n";
                 if (_statesEfects[(EPlayerElement)i] <= 0)
                 {
                     _statesEfects.Remove((EPlayerElement)i);
                 }
             }
         }
-
-
-        //remove this later
-        if (D != "")
-        {
-            Debug.Log(D, this);
-        }
-        //^^^^^^^^^
-
     }
 }

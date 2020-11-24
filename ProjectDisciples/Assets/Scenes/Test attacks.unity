@@ -1011,17 +1011,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   jumpSpeed: 8
-  swingForce: 4
-  yankForce: 7
   groundCheckOffset: 0.1
   isGrounded: 0
   isJumping: 0
-  impactDustParticle: {fileID: 0}
   playerSprite: {fileID: 1029365832}
   groundCheckLayer:
     serializedVersion: 2
     m_Bits: 1024
-  i_moveInput: {x: 0, y: 0}
+  moveInputValue: {x: 0, y: 0}
 --- !u!61 &1362795123
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1183,11 +1180,35 @@ MonoBehaviour:
     m_ActionId: 6856e80e-1a00-4a78-aaf4-7fa345a23406
     m_ActionName: UI/Unpause[/Keyboard/escape,/XInputControllerWindows/start]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1362795126}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: OnPrevElement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 97dc0381-739c-45e5-a3f3-7d64488b9735
     m_ActionName: Gameplay/PrevElement[/Keyboard/q,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1362795126}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: OnNextElement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e286ca02-87a2-4ce3-bc07-dd274c8d9b67
     m_ActionName: Gameplay/NextElement[/Keyboard/e,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1253,7 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7c2921e4f820243968d19b621cec48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _KnownElements: 
+  _KnownElements: 0000000001000000
   _CurrentElement: 0
   _animetor: {fileID: 0}
   _SpriteRenderer: {fileID: 1029365832}
