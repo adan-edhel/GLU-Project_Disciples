@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private float _health;
-    [SerializeField] private float _MaxStatesEfect;
+    [SerializeField] private float _MaxStatesEfectTime;
     [SerializeField] private Dictionary<EGameElement, float> _statesEfects;
     [SerializeField] private ElementInteraction[] _elementInteractions;
 
@@ -23,11 +23,11 @@ public class PlayerHealth : MonoBehaviour, IHealth
     {
         if (!_statesEfects.ContainsKey(Element))
         {
-            _statesEfects.Add(Element, _MaxStatesEfect);
+            _statesEfects.Add(Element, _MaxStatesEfectTime);
         }
         else
         {
-            _statesEfects[Element] = _MaxStatesEfect;
+            _statesEfects[Element] = _MaxStatesEfectTime;
         }
     }
 

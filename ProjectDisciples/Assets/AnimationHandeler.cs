@@ -9,17 +9,17 @@ public class AnimationHandeler : MonoBehaviour, ICharacterMovement
 
     public void AimInputValue(Vector2 input)
     {
-        throw new System.NotImplementedException();
+       
     }
 
     public void CutJump()
     {
-        throw new System.NotImplementedException();
+       
     }
 
     public void Jump()
     {
-        throw new System.NotImplementedException();
+      
     }
 
     public void MovementInputValue(Vector2 moveInput)

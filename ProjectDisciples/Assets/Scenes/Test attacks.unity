@@ -155,9 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 300
-  _MaxStatesEfect: 4
-  _elementInteractions:
-  - {fileID: 11400000, guid: e8ec1707346a4b543820128cd69fb201, type: 2}
+  _MaxStatesEfectTime: 0
+  _elementInteractions: []
 --- !u!61 &375233582
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1064,14 +1063,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7c2921e4f820243968d19b621cec48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _KnownElements: 0000000001000000
+  _KnownElements: 0000000002000000
   _CurrentElement: 0
   _SpriteRenderer: {fileID: 1029365832}
   _FireFirstAtackPath: Elements/Fire/BaseAtack
   _firevelocity: {x: 10, y: 3}
+  _FirstFireAttackLifespan: 5
   _FireSecondAttackPath: 
   _WaterFirstAtackPath: Elements/Water/BaseAtack
   _Watervelocity: {x: 12, y: 2}
+  _FirstWaterAttackLifespan: 5
   _WaterSecondAttackPath: 
 --- !u!114 &1362795130
 MonoBehaviour:
@@ -1086,8 +1087,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 300
-  _MaxStatesEfect: 4
-  _elementInteractions: []
+  _MaxStatesEfectTime: 5
+  _elementInteractions:
+  - {fileID: 11400000, guid: 6e13a7d943099484b834c105db0a37be, type: 2}
+  - {fileID: 11400000, guid: e8ec1707346a4b543820128cd69fb201, type: 2}
+  - {fileID: 11400000, guid: 9b98517a4f4da9444a483766df56abdc, type: 2}
+  - {fileID: 11400000, guid: 177c084f48a10d343a73972fa60f4a7a, type: 2}
+  - {fileID: 11400000, guid: 038cd1202e4cffc47aa080f6d6b4f5f0, type: 2}
+  - {fileID: 11400000, guid: 87e666c422607a94aade885ffccfdbf9, type: 2}
 --- !u!114 &1362795131
 MonoBehaviour:
   m_ObjectHideFlags: 0

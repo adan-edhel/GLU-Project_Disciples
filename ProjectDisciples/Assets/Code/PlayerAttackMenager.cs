@@ -9,8 +9,9 @@ public enum EGameElement
     Magma,
     Water,
     Ice,
-    wind,
-    earth,
+    Wind,
+    Earth,
+    NoElement,
 }
 
 public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
@@ -24,11 +25,13 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     [Header("fire")]
     [SerializeField] private string _FireFirstAtackPath = "Elements/Fire/BaseAtack";
     [SerializeField] private Vector2 _firevelocity;
+    [SerializeField] private float _FirstFireAttackLifespan = 5;
     [SerializeField] private string _FireSecondAttackPath;
 
     [Header("Water")]
     [SerializeField] private string _WaterFirstAtackPath = "Elements/Water/BaseAtack";
     [SerializeField] private Vector2 _Watervelocity;
+    [SerializeField] private float _FirstWaterAttackLifespan = 5;
     [SerializeField] private string _WaterSecondAttackPath;
 
     private void Start()
@@ -94,10 +97,10 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
             case EGameElement.Water:
                 WaterAttack1();
                 break;
-            case EGameElement.wind:
+            case EGameElement.Wind:
                 WindAttack1();
                 break;
-            case EGameElement.earth:
+            case EGameElement.Earth:
                 EarthAttack1();
                 break;
             default:
@@ -116,10 +119,10 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
             case EGameElement.Water:
                 WaterAttack2();
                 break;
-            case EGameElement.wind:
+            case EGameElement.Wind:
                 WindAttack2();
                 break;
-            case EGameElement.earth:
+            case EGameElement.Earth:
                 EarthAttack2();
                 break;
             default:
@@ -134,7 +137,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
         {
-            Current -= i;
+            Current -= 1;
             if (Current < 0)
             {
                 Current = Enumength + Current;
@@ -153,7 +156,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
         {
-            Current = (Current + i) % Enumength;
+            Current = (Current + 1) % Enumength;
             if (_KnownElements.Contains((EGameElement)Current))
             {
                 SetElement((EGameElement)Current);
@@ -190,7 +193,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
             OD.SetSender = this.gameObject;
         }
 
-        Destroy(G, 5);
+        Destroy(G, _FirstFireAttackLifespan);
     }
 
     private void FireAttack2()
@@ -226,7 +229,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
         {
             OD.SetSender = this.gameObject;
         }
-        Destroy(G,5);
+        Destroy(G,_FirstWaterAttackLifespan);
     }
 
     private void WaterAttack2()
