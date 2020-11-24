@@ -22,7 +22,7 @@ public class HealthUI : MonoBehaviour
         {
             health = value;
             slider.value = health;
-            desplayText.text = (slider.value * 100).ToString() + " / 100";
+            desplayText.text = (slider.value).ToString() + " / 100";
         }
     }
 

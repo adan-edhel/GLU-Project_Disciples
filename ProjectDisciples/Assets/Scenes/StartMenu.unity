@@ -206,7 +206,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
   m_Value: 0.24
   m_OnValueChanged:
@@ -1634,6 +1634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 68175772}
   desplayText: {fileID: 877095303}
+  health: 0
 --- !u!1 &2122175061
 GameObject:
   m_ObjectHideFlags: 0
