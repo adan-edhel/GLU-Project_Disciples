@@ -22,7 +22,12 @@ public class ObjectleDamage : MonoBehaviour
         {
             if (Colliders[i].gameObject != _sender && Colliders[i].gameObject != gameObject)
             {
-                Debug.Log("Hit", this);
+                PlayerHealth PH = Colliders[i].GetComponent<PlayerHealth>();
+                if (PH != null)
+                {
+                    PH.DealDamage(_damageAmmound, _Element);
+                }
+                Destroy(gameObject);
             }
         }
         Colliders = Physics2D.OverlapBoxAll(transform.position, transform.lossyScale * 1.01f, transform.rotation.z, ~_playerLayers);

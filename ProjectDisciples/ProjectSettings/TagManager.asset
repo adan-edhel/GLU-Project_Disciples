@@ -33,10 +33,10 @@ TagManager:
   - 
   - 
   - 
-  - Player 4
-  - Player 3
-  - Player 2
-  - Player 1
+  - 
+  - 
+  - 
+  - elements
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -11,7 +11,7 @@ public enum EPlayerElement
     earth,
 }
 
-public class PlayerAttackMenager : MonoBehaviour, ICharacterAttack
+public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
 {
     [SerializeField] private List<EPlayerElement> _KnownElements;
     [SerializeField] private EPlayerElement _CurrentElement = EPlayerElement.Fire;
@@ -27,6 +27,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterAttack
 
     [Header("Water")]
     [SerializeField] private string _WaterFirstAtackPath = "Elements/Water/BaseAtack";
+    [SerializeField] private Vector2 _Watervelocity;
     [SerializeField] private string _WaterSecondAttackPath;
 
     private void Start()
@@ -37,7 +38,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterAttack
         }
     }
 
-    public void TestShoot() => Attack1();
+    public void TestShoot() => this.Attack1();
 
 
     private void FixedUpdate()
@@ -155,6 +156,16 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterAttack
         }
     }
 
+    public void SwitchPreviousElement()
+    {
+        
+    }
+
+    public void SwitchNextElement()
+    {
+        
+    }
+
     #region Fire
 
     private void FireAttack1()
@@ -210,7 +221,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterAttack
         Rigidbody2D RB = G.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
-            Vector2 NewVelocity = new Vector2(_firevelocity.x * (_SpriteRenderer.flipY ? 1 : -1), _firevelocity.y);
+            Vector2 NewVelocity = new Vector2(_Watervelocity.x * (_SpriteRenderer.flipY ? 1 : -1), _Watervelocity.y);
             RB.velocity = NewVelocity;
         }
 
