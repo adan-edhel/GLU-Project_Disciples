@@ -1,5 +1,5 @@
 {
-    "name": "GameControls",
+    "name": "InputControls",
     "maps": [
         {
             "name": "Gameplay",
@@ -41,6 +41,22 @@
                     "name": "Attack2",
                     "type": "Button",
                     "id": "3d2601df-c84b-4dd6-868b-370759c5b5f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PrevElement",
+                    "type": "Button",
+                    "id": "97dc0381-739c-45e5-a3f3-7d64488b9735",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "NextElement",
+                    "type": "Button",
+                    "id": "e286ca02-87a2-4ce3-bc07-dd274c8d9b67",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -305,6 +321,50 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47d0240c-fe96-42b4-8198-99a8ba23bd2c",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "PrevElement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57594516-8a55-48b5-a5c5-8c62bb224a98",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "PrevElement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9f70164-847f-4996-9902-685f9a81e0a6",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "NextElement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7577a26e-7aa9-41b9-a4c0-367bde33f4e6",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "NextElement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

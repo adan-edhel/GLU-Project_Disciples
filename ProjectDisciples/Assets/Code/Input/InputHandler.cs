@@ -5,12 +5,12 @@ public class InputHandler : MonoBehaviour
 {
     // Interfaces
     ICharacterMovement[] iMovement;
-    ICharacterAttack iAttack;
+    ICharacterElement iAttack;
 
     private void Start()
     {
         iMovement = GetComponents<ICharacterMovement>();
-        iAttack = GetComponent<ICharacterAttack>();
+        iAttack = GetComponent<ICharacterElement>();
     }
 
     /// <summary>
