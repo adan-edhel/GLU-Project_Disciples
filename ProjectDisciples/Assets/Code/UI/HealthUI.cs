@@ -1,31 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class HealthUI : MonoBehaviour
 {
-    public float health;
+    public Slider slider;
+    public TMP_Text desplayText;
 
-    public float barDisplay;
-    public Vector2 position = new Vector2(20, 40);
-    public Vector2 size = new Vector2(60, 20);
-    public Texture2D emptyText;
-    public Texture2D fullText;
+    private float currentValue = 0f;
+    [SerializeField] private float health;
 
-    private void OnGUI()
+    public float CurrentValue
     {
-        GUI.BeginGroup(new Rect(position.x, position.y, size.x, size.y));
-        GUI.Box(new Rect(0, 0, size.x, size.y), emptyText);
-
-        GUI.BeginGroup(new Rect(0, 0, size.x * barDisplay, size.y));
-        GUI.Box(new Rect(0, 0, size.x, size.y), fullText);
-        GUI.EndGroup();
-        GUI.EndGroup();
+        get
+        {
+            return health;
+        }
+        set
+        {
+            health = value;
+            slider.value = health;
+            desplayText.text = (slider.value * 100).ToString() + " / 100";
+        }
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        CurrentValue = 0f;
+    }
+
     private void Update()
     {
-        barDisplay = health;
+        CurrentValue = health;
     }
 }
