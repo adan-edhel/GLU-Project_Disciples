@@ -21,7 +21,7 @@ public class InputHandler : MonoBehaviour
     {
         if (context.action.ReadValue<Vector2>() != Vector2.zero)
         {
-            iMovement[0]?.HandleAim(context.action.ReadValue<Vector2>());
+            iMovement[0]?.AimInputValue(context.action.ReadValue<Vector2>());
         }
     }
 
@@ -35,7 +35,7 @@ public class InputHandler : MonoBehaviour
         {
             for (int i = 0; i < iMovement.Length; i++)
             {
-                iMovement[i]?.HandleMovement(context.action.ReadValue<Vector2>());
+                iMovement[i]?.MovementInputValue(context.action.ReadValue<Vector2>());
             }
         }
     }
@@ -49,6 +49,11 @@ public class InputHandler : MonoBehaviour
         if (context.performed)
         {
             iMovement[0].Jump();
+        }
+
+        if (context.canceled)
+        {
+            iMovement[0].CutJump();
         }
     }
 
@@ -73,6 +78,30 @@ public class InputHandler : MonoBehaviour
         if (context.performed)
         {
             iAttack?.Attack2();
+        }
+    }
+
+    /// <summary>
+    /// Gets switch element input and calls its function
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnPrevElement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            iAttack?.SwitchPreviousElement();
+        }
+    }
+
+    /// <summary>
+    /// Gets switch element input and calls its function
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnNextElement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            iAttack?.SwitchNextElement();
         }
     }
 
