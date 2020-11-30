@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class CharacterMovement : MonoBehaviour, ICharacterMovement
+public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
 {
     [Header("Movement Attributes")]
     public float moveSpeed = 3f;
@@ -123,6 +124,8 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
 
     public void Jump()
     {
+        if (!PhotonNetwork.InRoom && !photonView.IsMine) return;
+
         if (isGrounded)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
@@ -135,6 +138,8 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
     /// </summary>
     public void CutJump()
     {
+        if (!PhotonNetwork.InRoom && !photonView.IsMine) return;
+
         if (rigidBody.velocity.y > 0)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * fCutJumpHeight);
@@ -221,6 +226,8 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
 
     public void MovementInputValue(Vector2 moveInput)
     {
+        if (!PhotonNetwork.InRoom && !photonView.IsMine) return;
+
         moveInputValue = moveInput;
     }
 
