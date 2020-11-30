@@ -14,7 +14,7 @@ public enum EGameElement
     NoElement,
 }
 
-public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
+public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
 {
     [SerializeField] private List<EGameElement> _KnownElements;
     [SerializeField] private EGameElement _CurrentElement = EGameElement.Fire;
@@ -170,7 +170,7 @@ public class PlayerAttackMenager : MonoBehaviour, ICharacterElement
     private void FireAttack1()
     {
         GameObject G;
-        if (PhotonNetwork.InRoom)
+        if (PhotonNetwork.InRoom && photonView.IsMine)
         {
             G = PhotonNetwork.Instantiate(_FireFirstAtackPath, transform.position, Quaternion.identity);
         }
