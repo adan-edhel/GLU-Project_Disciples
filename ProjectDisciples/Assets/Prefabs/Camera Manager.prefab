@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultShakeAmplitude: 1.2
   defaultShakeFrequency: 2
+  virtualCamera: {fileID: 0}
 --- !u!1 &7885723489506024090
 GameObject:
   m_ObjectHideFlags: 0

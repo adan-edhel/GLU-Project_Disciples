@@ -14,7 +14,7 @@ public class CameraManager : MonoBehaviour
     float ShakeElapsedTime = 0f;
 
     // Cinemachine Virtual Camera
-    private CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera virtualCamera;
 
     // Cinemachine Components
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise;

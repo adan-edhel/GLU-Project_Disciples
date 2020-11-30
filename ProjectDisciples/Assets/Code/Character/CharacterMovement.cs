@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     [HideInInspector]
     public Vector2 moveInputValue;
     Vector2 velocity;
-    public Vector2 oldVelocity;
+    Vector2 oldVelocity;
 
     private void Awake()
     {

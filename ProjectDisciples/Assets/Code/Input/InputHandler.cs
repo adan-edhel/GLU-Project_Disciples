@@ -11,6 +11,8 @@ public class InputHandler : MonoBehaviour
     {
         iMovement = GetComponents<ICharacterMovement>();
         iAttack = GetComponent<ICharacterElement>();
+
+        CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
     }
 
     /// <summary>
