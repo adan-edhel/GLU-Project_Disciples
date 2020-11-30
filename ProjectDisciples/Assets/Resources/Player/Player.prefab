@@ -355,7 +355,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   moveInputValue: {x: 0, y: 0}
-  oldVelocity: {x: 0, y: 0}
 --- !u!114 &5723752650747264585
 MonoBehaviour:
   m_ObjectHideFlags: 0

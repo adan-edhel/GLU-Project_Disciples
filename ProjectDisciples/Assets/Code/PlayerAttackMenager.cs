@@ -34,6 +34,11 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
     [SerializeField] private float _FirstWaterAttackLifespan = 5;
     [SerializeField] private string _WaterSecondAttackPath;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         if (_KnownElements == null)
