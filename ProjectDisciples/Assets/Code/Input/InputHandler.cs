@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviourPunCallbacks
 {
     // Interfaces
     ICharacterMovement[] iMovement;
@@ -11,6 +13,16 @@ public class InputHandler : MonoBehaviour
     {
         iMovement = GetComponents<ICharacterMovement>();
         iAttack = GetComponent<ICharacterElement>();
+
+        if (PhotonNetwork.InRoom && photonView.IsMine)
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
     }
 
     /// <summary>
