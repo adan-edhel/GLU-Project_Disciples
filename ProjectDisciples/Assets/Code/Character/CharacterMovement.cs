@@ -32,7 +32,7 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
     [HideInInspector]
     public Vector2 moveInputValue;
     Vector2 velocity;
-    Vector2 oldVelocity;
+    public Vector2 oldVelocity;
 
     private void Awake()
     {
@@ -197,17 +197,17 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
         }
 
         // Ground Impact Camera Shake
-        if (oldVelocity.y < -8)
-        {
-            //if (oldVelocity.y < -12)
-            //{
-            //    CameraManager.Instance.ShakeCamera(2, 6, 0);
-            //}
-            //else
-            //{
-            //    CameraManager.Instance.ShakeCamera(1, 0, 0);
-            //}
-        }
+        //if (oldVelocity.y < -5)
+        //{
+        //    if (oldVelocity.y < -12)
+        //    {
+        //        CameraManager.Instance.ShakeCamera(2, 6, 0);
+        //    }
+        //    else
+        //    {
+        //        CameraManager.Instance.ShakeCamera(1, 0, 0);
+        //    }
+        //}
     }
 
     #endregion
