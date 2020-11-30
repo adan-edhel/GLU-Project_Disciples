@@ -28,7 +28,7 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = "1.1";
-        
+
         string S = _Nickname.text;
         if (S == "")
         {
@@ -47,7 +47,7 @@ public class Lobby : MonoBehaviourPunCallbacks
             S = RandomName(10);
         }
         print("connected");
-        PhotonNetwork.JoinOrCreateRoom(S, new RoomOptions() { MaxPlayers = 5 , CleanupCacheOnLeave = true }, null);
+        PhotonNetwork.JoinOrCreateRoom(S, new RoomOptions() { MaxPlayers = 5, CleanupCacheOnLeave = true }, null);
     }
 
     public override void OnJoinedRoom()
@@ -72,5 +72,10 @@ public class Lobby : MonoBehaviourPunCallbacks
             S += Chars[Random.Range(0, (i * System.DateTime.Now.Millisecond)) % Chars.Length];
         }
         return S;
+    }
+
+    public void OnLeaveMulti()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 2);
     }
 }

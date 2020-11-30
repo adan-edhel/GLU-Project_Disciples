@@ -1062,6 +1062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8b53f6d81fca12408b477e2c915fe3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiButton: {fileID: 689913866}
   backFromCredits: {fileID: 546968571}
   goToCredits: {fileID: 293311249}
   creditCanvas: {fileID: 1193865016}

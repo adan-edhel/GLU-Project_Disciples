@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
+    [SerializeField] private Button multiButton;
+
     [SerializeField] private Button backFromCredits;
     [SerializeField] private Button goToCredits;
     [SerializeField] private GameObject creditCanvas;
@@ -20,10 +23,17 @@ public class CanvasManager : MonoBehaviour
 
     private void Start()
     {
+        multiButton.onClick.AddListener(GoToMultiLobby);
+
         backFromCredits.onClick.AddListener(CreditsUI);
         goToCredits.onClick.AddListener(CreditsUI);
         //backFromOptions.onClick.AddListener(BackFromOptionsBut);
         //goToOptions.onClick.AddListener(OptionsUI);
+    }
+
+    private void GoToMultiLobby()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 0);
     }
 
     private void CreditsUI()
