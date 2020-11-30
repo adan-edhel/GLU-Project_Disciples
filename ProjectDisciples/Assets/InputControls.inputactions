@@ -264,7 +264,7 @@
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PC",
+                    "groups": "Controller",
                     "action": "Attack1",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -275,7 +275,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Controller",
+                    "groups": "PC",
                     "action": "Attack1",
                     "isComposite": false,
                     "isPartOfComposite": false
