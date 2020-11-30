@@ -6,9 +6,7 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
 {
     [Header("Movement Attributes")]
     public float moveSpeed = 3f;
-    public float jumpSpeed = 8f;
-    public float swingForce = 4f;
-    public float yankForce = 7f;
+    public float jumpSpeed = 5f;
 
     // Max Slope Climb Angle
     float maxClimbAngle = 50;
@@ -26,14 +24,13 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
     public bool isJumping;
 
     [Header("Object Variables")]
-    [SerializeField] GameObject impactDustParticle;
     [SerializeField] SpriteRenderer playerSprite;
     public LayerMask groundCheckLayer;
     Rigidbody2D rigidBody;
 
     // Movement Input Value
     [HideInInspector]
-    public Vector2 i_moveInput;
+    public Vector2 moveInputValue;
     Vector2 velocity;
     Vector2 oldVelocity;
 
@@ -47,9 +44,9 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
 
     private void Update()
     {
-        CheckForGround();
+        CheckForGroundCollision();
 
-        velocity.x = i_moveInput.x * moveSpeed;
+        velocity.x = moveInputValue.x * moveSpeed;
 
         if (Time.frameCount % 5 == 0)
         {
@@ -62,19 +59,20 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
         HandleMovement();
     }
 
+    #region Movement
+
     /// <summary>
     /// Handles player movement and jumping using input interfaces
     /// </summary>
     public void HandleMovement()
     {
-        if (i_moveInput.x * System.Math.Sign(i_moveInput.x) > 0.01f)
+        if (moveInputValue.x * System.Math.Sign(moveInputValue.x) > 0.01f)
         {
             if (isGrounded)
             {
                 var groundForce = moveSpeed * 2f;
-                rigidBody.AddForce(new Vector2((i_moveInput.x * groundForce - rigidBody.velocity.x) * groundForce, 0));
-                rigidBody.velocity = new Vector2(velocity.x, velocity.y);
-                velocity.y = 0;
+                rigidBody.AddForce(new Vector2((moveInputValue.x * groundForce - rigidBody.velocity.x) * groundForce, 0));
+                rigidBody.velocity = new Vector2(velocity.x, rigidBody.velocity.y);
 
                 RaycastHit2D slopeHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Unity.Mathematics.math.sign(velocity.x), 1.5f, groundCheckLayer);
                 if (slopeHit)
@@ -119,6 +117,19 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
         velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
     }
 
+    #endregion
+
+    #region Jump
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
+            isJumping = true;
+        }
+    }
+
     /// <summary>
     /// Cuts jumps in half if input is released
     /// </summary>
@@ -132,10 +143,14 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
         isJumping = false;
     }
 
+    #endregion
+
+    #region collisions
+
     /// <summary>
     /// Checks for ground colliders at the base of player
     /// </summary>
-    void CheckForGround()
+    void CheckForGroundCollision()
     {
         var halfHeight = playerSprite.bounds.extents.y;
         groundCollision[0] = Physics2D.OverlapCircle(new Vector2(transform.position.x + groundCheckOffset, transform.position.y - halfHeight), 0.1f, groundCheckLayer);
@@ -171,8 +186,6 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
         // Ground Impact Particle
         if (oldVelocity.y < -5)
         {
-            //Instantiate(impactDustParticle, new Vector3(transform.position.x, transform.position.y - PlayerBase.playerSprite.bounds.extents.y, transform.position.z + 1), impactDustParticle.transform.rotation);
-
             //if (collision.transform.gameObject.layer == 12)
             //{
             //    AudioManager.PlaySound(AudioManager.Sound.PlayerLandWood, transform.position);
@@ -197,6 +210,24 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
         }
     }
 
+    #endregion
+
+    #region GetValues
+
+    public void AimInputValue(Vector2 input)
+    {
+
+    }
+
+    public void MovementInputValue(Vector2 moveInput)
+    {
+        moveInputValue = moveInput;
+    }
+
+    #endregion
+
+    #region Gizmos
+
     private void OnDrawGizmos()
     {
         if (playerSprite)
@@ -209,18 +240,5 @@ public class CharacterMovement : MonoBehaviour, ICharacterMovement
         Gizmos.DrawRay(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Mathf.Sign(velocity.x));
     }
 
-    public void HandleAim(Vector2 input)
-    {
-
-    }
-
-    public void HandleMovement(Vector2 moveInput)
-    {
-        i_moveInput = moveInput;
-    }
-
-    public void Jump()
-    {
-
-    }
+    #endregion
 }
