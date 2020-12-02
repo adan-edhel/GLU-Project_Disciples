@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IHealth 
+﻿using Photon.Pun;
+public interface IHealth : IPunObservable
 {
     float Health { get; set; }
 
+   
     void DealDamage(float Damage, EGameElement Element);
     
 }

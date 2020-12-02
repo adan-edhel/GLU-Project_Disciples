@@ -432,6 +432,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5723752650747264584}
   _renderer: {fileID: 5723752650136994936}
+  _playercolors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.43053007, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.20489144, a: 1}
+  - {r: 1, g: 0, b: 0.6324959, a: 1}
+  - {r: 1, g: 0.93979657, b: 0, a: 1}
+  _localColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &6047221070578487881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +458,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
+  - {fileID: 5723752650747264586}
+  - {fileID: 5723752650747264587}
   - {fileID: 2386511718976468525}
   viewIdField: 0
   InstantiationId: 0
