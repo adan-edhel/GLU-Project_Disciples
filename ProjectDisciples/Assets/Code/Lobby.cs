@@ -53,8 +53,7 @@ public class Lobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         print("joined room and waiting");
-        PhotonNetwork.LoadLevel(1);
-        DontDestroyOnLoad(PhotonNetwork.Instantiate(_PrefabLocation, Vector3.zero, Quaternion.identity));
+        PUNChat.instance.ConnectToRoom(PhotonNetwork.CurrentRoom.Name, PhotonNetwork.NickName);
         //_PunChat.ConnectToRoom(PhotonNetwork.CurrentRoom.Name,PhotonNetwork.NickName);
     }
 

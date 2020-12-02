@@ -14,7 +14,7 @@ public enum EGameElement
     NoElement,
 }
 
-public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
+public class CharacterAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
 {
     [SerializeField] private List<EGameElement> _KnownElements;
     [SerializeField] private EGameElement _CurrentElement = EGameElement.Fire;
@@ -33,6 +33,11 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
     [SerializeField] private Vector2 _Watervelocity;
     [SerializeField] private float _FirstWaterAttackLifespan = 5;
     [SerializeField] private string _WaterSecondAttackPath;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
@@ -89,6 +94,7 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack1()
     {
+        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
         switch (_CurrentElement)
         {
             case EGameElement.Fire:
@@ -111,6 +117,7 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack2()
     {
+        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
         switch (_CurrentElement)
         {
             case EGameElement.Fire:
@@ -133,6 +140,7 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void SwitchPreviousElement()
     {
+        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
@@ -152,6 +160,7 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void SwitchNextElement()
     {
+        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
@@ -178,6 +187,7 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
         {
             G = Instantiate(Resources.Load(_FireFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
         }
+
         G.layer = gameObject.layer;
 
         Rigidbody2D RB = G.GetComponent<Rigidbody2D>();
@@ -191,9 +201,15 @@ public class PlayerAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
         if (OD != null)
         {
             OD.SetSender = this.gameObject;
+            if (PhotonNetwork.InRoom && photonView.IsMine)
+            {
+                OD.SendRPC();
+            }
+            else
+            {
+                Destroy(G, _FirstFireAttackLifespan);
+            }
         }
-
-        Destroy(G, _FirstFireAttackLifespan);
     }
 
     private void FireAttack2()

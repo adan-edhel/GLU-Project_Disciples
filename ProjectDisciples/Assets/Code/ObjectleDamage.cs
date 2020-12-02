@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectleDamage : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class ObjectleDamage : MonoBehaviourPunCallbacks
 {
     [SerializeField] private EGameElement _Element;
     [SerializeField] private float _damageAmmound;
     [SerializeField] private GameObject _sender;
+    string _senderName;
     [SerializeField] private LayerMask _playerLayers;
 
     public GameObject SetSender
@@ -22,18 +25,76 @@ public class ObjectleDamage : MonoBehaviour
         {
             if (Colliders[i].gameObject != _sender && Colliders[i].gameObject != gameObject)
             {
-                PlayerHealth PH = Colliders[i].GetComponent<PlayerHealth>();
+                CharacterHealth PH = Colliders[i].GetComponent<CharacterHealth>();
                 if (PH != null)
                 {
                     PH.DealDamage(_damageAmmound, _Element);
                 }
-                Destroy(gameObject);
+                if (PhotonNetwork.InRoom)
+                {
+                    photonView.RPC("destroyRPC", RpcTarget.MasterClient);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         Colliders = Physics2D.OverlapBoxAll(transform.position, transform.lossyScale * 1.01f, transform.rotation.z, ~_playerLayers);
         if (Colliders.Length > 0)
         {
-            Destroy(gameObject);
+            if (PhotonNetwork.InRoom)
+            {
+                photonView.RPC("destroyRPC", RpcTarget.MasterClient);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
+    }
+
+    public void SetStartingData(int layer, GameObject Sender)
+    {
+        gameObject.layer = layer;
+        _sender = Sender;
+    }
+
+    public void SendRPC()
+    {
+        Rigidbody2D RB2D = GetComponent<Rigidbody2D>();
+        if (RB2D != null)
+        {
+            photonView.RPC("setData", RpcTarget.Others, RB2D.velocity.x, RB2D.velocity.y, gameObject.layer, _sender.name);
+        }
+        DestroyAfter(5f);
+    }
+
+    [PunRPC]
+    public void destroyRPC()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
+
+    [PunRPC]
+    public void setData(float velocityX, float velocityY, int Layer, string SenderName)
+    {
+        Rigidbody2D RB2D = GetComponent<Rigidbody2D>();
+        if (RB2D != null)
+        {
+            RB2D.velocity = new Vector2(velocityX, velocityY);
+        }
+        gameObject.layer = Layer;
+        _senderName = SenderName;
+        if (_senderName != _sender.name)
+        {
+            _sender = GameObject.Find(_senderName);
+        }
+    }
+
+    private IEnumerator DestroyAfter(float Time)
+    {
+        yield return new WaitForSeconds(Time);
+        photonView.RPC("destroyRPC", RpcTarget.MasterClient);
     }
 }
