@@ -1,7 +1,13 @@
 fileFormatVersion: 2
 guid: 933719653eae45b4c9b5c5399e03783f
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -835697067868147499
+    second: rockspurple2_0
+  - first:
+      213: 5262012757084893759
+    second: rockspurple2_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +47,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -73,9 +79,63 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: rockspurple2_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
+        width: 1068
+        height: 482
+      alignment: 9
+      pivot: {x: 0.48655176, y: 0.2556552}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d032e9c1f10764f0800000000000000
+      internalID: -835697067868147499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rockspurple2_1
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 10
+        width: 852
+        height: 629
+      alignment: 9
+      pivot: {x: 0.5141888, y: 0.18480715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f327e9529bc660940800000000000000
+      internalID: 5262012757084893759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

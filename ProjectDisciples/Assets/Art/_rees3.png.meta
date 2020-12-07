@@ -1,7 +1,25 @@
 fileFormatVersion: 2
 guid: 5d877e716cacfe14a88ff0cd9c9d416b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2244351856952646337
+    second: treestump
+  - first:
+      213: 1651715462063184408
+    second: treebranch1
+  - first:
+      213: 7346154313327644076
+    second: treemiddle1
+  - first:
+      213: 1587056085338243787
+    second: treebranch2
+  - first:
+      213: 4875199759629753667
+    second: treebranch3
+  - first:
+      213: -2442431905835098081
+    second: treebranch4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +59,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -73,9 +91,147 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: treestump
+      rect:
+        serializedVersion: 2
+        x: 1294
+        y: 0
+        width: 392
+        height: 411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f35695f80e57ad0e0800000000000000
+      internalID: -2244351856952646337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treebranch1
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 223
+        width: 197
+        height: 512
+      alignment: 9
+      pivot: {x: 0.29432267, y: 0.121898115}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81adb4a26721ce610800000000000000
+      internalID: 1651715462063184408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treemiddle1
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 451
+        width: 204
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5441374, y: 0.23034589}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cad09172d68c2f560800000000000000
+      internalID: 7346154313327644076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treebranch2
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 833
+        width: 622
+        height: 224
+      alignment: 9
+      pivot: {x: 0.9089483, y: 0.17842484}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2453dd91b560610800000000000000
+      internalID: 1587056085338243787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treebranch3
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 462
+        width: 444
+        height: 282
+      alignment: 9
+      pivot: {x: 0.8650312, y: 0.22859982}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34d1dc9f95038a340800000000000000
+      internalID: 4875199759629753667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: treebranch4
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 0
+        width: 577
+        height: 476
+      alignment: 9
+      pivot: {x: 0.8721397, y: 0.12850414}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f106e984f1dba1ed0800000000000000
+      internalID: -2442431905835098081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
