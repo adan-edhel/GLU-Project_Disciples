@@ -201,7 +201,7 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
             //}
         }
 
-        // Ground Impact Camera Shake
+        //Ground Impact Camera Shake
         //if (oldVelocity.y < -5)
         //{
         //    if (oldVelocity.y < -12)
@@ -226,8 +226,6 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
 
     public void MovementInputValue(Vector2 moveInput)
     {
-        if (!PhotonNetwork.InRoom && !photonView.IsMine) return;
-
         moveInputValue = moveInput;
     }
 

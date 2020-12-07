@@ -11,11 +11,11 @@ public class InputHandler : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        iMovement = GetComponents<ICharacterMovement>();
-        iAttack = GetComponent<ICharacterElement>();
-
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
+            iMovement = GetComponents<ICharacterMovement>();
+            iAttack = GetComponent<ICharacterElement>();
+
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
     }
@@ -61,12 +61,12 @@ public class InputHandler : MonoBehaviourPunCallbacks
     {
         if (context.performed)
         {
-            iMovement[0].Jump();
+            iMovement[0]?.Jump();
         }
 
         if (context.canceled)
         {
-            iMovement[0].CutJump();
+            iMovement[0]?.CutJump();
         }
     }
 

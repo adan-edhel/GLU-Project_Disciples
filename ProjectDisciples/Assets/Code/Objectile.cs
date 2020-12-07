@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class ObjectleDamage : MonoBehaviourPunCallbacks
+public class Objectile : MonoBehaviourPunCallbacks
 {
     [SerializeField] private EGameElement _Element;
     [SerializeField] private float _damageAmmound;
@@ -27,10 +27,10 @@ public class ObjectleDamage : MonoBehaviourPunCallbacks
             {
                 if (Colliders[i].gameObject != _sender && Colliders[i].gameObject != gameObject)
                 {
-                    CharacterHealth PH = Colliders[i].GetComponent<CharacterHealth>();
-                    if (PH != null)
+                    CharacterHealth health = Colliders[i].GetComponent<CharacterHealth>();
+                    if (health != null)
                     {
-                        PH.DealDamage(_damageAmmound, _Element);
+                        health.DealDamage(_damageAmmound, _Element);
                     }
                     if (PhotonNetwork.InRoom)
                     {
@@ -86,10 +86,10 @@ public class ObjectleDamage : MonoBehaviourPunCallbacks
     [PunRPC]
     public void setData(float velocityX, float velocityY, int Layer, string SenderName)
     {
-        Rigidbody2D RB2D = GetComponent<Rigidbody2D>();
-        if (RB2D != null)
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        if (rigidbody != null)
         {
-            RB2D.velocity = new Vector2(velocityX, velocityY);
+            rigidbody.velocity = new Vector2(velocityX, velocityY);
         }
         gameObject.layer = Layer;
         _senderName = SenderName;

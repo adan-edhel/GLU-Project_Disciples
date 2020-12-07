@@ -14,7 +14,7 @@ public enum EGameElement
     NoElement,
 }
 
-public class CharacterAttackMenager : MonoBehaviourPunCallbacks, ICharacterElement
+public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 {
     [SerializeField] private List<EGameElement> _KnownElements;
     [SerializeField] private EGameElement _CurrentElement = EGameElement.Fire;
@@ -178,36 +178,36 @@ public class CharacterAttackMenager : MonoBehaviourPunCallbacks, ICharacterEleme
 
     private void FireAttack1()
     {
-        GameObject G;
+        GameObject tempObject;
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
-            G = PhotonNetwork.Instantiate(_FireFirstAtackPath, transform.position, Quaternion.identity);
+            tempObject = PhotonNetwork.Instantiate(_FireFirstAtackPath, transform.position, Quaternion.identity);
         }
         else
         {
-            G = Instantiate(Resources.Load(_FireFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
+            tempObject = Instantiate(Resources.Load(_FireFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
         }
 
-        G.layer = gameObject.layer;
+        tempObject.layer = gameObject.layer;
 
-        Rigidbody2D RB = G.GetComponent<Rigidbody2D>();
+        Rigidbody2D RB = tempObject.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
             Vector2 NewVelocity = new Vector2(_firevelocity.x * (_SpriteRenderer.flipX ? -1 : 1), _firevelocity.y);
             RB.velocity = NewVelocity;
         }
 
-        ObjectleDamage OD = G.GetComponent<ObjectleDamage>();
-        if (OD != null)
+        Objectile objectileDamage = tempObject.GetComponent<Objectile>();
+        if (objectileDamage != null)
         {
-            OD.SetSender = this.gameObject;
+            objectileDamage.SetSender = this.gameObject;
             if (PhotonNetwork.InRoom && photonView.IsMine)
             {
-                OD.SendRPC();
+                objectileDamage.SendRPC();
             }
             else
             {
-                Destroy(G, _FirstFireAttackLifespan);
+                Destroy(tempObject, _FirstFireAttackLifespan);
             }
         }
     }
@@ -222,30 +222,30 @@ public class CharacterAttackMenager : MonoBehaviourPunCallbacks, ICharacterEleme
     #region Water
     private void WaterAttack1()
     {
-        GameObject G;
+        GameObject tempObject;
         if (PhotonNetwork.InRoom)
         {
-            G = PhotonNetwork.Instantiate(_WaterFirstAtackPath, transform.position, Quaternion.identity);
+            tempObject = PhotonNetwork.Instantiate(_WaterFirstAtackPath, transform.position, Quaternion.identity);
         }
         else
         {
-            G = Instantiate(Resources.Load(_WaterFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
+            tempObject = Instantiate(Resources.Load(_WaterFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
         }
-        G.layer = gameObject.layer;
+        tempObject.layer = gameObject.layer;
 
-        Rigidbody2D RB = G.GetComponent<Rigidbody2D>();
+        Rigidbody2D RB = tempObject.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
             Vector2 NewVelocity = new Vector2(_Watervelocity.x * (_SpriteRenderer.flipX ? -1 : 1), _Watervelocity.y);
             RB.velocity = NewVelocity;
         }
 
-        ObjectleDamage OD = G.GetComponent<ObjectleDamage>();
-        if (OD != null)
+        Objectile objectileDamage = tempObject.GetComponent<Objectile>();
+        if (objectileDamage != null)
         {
-            OD.SetSender = this.gameObject;
+            objectileDamage.SetSender = this.gameObject;
         }
-        Destroy(G,_FirstWaterAttackLifespan);
+        Destroy(tempObject,_FirstWaterAttackLifespan);
     }
 
     private void WaterAttack2()

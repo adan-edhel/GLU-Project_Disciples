@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class AnimationHandeler : MonoBehaviourPunCallbacks, ICharacterMovement, IPunObservable
+public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, IPunObservable
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _renderer;
@@ -23,7 +23,6 @@ public class AnimationHandeler : MonoBehaviourPunCallbacks, ICharacterMovement, 
                 }
             }
         }
-        
     }
 
     public void AimInputValue(Vector2 input)
