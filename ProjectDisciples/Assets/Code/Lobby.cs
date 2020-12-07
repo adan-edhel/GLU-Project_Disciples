@@ -28,26 +28,26 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = "1.1";
-
-        string S = _Nickname.text;
-        if (S == "")
+        
+        string tempString = _Nickname.text;
+        if (tempString == "")
         {
-            S = RandomName(10);
+            tempString = RandomName(10);
         }
 
-        PhotonNetwork.NickName = S;
+        PhotonNetwork.NickName = tempString;
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log(_ServerName.gameObject.name, this);
-        string S = _ServerName.text;
-        if (S == "")
+        string tempString = _ServerName.text;
+        if (tempString == "")
         {
-            S = RandomName(10);
+            tempString = RandomName(10);
         }
         print("connected");
-        PhotonNetwork.JoinOrCreateRoom(S, new RoomOptions() { MaxPlayers = 5, CleanupCacheOnLeave = true }, null);
+        PhotonNetwork.JoinOrCreateRoom(tempString, new RoomOptions() { MaxPlayers = 5 , CleanupCacheOnLeave = true }, null);
     }
 
     public override void OnJoinedRoom()
@@ -64,13 +64,13 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     private string RandomName(int Length)
     {
-        string S = "";
+        string tempString = "";
         char[] Chars = "bcdfghjklmnpqrstvwxyz#&<>".ToCharArray();
         for (int i = 0; i < Length; i++)
         {
-            S += Chars[Random.Range(0, (i * System.DateTime.Now.Millisecond)) % Chars.Length];
+            tempString += Chars[Random.Range(0, (i * System.DateTime.Now.Millisecond)) % Chars.Length];
         }
-        return S;
+        return tempString;
     }
 
     public void OnLeaveMulti()

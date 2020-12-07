@@ -22,7 +22,7 @@ public class PanelMover : MonoBehaviour
         }
     }
 
-    public void MoveToScene(int I)
+    public void MoveToScene(int I) //TODO: Adjust to use scene controller in V2.0
     {
         SceneManager.LoadScene(I);
     }
