@@ -21,22 +21,25 @@ public class ObjectleDamage : MonoBehaviourPunCallbacks
     private void FixedUpdate()
     {
         Collider2D[] Colliders = Physics2D.OverlapBoxAll(transform.position, transform.lossyScale * 1.01f, transform.rotation.z, _playerLayers);
-        for (int i = 0; i < Colliders.Length; i++)
+        if (_sender != null)
         {
-            if (Colliders[i].gameObject != _sender && Colliders[i].gameObject != gameObject)
+            for (int i = 0; i < Colliders.Length; i++)
             {
-                CharacterHealth PH = Colliders[i].GetComponent<CharacterHealth>();
-                if (PH != null)
+                if (Colliders[i].gameObject != _sender && Colliders[i].gameObject != gameObject)
                 {
-                    PH.DealDamage(_damageAmmound, _Element);
-                }
-                if (PhotonNetwork.InRoom)
-                {
-                    photonView.RPC("destroyRPC", RpcTarget.MasterClient);
-                }
-                else
-                {
-                    Destroy(gameObject);
+                    CharacterHealth PH = Colliders[i].GetComponent<CharacterHealth>();
+                    if (PH != null)
+                    {
+                        PH.DealDamage(_damageAmmound, _Element);
+                    }
+                    if (PhotonNetwork.InRoom)
+                    {
+                        photonView.RPC("destroyRPC", RpcTarget.All);
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
                 }
             }
         }
@@ -45,7 +48,7 @@ public class ObjectleDamage : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.InRoom)
             {
-                photonView.RPC("destroyRPC", RpcTarget.MasterClient);
+                photonView.RPC("destroyRPC", RpcTarget.All);
             }
             else
             {
@@ -62,18 +65,22 @@ public class ObjectleDamage : MonoBehaviourPunCallbacks
 
     public void SendRPC()
     {
-        Rigidbody2D RB2D = GetComponent<Rigidbody2D>();
-        if (RB2D != null)
+        if (_sender != null)
         {
-            photonView.RPC("setData", RpcTarget.Others, RB2D.velocity.x, RB2D.velocity.y, gameObject.layer, _sender.name);
+            Rigidbody2D RB2D = GetComponent<Rigidbody2D>();
+            if (RB2D != null)
+            {
+                photonView.RPC("setData", RpcTarget.Others, RB2D.velocity.x, RB2D.velocity.y, gameObject.layer, _sender.name);
+            }
+            DestroyAfter(5f);
         }
-        DestroyAfter(5f);
     }
 
     [PunRPC]
     public void destroyRPC()
     {
-        PhotonNetwork.Destroy(gameObject);
+        Destroy(gameObject);
+        //PhotonNetwork.Destroy(gameObject);
     }
 
     [PunRPC]
@@ -86,7 +93,7 @@ public class ObjectleDamage : MonoBehaviourPunCallbacks
         }
         gameObject.layer = Layer;
         _senderName = SenderName;
-        if (_senderName != _sender.name)
+        if (_sender == null || _senderName != _sender.name)
         {
             _sender = GameObject.Find(_senderName);
         }
@@ -95,6 +102,6 @@ public class ObjectleDamage : MonoBehaviourPunCallbacks
     private IEnumerator DestroyAfter(float Time)
     {
         yield return new WaitForSeconds(Time);
-        photonView.RPC("destroyRPC", RpcTarget.MasterClient);
+        photonView.RPC("destroyRPC", RpcTarget.All);
     }
 }
