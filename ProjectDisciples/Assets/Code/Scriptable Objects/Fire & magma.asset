@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db95c61191fadba499c15c8bcd676d26, type: 3}
-  m_Name: Fire & water
+  m_Name: Fire & magma
   m_EditorClassIdentifier: 
   _FirstElement: 0
-  _SecondElement: 2
-  _multiplier: 1.75
+  _SecondElement: 1
+  _multiplier: 1.5

@@ -3,14 +3,14 @@
 [CreateAssetMenu(fileName = "New Element Interaction", menuName = "ScriptableObjects/Element Interaction", order = 1)]
 public class ElementInteraction : ScriptableObject
 {
-    [SerializeField] private EPlayerElement _FirstElement;
-    [SerializeField] private EPlayerElement _SecondElement;
+    [SerializeField] private EGameElement _FirstElement;
+    [SerializeField] private EGameElement _SecondElement;
     [SerializeField] private float _multiplier = 1f;
 
-    public EPlayerElement GetFirstElement
+    public EGameElement GetFirstElement
     { get { return _FirstElement; } }
 
-    public EPlayerElement GetSecondElement
+    public EGameElement GetSecondElement
     { get { return _SecondElement; } }
 
     public float GetMultplier

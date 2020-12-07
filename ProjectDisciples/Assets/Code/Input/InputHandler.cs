@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviourPunCallbacks
 {
     // Interfaces
     ICharacterMovement[] iMovement;
@@ -9,8 +11,19 @@ public class InputHandler : MonoBehaviour
 
     private void Start()
     {
-        iMovement = GetComponents<ICharacterMovement>();
-        iAttack = GetComponent<ICharacterElement>();
+        if (PhotonNetwork.InRoom && photonView.IsMine)
+        {
+            iMovement = GetComponents<ICharacterMovement>();
+            iAttack = GetComponent<ICharacterElement>();
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
+        transform.position = Vector3.zero;
     }
 
     /// <summary>
@@ -48,12 +61,12 @@ public class InputHandler : MonoBehaviour
     {
         if (context.performed)
         {
-            iMovement[0].Jump();
+            iMovement[0]?.Jump();
         }
 
         if (context.canceled)
         {
-            iMovement[0].CutJump();
+            iMovement[0]?.CutJump();
         }
     }
 
