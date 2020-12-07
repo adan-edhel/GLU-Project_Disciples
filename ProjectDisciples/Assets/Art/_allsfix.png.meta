@@ -1,7 +1,31 @@
 fileFormatVersion: 2
 guid: 608d5b8ecd334b344a6f14840a183534
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3798480789274362873
+    second: _allsfix_0
+  - first:
+      213: -7723640531067522178
+    second: _allsfix_1
+  - first:
+      213: -2440071740408153700
+    second: _allsfix_2
+  - first:
+      213: 2578710205324235167
+    second: _allsfix_3
+  - first:
+      213: 3509313224917190996
+    second: _allsfix_4
+  - first:
+      213: -6464958042579889860
+    second: _allsfix_5
+  - first:
+      213: -7018511932365394071
+    second: _allsfix_6
+  - first:
+      213: -3643321430677583834
+    second: _allsfix_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +65,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -73,9 +97,189 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: _allsfix_0
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 636
+        width: 1120
+        height: 646
+      alignment: 9
+      pivot: {x: 0.48935753, y: 0.14944033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f308d2172ae6b430800000000000000
+      internalID: 3798480789274362873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allsfix_1
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 113
+        width: 724
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7339eccbdd10d490800000000000000
+      internalID: -7723640531067522178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allsfix_2
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 102
+        width: 400
+        height: 487
+      alignment: 9
+      pivot: {x: 0.46094665, y: 0.120424904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c99b08e1eaf132ed0800000000000000
+      internalID: -2440071740408153700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allsfix_3
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 106
+        width: 338
+        height: 319
+      alignment: 9
+      pivot: {x: 0.463021, y: 0.17870702}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f919607e44b69c320800000000000000
+      internalID: 2578710205324235167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allsfix_4
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 591
+        width: 434
+        height: 493
+      alignment: 9
+      pivot: {x: 0.48270258, y: 0.1726099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45905c0f8c593b030800000000000000
+      internalID: 3509313224917190996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allsfix_5
+      rect:
+        serializedVersion: 2
+        x: 2416
+        y: 593
+        width: 1114
+        height: 648
+      alignment: 9
+      pivot: {x: 0.5067391, y: 0.16403264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c319830c9ead746a0800000000000000
+      internalID: -6464958042579889860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allsfix_6
+      rect:
+        serializedVersion: 2
+        x: 2104
+        y: 132
+        width: 357
+        height: 325
+      alignment: 9
+      pivot: {x: 0.4819418, y: 0.14294519}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96f258b459c399e90800000000000000
+      internalID: -7018511932365394071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allsfix_7
+      rect:
+        serializedVersion: 2
+        x: 2630
+        y: 46
+        width: 722
+        height: 493
+      alignment: 9
+      pivot: {x: 0.5, y: 0.12513396}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62805e14672507dc0800000000000000
+      internalID: -3643321430677583834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
