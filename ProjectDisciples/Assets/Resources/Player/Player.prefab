@@ -389,8 +389,8 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e286ca02-87a2-4ce3-bc07-dd274c8d9b67
     m_ActionName: Gameplay/NextElement[/Keyboard/e,/XInputControllerWindows/rightShoulder]
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Controller
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
