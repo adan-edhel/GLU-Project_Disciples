@@ -13,7 +13,6 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
 
     public float Health { get { return _health;} set { _health = value; } }
 
-
     public void DealDamage(float Damage, EGameElement Element)
     {
         if (PhotonNetwork.InRoom)
@@ -24,7 +23,6 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
         {
             NetworkDealDamage(Damage, Element);
         }
-        
     }
 
     [PunRPC]

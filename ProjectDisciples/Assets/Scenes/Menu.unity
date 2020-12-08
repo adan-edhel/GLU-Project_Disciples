@@ -1794,6 +1794,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Nickname: {fileID: 2015399228}
   _ServerName: {fileID: 1179601843}
+  _Name: {fileID: 4616945039259695123}
+  _ServerNameTextField: {fileID: 4616945039247365656}
+  _button: {fileID: 4616945039122849557}
   _PrefabLocation: Player/Player
 --- !u!1 &1803910513
 GameObject:
@@ -2612,7 +2615,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4616945039122849562}
   m_OnClick:
     m_PersistentCalls:
@@ -2755,7 +2758,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2776,7 +2779,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 1
+  m_isRichText: 0
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -2818,8 +2821,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 649, y: 398}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 590.8, y: 378.89}
+  m_SizeDelta: {x: 316.3064, y: 88.21774}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4616945039247365659
 MonoBehaviour:
