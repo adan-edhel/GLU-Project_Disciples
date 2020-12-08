@@ -20,13 +20,16 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
 
     // Ground Collision Checkers
     bool[] groundCollision = new bool[3];
-    public float groundCheckOffset;
     public bool isGrounded;
     public bool isJumping;
+    private float groundCollidersOffset;
+    private float groundHeightOffset;
+    private float groundColliderSize = .05f;
 
     [Header("Object Variables")]
     [SerializeField] SpriteRenderer playerSprite;
     public LayerMask groundCheckLayer;
+    Collider2D charCollider;
     Rigidbody2D rigidBody;
 
     // Movement Input Value
@@ -39,8 +42,15 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     {
         rigidBody = GetComponent<Rigidbody2D>();
 
-        // Save player foot position
-        if (playerSprite) slopeRayHeight = playerSprite.bounds.extents.y;
+        charCollider = GetComponent<Collider2D>();
+
+        // Calculate ground check values
+        if (charCollider)
+        {
+            slopeRayHeight = charCollider.bounds.extents.y;
+            groundHeightOffset = charCollider.bounds.extents.y;
+            groundCollidersOffset = charCollider.bounds.size.x / 2;
+        }
     }
 
     private void Update()
@@ -157,10 +167,9 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     /// </summary>
     void CheckForGroundCollision()
     {
-        var halfHeight = playerSprite.bounds.extents.y;
-        groundCollision[0] = Physics2D.OverlapCircle(new Vector2(transform.position.x + groundCheckOffset, transform.position.y - halfHeight), 0.1f, groundCheckLayer);
-        groundCollision[1] = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - halfHeight), 0.1f, groundCheckLayer);
-        groundCollision[2] = Physics2D.OverlapCircle(new Vector2(transform.position.x - groundCheckOffset, transform.position.y - halfHeight), 0.1f, groundCheckLayer);
+        groundCollision[0] = Physics2D.OverlapCircle(new Vector2(transform.position.x + groundCollidersOffset, transform.position.y - groundHeightOffset), groundColliderSize, groundCheckLayer);
+        groundCollision[1] = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - groundHeightOffset), groundColliderSize, groundCheckLayer);
+        groundCollision[2] = Physics2D.OverlapCircle(new Vector2(transform.position.x - groundCollidersOffset, transform.position.y - groundHeightOffset), groundColliderSize, groundCheckLayer);
 
         fGroundedRemember -= Time.deltaTime;
 
@@ -237,12 +246,16 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     {
         if (playerSprite)
         {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(new Vector3(transform.position.x + groundCheckOffset, transform.position.y - slopeRayHeight, -2), 0.05f);
-            Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y - slopeRayHeight, -2), 0.05f);
-            Gizmos.DrawWireSphere(new Vector3(transform.position.x - groundCheckOffset, transform.position.y - slopeRayHeight, -2), 0.05f);
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(new Vector3(transform.position.x + groundCollidersOffset, transform.position.y - groundHeightOffset, -2), groundColliderSize);
+            Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y - groundHeightOffset, -2), groundColliderSize);
+            Gizmos.DrawWireSphere(new Vector3(transform.position.x - groundCollidersOffset, transform.position.y - groundHeightOffset, -2), groundColliderSize);
         }
-        Gizmos.DrawRay(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Mathf.Sign(velocity.x));
+
+        if (moveInputValue.x != 0)
+        {
+            Gizmos.DrawRay(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Mathf.Sign(velocity.x));
+        }
     }
 
     #endregion
