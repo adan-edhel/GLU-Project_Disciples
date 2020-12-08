@@ -370,12 +370,12 @@ MonoBehaviour:
   _CurrentElement: 0
   _SpriteRenderer: {fileID: 5723752650136994936}
   _FireFirstAtackPath: Elements/Fire/BaseAtack
-  _firevelocity: {x: 10, y: 3}
-  _FirstFireAttackLifespan: 5
+  _firevelocity: {x: 20, y: 3}
+  _FirstFireAttackLifespan: 2
   _FireSecondAttackPath: 
   _WaterFirstAtackPath: Elements/Water/BaseAtack
-  _Watervelocity: {x: 12, y: 2}
-  _FirstWaterAttackLifespan: 5
+  _Watervelocity: {x: 22, y: 2}
+  _FirstWaterAttackLifespan: 2
   _WaterSecondAttackPath: 
 --- !u!95 &5723752650747264584
 Animator:
