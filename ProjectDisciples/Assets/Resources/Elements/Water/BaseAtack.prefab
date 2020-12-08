@@ -4826,7 +4826,7 @@ GameObject:
   - component: {fileID: -7573444697016309904}
   - component: {fileID: 3755102778445690329}
   - component: {fileID: -7067180223661986585}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: BaseAtack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4919,7 +4919,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 2
 --- !u!114 &-7573444697016309904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4957,7 +4957,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: -7573444697016309904}
+  - {fileID: -7067180223661986585}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
