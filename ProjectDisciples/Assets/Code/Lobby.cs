@@ -5,7 +5,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
@@ -73,6 +72,6 @@ public class Lobby : MonoBehaviourPunCallbacks
         return tempString;
     }
 
-    public void OnLeaveMulti() => SceneManager.LoadScene(sceneBuildIndex: 0);
+    public void OnLeaveMulti() => SceneController.Instance.TransitionScene(0);
     
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PanelMover : MonoBehaviour
 {
@@ -22,8 +21,8 @@ public class PanelMover : MonoBehaviour
         }
     }
 
-    public void MoveToScene(int I) //TODO: Adjust to use scene controller in V2.0
+    public void MoveToScene(int index)
     {
-        SceneManager.LoadScene(I);
+        SceneController.Instance.TransitionScene(index);
     }
 }

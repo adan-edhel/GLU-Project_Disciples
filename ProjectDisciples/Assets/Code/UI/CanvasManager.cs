@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -33,7 +32,7 @@ public class CanvasManager : MonoBehaviour
 
     private void GoToMultiLobby()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 1);
+        SceneController.Instance.TransitionScene(1);
     }
 
     private void CreditsUI()
