@@ -10,7 +10,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_InputField _Nickname;
     [SerializeField] private TMP_InputField _ServerName;
-    [SerializeField] private TMP_Text _Name;
+    [SerializeField] private TMP_Text _playerNicknames;
     [SerializeField] private TMP_Text _ServerNameTextField;
     [SerializeField] private Button _button;
     [SerializeField] private string _PrefabLocation;
@@ -62,12 +62,23 @@ public class Lobby : MonoBehaviourPunCallbacks
             _button.interactable = true;
         }
 
+        updateNicknamePanel();
         //_PunChat.ConnectToRoom(PhotonNetwork.CurrentRoom.Name,PhotonNetwork.NickName);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
+        updateNicknamePanel();
+    }
+
+    private void updateNicknamePanel()
+    {
+        _playerNicknames.text = "";
+        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        {
+            _playerNicknames.text += (player.Value.NickName + "\n");
+        }
     }
 
     private string RandomName(int Length)

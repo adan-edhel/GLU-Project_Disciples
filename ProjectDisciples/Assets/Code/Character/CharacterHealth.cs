@@ -68,6 +68,7 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
     private void Start()
     {
         _statesEfects = new Dictionary<int, float>();
+        CherecterAliveManeger.Instance?.addMe(this, gameObject);
     }
 
     private void FixedUpdate()
@@ -86,6 +87,11 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        CherecterAliveManeger.Instance?.RemoveMe(this, gameObject);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
