@@ -44,7 +44,7 @@ public class InputHandler : MonoBehaviourPunCallbacks
     /// <param name="context"></param>
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && iMovement != null)
         {
             for (int i = 0; i < iMovement.Length; i++)
             {
@@ -59,6 +59,8 @@ public class InputHandler : MonoBehaviourPunCallbacks
     /// <param name="context"></param>
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (iMovement == null) return;
+
         if (context.performed)
         {
             iMovement[0]?.Jump();

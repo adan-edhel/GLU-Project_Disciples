@@ -73,8 +73,6 @@ public class Lobby : MonoBehaviourPunCallbacks
         return tempString;
     }
 
-    public void OnLeaveMulti()
-    {
-        SceneManager.LoadScene(sceneBuildIndex: 2);
-    }
+    public void OnLeaveMulti() => SceneManager.LoadScene(sceneBuildIndex: 0);
+    
 }

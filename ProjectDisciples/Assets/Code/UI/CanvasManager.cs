@@ -33,7 +33,7 @@ public class CanvasManager : MonoBehaviour
 
     private void GoToMultiLobby()
     {
-        SceneManager.LoadScene(sceneBuildIndex: 0);
+        SceneManager.LoadScene(sceneBuildIndex: 1);
     }
 
     private void CreditsUI()

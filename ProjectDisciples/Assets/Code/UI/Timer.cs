@@ -16,23 +16,39 @@ public class Timer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (timeStarted == true)
         {
-            photonView.RPC("GameTimer", RpcTarget.All, timerText.text);
+            if (photonView.IsMine && PhotonNetwork.InRoom)
+            {
+                timer -= Time.deltaTime;
+            }
+
+            string minutes = Mathf.Floor(timer / 60).ToString("00");
+            string seconds = Mathf.Floor(timer % 60).ToString("00");
+
+            timerText.text = (string.Format("{0}:{1}", minutes, seconds));
+            //photonView.RPC("GameTimer", RpcTarget.All, timerText.text);
         }
     }
 
-    [PunRPC]
-    public void GameTimer(PhotonMessageInfo info)
-    {
-        timer -= Time.deltaTime;
+    //[PunRPC]
+    //public void GameTimer(PhotonMessageInfo info)
+    //{
+        
 
-        string minutes = Mathf.Floor(timer / 60).ToString("00");
-        string seconds = Mathf.Floor(timer % 60).ToString("00");
+    //    string minutes = Mathf.Floor(timer / 60).ToString("00");
+    //    string seconds = Mathf.Floor(timer % 60).ToString("00");
 
-        timerText.text = (string.Format("{0}:{1}", minutes, seconds));
-    }
+    //    timerText.text = (string.Format("{0}:{1}", minutes, seconds));
+    //}
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        // return something
+        if (stream.IsWriting)
+        {
+            stream.SendNext(timer);
+        }
+        else if (stream.IsReading)
+        {
+            timer = (float)stream.ReceiveNext();
+        }
     }
 }
