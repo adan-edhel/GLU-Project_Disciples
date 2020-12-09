@@ -140,7 +140,7 @@
                 {
                     "name": "up",
                     "id": "2516952d-76b5-4c66-88b3-eee4a65657c8",
-                    "path": "<Gamepad>/rightStick/up",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -151,7 +151,7 @@
                 {
                     "name": "down",
                     "id": "a672ff17-d88e-45ca-9928-df55dc3aeaa9",
-                    "path": "<Gamepad>/rightStick/down",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -162,7 +162,7 @@
                 {
                     "name": "left",
                     "id": "7ebf6aa1-e8fc-4dca-9bfb-217a6176230a",
-                    "path": "<Gamepad>/rightStick/left",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -173,7 +173,7 @@
                 {
                     "name": "right",
                     "id": "661e4f1d-409e-4244-bf35-37d95dd49e8d",
-                    "path": "<Gamepad>/rightStick/right",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -195,7 +195,7 @@
                 {
                     "name": "",
                     "id": "6bad34d0-7bcd-41c5-a4b4-00d3fa54c28a",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -217,7 +217,7 @@
                 {
                     "name": "up",
                     "id": "be3d5305-8a3f-479d-8ab7-ce4bf0b84e32",
-                    "path": "<Gamepad>/leftStick/up",
+                    "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -228,7 +228,7 @@
                 {
                     "name": "down",
                     "id": "bcdabdfb-4168-4400-97b0-c3c4d26f714b",
-                    "path": "<Gamepad>/leftStick/down",
+                    "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -239,7 +239,7 @@
                 {
                     "name": "left",
                     "id": "733167d1-1a9b-417a-8190-21a8bda87446",
-                    "path": "<Gamepad>/leftStick/left",
+                    "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -250,7 +250,7 @@
                 {
                     "name": "right",
                     "id": "705cdc41-bfcd-47a2-b02c-b44267415b24",
-                    "path": "<Gamepad>/leftStick/right",
+                    "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -261,7 +261,7 @@
                 {
                     "name": "",
                     "id": "75795362-1e89-4cf2-b744-82a4d7bb4d33",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -283,7 +283,7 @@
                 {
                     "name": "",
                     "id": "c4a632c9-c287-4d6d-9056-ad503cdff698",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",

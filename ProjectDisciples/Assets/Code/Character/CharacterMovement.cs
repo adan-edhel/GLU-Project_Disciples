@@ -22,9 +22,9 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     bool[] groundCollision = new bool[3];
     public bool isGrounded;
     public bool isJumping;
+    private float groundColliderSize = .05f;
     private float groundCollidersOffset;
     private float groundHeightOffset;
-    private float groundColliderSize = .05f;
 
     [Header("Object Variables")]
     [SerializeField] SpriteRenderer playerSprite;
@@ -41,16 +41,9 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-
         charCollider = GetComponent<Collider2D>();
 
-        // Calculate ground check values
-        if (charCollider)
-        {
-            slopeRayHeight = charCollider.bounds.extents.y;
-            groundHeightOffset = charCollider.bounds.extents.y;
-            groundCollidersOffset = charCollider.bounds.size.x / 2;
-        }
+        CalculateColliderValues();
     }
 
     private void Update()
@@ -228,9 +221,17 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
 
     #region GetValues
 
-    public void AimInputValue(Vector2 input)
+    /// <summary>
+    /// Calculates the essential values for the ground check colliders
+    /// </summary>
+    private void CalculateColliderValues()
     {
-
+        if (charCollider)
+        {
+            slopeRayHeight = charCollider.bounds.extents.y;
+            groundHeightOffset = charCollider.bounds.extents.y;
+            groundCollidersOffset = charCollider.bounds.size.x / 2;
+        }
     }
 
     public void MovementInputValue(Vector2 moveInput)

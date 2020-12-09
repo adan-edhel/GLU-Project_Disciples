@@ -25,11 +25,6 @@ public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, I
         }
     }
 
-    public void AimInputValue(Vector2 input)
-    {
-       
-    }
-
     public void CutJump()
     {
        
