@@ -33,7 +33,7 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
     /// </summary>
     public void HandleAim()
     {
-        if (!PhotonNetwork.InRoom && !photonView.IsMine) return;
+        if (!PhotonNetwork.InRoom || !photonView.IsMine) return;
 
         if (GetComponent<PlayerInput>().currentControlScheme == "PC")
         {
