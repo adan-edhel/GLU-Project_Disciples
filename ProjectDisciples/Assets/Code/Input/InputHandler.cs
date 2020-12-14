@@ -14,6 +14,8 @@ public class InputHandler : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
+            GetComponent<PlayerInput>().enabled = true;
+
             iMovement = GetComponents<ICharacterMovement>();
             iAttack = GetComponent<ICharacterElement>();
             iAim = GetComponents<ICharacterAim>();
