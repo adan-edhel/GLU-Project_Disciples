@@ -7,12 +7,22 @@ using UnityEngine;
 public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
 {
     [SerializeField] private float _health;
+    [SerializeField] private float _MaxHealth = 300;
     [SerializeField] private float _MaxStatesEfectTime;
+    [SerializeField] private CharacterAttack _CharacterAttack;
     [SerializeField] private Dictionary<int, float> _statesEfects;
     [SerializeField] private ElementInteraction[] _elementInteractions;
 
-    public float Health { get { return _health;} set { _health = value; } }
-
+    public float Health 
+    { 
+        get { return _health;} 
+        set 
+        { 
+            _health = value;
+            if (_health == -1f)  _CharacterAttack.CanAttack = false;
+            else _CharacterAttack.CanAttack = true;
+        } 
+    }
 
     public void DealDamage(float Damage, EGameElement Element)
     {
@@ -24,15 +34,18 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
         {
             NetworkDealDamage(Damage, Element);
         }
-        
     }
 
     [PunRPC]
     public void NetworkDealDamage(float Damage, EGameElement Element)
     {
-        CheckIfPlayerHasStatesEfect(Element);
-        Damage *= Multiplier;
-        _health -= Damage;
+        if (_health > 0)
+        {
+            CheckIfPlayerHasStatesEfect(Element);
+            Damage *= Multiplier;
+            _health -= Damage;
+            _health = Mathf.Clamp(_health, 0, _MaxHealth);
+        }
     }
 
 
@@ -70,6 +83,7 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
     private void Start()
     {
         _statesEfects = new Dictionary<int, float>();
+        CherecterAliveManeger.Instance?.addMe(this, gameObject);
     }
 
     private void FixedUpdate()
@@ -88,6 +102,11 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        CherecterAliveManeger.Instance?.RemoveMe(this, gameObject);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

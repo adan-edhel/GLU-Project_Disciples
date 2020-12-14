@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviourPunCallbacks
     // Interfaces
     ICharacterMovement[] iMovement;
     ICharacterElement iAttack;
+    ICharacterAim[] iAim;
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class InputHandler : MonoBehaviourPunCallbacks
         {
             iMovement = GetComponents<ICharacterMovement>();
             iAttack = GetComponent<ICharacterElement>();
+            iAim = GetComponents<ICharacterAim>();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -32,9 +34,12 @@ public class InputHandler : MonoBehaviourPunCallbacks
     /// <param name="context"></param>
     public void OnAim(InputAction.CallbackContext context)
     {
-        if (context.action.ReadValue<Vector2>() != Vector2.zero)
+        if (context.action.ReadValue<Vector2>() != Vector2.zero && iAim != null)
         {
-            iMovement[0]?.AimInputValue(context.action.ReadValue<Vector2>());
+            for (int i = 0; i < iAim.Length; i++)
+            {
+                iAim[i]?.AimInputValue(context.action.ReadValue<Vector2>());
+            }
         }
     }
 
@@ -44,7 +49,7 @@ public class InputHandler : MonoBehaviourPunCallbacks
     /// <param name="context"></param>
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && iMovement != null)
         {
             for (int i = 0; i < iMovement.Length; i++)
             {
@@ -59,14 +64,19 @@ public class InputHandler : MonoBehaviourPunCallbacks
     /// <param name="context"></param>
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            iMovement[0]?.Jump();
-        }
+        if (iMovement == null) return;
 
-        if (context.canceled)
+        for (int i = 0; i < iMovement.Length; i++)
         {
-            iMovement[0]?.CutJump();
+            if (context.performed)
+            {
+                iMovement[i]?.Jump();
+            }
+
+            if (context.canceled)
+            {
+                iMovement[i]?.CutJump();
+            }
         }
     }
 

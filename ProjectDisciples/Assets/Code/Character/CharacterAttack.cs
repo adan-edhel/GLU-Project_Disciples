@@ -21,6 +21,10 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     [Header("renderer")]
     [SerializeField] private SpriteRenderer _SpriteRenderer;
+
+    [Header("aimer")]
+    [SerializeField] private CharacterAim _CharacterAim;
+    [SerializeField] private bool _canAttack;
  
     [Header("fire")]
     [SerializeField] private string _FireFirstAtackPath = "Elements/Fire/BaseAtack";
@@ -44,6 +48,27 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         if (_KnownElements == null)
         {
             _KnownElements = new List<EGameElement>();
+        }
+    }
+
+    public bool CanAttack
+    {
+        set
+        {
+            _canAttack = value;
+            if (!_canAttack)
+            {
+                Color TempColor = _SpriteRenderer.color;
+                TempColor.a = 0.5f;
+                _SpriteRenderer.color = TempColor;
+                return;
+            }
+            else if (_canAttack)
+            {
+                Color TempColor = _SpriteRenderer.color;
+                TempColor.a = 1f;
+                _SpriteRenderer.color = TempColor;
+            }
         }
     }
 
@@ -95,6 +120,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
     public void Attack1()
     {
         if (!photonView.IsMine && PhotonNetwork.InRoom) return;
+        
         switch (_CurrentElement)
         {
             case EGameElement.Fire:
@@ -118,6 +144,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
     public void Attack2()
     {
         if (!photonView.IsMine && PhotonNetwork.InRoom) return;
+
         switch (_CurrentElement)
         {
             case EGameElement.Fire:
@@ -174,6 +201,20 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         }
     }
 
+    private Vector2 VelocityCalculater(Vector2 StartVelocity)
+    {
+        Vector2 NewVelocity = Vector2.zero;
+        if (_CharacterAim != null)
+        {
+            NewVelocity = StartVelocity * _CharacterAim.aimDirection;
+        }
+        else if(_CharacterAim == null)
+        {
+            NewVelocity = new Vector2(StartVelocity.x * (_SpriteRenderer.flipX ? -1 : 1), StartVelocity.y);
+        }
+        return NewVelocity;
+    }
+
     #region Fire
 
     private void FireAttack1()
@@ -193,8 +234,8 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         Rigidbody2D RB = tempObject.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
-            Vector2 NewVelocity = new Vector2(_firevelocity.x * (_SpriteRenderer.flipX ? -1 : 1), _firevelocity.y);
-            RB.velocity = NewVelocity;
+            RB.velocity = VelocityCalculater(_firevelocity);
+
         }
 
         Objectile objectileDamage = tempObject.GetComponent<Objectile>();
@@ -236,8 +277,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         Rigidbody2D RB = tempObject.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
-            Vector2 NewVelocity = new Vector2(_Watervelocity.x * (_SpriteRenderer.flipX ? -1 : 1), _Watervelocity.y);
-            RB.velocity = NewVelocity;
+            RB.velocity = VelocityCalculater(_Watervelocity);
         }
 
         Objectile objectileDamage = tempObject.GetComponent<Objectile>();
