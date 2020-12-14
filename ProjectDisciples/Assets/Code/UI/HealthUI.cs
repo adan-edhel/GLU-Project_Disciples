@@ -6,33 +6,36 @@ using TMPro;
 
 public class HealthUI : MonoBehaviour
 {
-    public Slider slider;
+    public Image healthUI;
     public TMP_Text desplayText;
 
     private float currentValue = 0f;
-    [SerializeField] private float health;
+
+    private CharacterHealth characterHealth;
 
     public float CurrentValue
     {
         get
         {
-            return health;
+            return characterHealth.Health;
         }
         set
         {
-            health = value;
-            slider.value = health;
-            desplayText.text = (slider.value).ToString() + " / 100";
+            characterHealth.Health = value;
+            healthUI.fillAmount = characterHealth.Health / 300;
+            desplayText.text = (healthUI.fillAmount * 300).ToString() + " / 300";
         }
     }
 
     private void Start()
     {
-        CurrentValue = 0f;
+        characterHealth = FindObjectOfType<CharacterHealth>();
+
+        CurrentValue = characterHealth.Health;
     }
 
     private void Update()
     {
-        CurrentValue = health;
+        CurrentValue = characterHealth.Health;
     }
 }
