@@ -57,11 +57,6 @@ public class Lobby : MonoBehaviourPunCallbacks
         print("joined room and waiting");
         PUNChat.instance.ConnectToRoom(PhotonNetwork.CurrentRoom.Name, PhotonNetwork.NickName);
 
-        if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
-        {
-            _button.interactable = true;
-        }
-
         updateNicknamePanel();
         //_PunChat.ConnectToRoom(PhotonNetwork.CurrentRoom.Name,PhotonNetwork.NickName);
     }
@@ -74,6 +69,19 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     private void updateNicknamePanel()
     {
+        if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        {
+            print(((int)PhotonNetwork.CurrentRoom.PlayerCount));
+            if (((int)PhotonNetwork.CurrentRoom.PlayerCount) >= 2)
+            {
+                _button.interactable = true;
+            }
+            else
+            {
+                _button.interactable = false;
+            }
+        }
+
         _playerNicknames.text = "";
         foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
         {
