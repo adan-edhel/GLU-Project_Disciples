@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Nickname: {fileID: 2015399228}
   _ServerName: {fileID: 1179601843}
-  _Name: {fileID: 4616945039259695123}
+  _playerNicknames: {fileID: 4616945039259695123}
   _ServerNameTextField: {fileID: 4616945039247365656}
   _button: {fileID: 4616945039122849557}
   _PrefabLocation: Player/Player
@@ -2755,7 +2755,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

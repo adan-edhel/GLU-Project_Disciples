@@ -8,13 +8,17 @@ public class InputHandler : MonoBehaviourPunCallbacks
     // Interfaces
     ICharacterMovement[] iMovement;
     ICharacterElement iAttack;
+    ICharacterAim[] iAim;
 
     private void Start()
     {
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
+            GetComponent<PlayerInput>().enabled = true;
+
             iMovement = GetComponents<ICharacterMovement>();
             iAttack = GetComponent<ICharacterElement>();
+            iAim = GetComponents<ICharacterAim>();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -32,9 +36,12 @@ public class InputHandler : MonoBehaviourPunCallbacks
     /// <param name="context"></param>
     public void OnAim(InputAction.CallbackContext context)
     {
-        if (context.action.ReadValue<Vector2>() != Vector2.zero)
+        if (context.action.ReadValue<Vector2>() != Vector2.zero && iAim != null)
         {
-            iMovement[0]?.AimInputValue(context.action.ReadValue<Vector2>());
+            for (int i = 0; i < iAim.Length; i++)
+            {
+                iAim[i]?.AimInputValue(context.action.ReadValue<Vector2>());
+            }
         }
     }
 
@@ -61,14 +68,17 @@ public class InputHandler : MonoBehaviourPunCallbacks
     {
         if (iMovement == null) return;
 
-        if (context.performed)
+        for (int i = 0; i < iMovement.Length; i++)
         {
-            iMovement[0]?.Jump();
-        }
+            if (context.performed)
+            {
+                iMovement[i]?.Jump();
+            }
 
-        if (context.canceled)
-        {
-            iMovement[0]?.CutJump();
+            if (context.canceled)
+            {
+                iMovement[i]?.CutJump();
+            }
         }
     }
 

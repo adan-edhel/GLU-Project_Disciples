@@ -10,7 +10,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_InputField _Nickname;
     [SerializeField] private TMP_InputField _ServerName;
-    [SerializeField] private TMP_Text _Name;
+    [SerializeField] private TMP_Text _playerNicknames;
     [SerializeField] private TMP_Text _ServerNameTextField;
     [SerializeField] private Button _button;
     [SerializeField] private string _PrefabLocation;
@@ -57,17 +57,36 @@ public class Lobby : MonoBehaviourPunCallbacks
         print("joined room and waiting");
         PUNChat.instance.ConnectToRoom(PhotonNetwork.CurrentRoom.Name, PhotonNetwork.NickName);
 
-        if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
-        {
-            _button.interactable = true;
-        }
-
+        updateNicknamePanel();
         //_PunChat.ConnectToRoom(PhotonNetwork.CurrentRoom.Name,PhotonNetwork.NickName);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
+        updateNicknamePanel();
+    }
+
+    private void updateNicknamePanel()
+    {
+        if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
+        {
+            print(((int)PhotonNetwork.CurrentRoom.PlayerCount));
+            if (((int)PhotonNetwork.CurrentRoom.PlayerCount) >= 2)
+            {
+                _button.interactable = true;
+            }
+            else
+            {
+                _button.interactable = false;
+            }
+        }
+
+        _playerNicknames.text = "";
+        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        {
+            _playerNicknames.text += (player.Value.NickName + "\n");
+        }
     }
 
     private string RandomName(int Length)
