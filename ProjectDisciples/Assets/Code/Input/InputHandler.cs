@@ -26,7 +26,10 @@ public class InputHandler : MonoBehaviourPunCallbacks
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
+        if (CameraManager.Instance)
+        {
+            CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
+        }
         transform.position = Vector3.zero;
     }
 

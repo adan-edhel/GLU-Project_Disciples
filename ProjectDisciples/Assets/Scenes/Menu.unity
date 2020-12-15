@@ -2615,7 +2615,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 4616945039122849562}
   m_OnClick:
     m_PersistentCalls:
@@ -2700,7 +2700,6 @@ GameObject:
   - component: {fileID: 4616945039247365658}
   - component: {fileID: 4616945039247365657}
   - component: {fileID: 4616945039247365656}
-  - component: {fileID: 4616945039247365659}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2824,18 +2823,6 @@ RectTransform:
   m_AnchoredPosition: {x: 590.8, y: 378.89}
   m_SizeDelta: {x: 316.3064, y: 88.21774}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4616945039247365659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4616945039247365653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 875e765a07cc3d54882fcadbf8793eea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &4616945039259695120
 CanvasRenderer:
   m_ObjectHideFlags: 0

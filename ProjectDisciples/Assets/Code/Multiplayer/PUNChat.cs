@@ -24,8 +24,8 @@ public class PUNChat : MonoBehaviour, IChatClientListener
     {
         instance = this;
         DontDestroyOnLoad(this);
-        _textfieldname = _textField.gameObject.name;
-        _writeFieldName = _writefield.gameObject.name;
+        //_textfieldname = _textField.gameObject.name;
+        //_writeFieldName = _writefield.gameObject.name;
     }
     private void Start()
     {

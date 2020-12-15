@@ -74,11 +74,11 @@ public class Lobby : MonoBehaviourPunCallbacks
             print(((int)PhotonNetwork.CurrentRoom.PlayerCount));
             if (((int)PhotonNetwork.CurrentRoom.PlayerCount) >= 2)
             {
-                _button.interactable = true;
+                //_button.interactable = true;
             }
             else
             {
-                _button.interactable = false;
+                //_button.interactable = false;
             }
         }
 
@@ -99,7 +99,4 @@ public class Lobby : MonoBehaviourPunCallbacks
         }
         return tempString;
     }
-
-    public void OnLeaveMulti() => SceneController.Instance.TransitionScene(0);
-    
 }
