@@ -6,23 +6,23 @@ public class MatchManager : MonoBehaviour
 {
     public static MatchManager Instance;
 
-    [SerializeField] private float startHealth = 300f;
-    [SerializeField] private List<IHealth> Characters;
-    [SerializeField] private List<GameObject> characterObject;
-    [SerializeField] private Dictionary<GameObject, int> Score;
-    [SerializeField] private string _ScoreList;
+    [SerializeField] private float _startHealth = 300f;
+    [SerializeField] private List<IHealth> _characters;
+    [SerializeField] private List<GameObject> _characterObject;
+    [SerializeField] private Dictionary<GameObject, int> _score;
+    [SerializeField] private string _coreList;
 
     public string ScoreList
     {
-        get { return _ScoreList; }
+        get { return _coreList; }
     }
 
     private void Awake()
     {
         Instance = this;
-        Score = new Dictionary<GameObject, int>();
-        Characters = new List<IHealth>();
-        characterObject = new List<GameObject>();
+        _score = new Dictionary<GameObject, int>();
+        _characters = new List<IHealth>();
+        _characterObject = new List<GameObject>();
     }
 
     private void Update()
@@ -30,22 +30,22 @@ public class MatchManager : MonoBehaviour
         if (SceneController.Instance.GetBuildIndex == 1)
         {
             List<GameObject> AlivePlayers = new List<GameObject>();
-            for (int i = 0; i < Characters.Count; i++)
+            for (int i = 0; i < _characters.Count; i++)
             {
-                if (Characters[i]?.Health == 0)
+                if (_characters[i]?.Health == 0)
                 {
-                    Characters[i].Health = -1f;
-                    characterObject[i].transform.position = new Vector3(characterObject[i].transform.position.x, characterObject[i].transform.position.y, 0.2f);
+                    _characters[i].Health = -1f;
+                    _characterObject[i].transform.position = new Vector3(_characterObject[i].transform.position.x, _characterObject[i].transform.position.y, 0.2f);
                 }
-                else if (Characters[i]?.Health != -1f)
+                else if (_characters[i]?.Health != -1f)
                 {
-                    AlivePlayers.Add(characterObject[i]);
+                    AlivePlayers.Add(_characterObject[i]);
                 }
             }
 
-            if (AlivePlayers.Count == 1 && characterObject.Count != AlivePlayers.Count)
+            if (AlivePlayers.Count == 1 && _characterObject.Count != AlivePlayers.Count)
             {
-                Score[AlivePlayers[0]] += 1;
+                _score[AlivePlayers[0]] += 1;
                 ResetStage();
             }
         }
@@ -67,39 +67,39 @@ public class MatchManager : MonoBehaviour
 
     public void ResetStage()
     {
-        for (int i = 0; i < Characters.Count; i++)
+        for (int i = 0; i < _characters.Count; i++)
         {
-            Characters[i].Health = startHealth;
-            characterObject[i].transform.position = new Vector3(characterObject[i].transform.position.x, characterObject[i].transform.position.y, 0);
+            _characters[i].Health = _startHealth;
+            _characterObject[i].transform.position = new Vector3(_characterObject[i].transform.position.x, _characterObject[i].transform.position.y, 0);
         }
         ReevaluateScoreBoard();
     }
 
     private void ReevaluateScoreBoard()
     {
-        _ScoreList = "";
-        foreach (var item in Score)
+        _coreList = "";
+        foreach (var item in _score)
         {
-            _ScoreList += ($"{item.Key.name} : {item.Value} points\n");
+            _coreList += ($"{item.Key.name} : {item.Value} points\n");
         }
     }
 
     public void RegisterCharacter(IHealth Health, GameObject Gameobject)
     {
-        if (!Characters.Contains(Health))
+        if (!_characters.Contains(Health))
         {
-            Characters.Add(Health);
-            characterObject.Add(Gameobject);
-            Score.Add(Gameobject, 0);
+            _characters.Add(Health);
+            _characterObject.Add(Gameobject);
+            _score.Add(Gameobject, 0);
             ReevaluateScoreBoard();
         }
     }
 
     public void RemoveCharacter(IHealth Health, GameObject Gameobject)
     {
-        Characters.Remove(Health);
-        characterObject.Remove(Gameobject);
-        Score.Remove(Gameobject);
+        _characters.Remove(Health);
+        _characterObject.Remove(Gameobject);
+        _score.Remove(Gameobject);
         ReevaluateScoreBoard();
     }
 }
