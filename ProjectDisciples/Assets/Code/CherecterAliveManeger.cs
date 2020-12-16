@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 
-public class CherecterAliveManeger : MonoBehaviourPunCallbacks
+public class CherecterAliveManeger : MonoBehaviour
 {
     public static CherecterAliveManeger Instance;
     [SerializeField] private int _GameScene = 2;
@@ -17,7 +17,7 @@ public class CherecterAliveManeger : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (PhotonNetwork.InRoom && !photonView.IsMine) return;
+        DontDestroyOnLoad(this.gameObject);
         Instance = this;
         _score = new Dictionary<GameObject, int>();
         _cherecters = new List<IHealth>();
@@ -26,8 +26,6 @@ public class CherecterAliveManeger : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
-        if (PhotonNetwork.InRoom && !photonView.IsMine) return;
-
         if (SceneController.Instance.GetBuildIndex == _GameScene)
         {
             List<GameObject> AlivePLayers = new List<GameObject>();
