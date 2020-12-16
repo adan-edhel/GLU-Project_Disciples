@@ -43,7 +43,7 @@ public class MatchManager : MonoBehaviour
                 }
             }
 
-            if (AlivePlayers.Count == 1)
+            if (AlivePlayers.Count == 1 && characterObject.Count != AlivePlayers.Count)
             {
                 Score[AlivePlayers[0]] += 1;
                 ResetStage();
