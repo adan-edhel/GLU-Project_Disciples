@@ -42,7 +42,7 @@ public class CherecterAliveManeger : MonoBehaviour
                 }
             }
 
-            if (AlivePLayers.Count == 1)
+            if (AlivePLayers.Count == 1 && AlivePLayers.Count != _CherecterGameObjects.Count)
             {
                 _score[AlivePLayers[0]] += 1;
                 ResetStage();

@@ -2630,7 +2630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2674785817034236521, guid: e08a2befb9adab24ea5b1f42c74d48bf, type: 3}
       propertyPath: m_text
-      value: dfd
+      value: score board
       objectReference: {fileID: 0}
     - target: {fileID: 2674785817034236521, guid: e08a2befb9adab24ea5b1f42c74d48bf, type: 3}
       propertyPath: m_fontSize
