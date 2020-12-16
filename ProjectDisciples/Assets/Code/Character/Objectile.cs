@@ -27,7 +27,7 @@ public class Objectile : MonoBehaviourPunCallbacks
             {
                 if (Colliders[i].gameObject != _sender && Colliders[i].gameObject != gameObject)
                 {
-                    CharacterHealth health = Colliders[i].GetComponent<CharacterHealth>();
+                    CharacterBase health = Colliders[i].GetComponent<CharacterBase>();
                     if (health != null)
                     {
                         health.DealDamage(_damageAmmound, _Element);

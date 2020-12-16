@@ -48,13 +48,14 @@ public class Lobby : MonoBehaviourPunCallbacks
             tempString = RandomName(5);
         }
         _ServerNameTextField.text = tempString.ToUpper();
-        print("connected");
+
+        print("Connected to master.");
         PhotonNetwork.JoinOrCreateRoom(tempString.ToUpper(), new RoomOptions() { MaxPlayers = 5 , CleanupCacheOnLeave = true }, null);
     }
 
     public override void OnJoinedRoom()
     {
-        print("joined room and waiting");
+        print("Joined lobby & waiting...");
         PUNChat.instance.ConnectToRoom(PhotonNetwork.CurrentRoom.Name, PhotonNetwork.NickName);
 
         updateNicknamePanel();
@@ -71,14 +72,14 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.InRoom && PhotonNetwork.IsMasterClient)
         {
-            print(((int)PhotonNetwork.CurrentRoom.PlayerCount));
+            print("Player count is: " + (int)PhotonNetwork.CurrentRoom.PlayerCount);
             if (((int)PhotonNetwork.CurrentRoom.PlayerCount) >= 2)
             {
-                _button.interactable = true;
+                //_button.interactable = true;
             }
             else
             {
-                _button.interactable = false;
+                //_button.interactable = false;
             }
         }
 
@@ -99,7 +100,4 @@ public class Lobby : MonoBehaviourPunCallbacks
         }
         return tempString;
     }
-
-    public void OnLeaveMulti() => SceneController.Instance.TransitionScene(0);
-    
 }

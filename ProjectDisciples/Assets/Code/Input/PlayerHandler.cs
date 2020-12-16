@@ -1,17 +1,22 @@
-﻿using UnityEngine;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using Photon.Pun;
 
-public class InputHandler : MonoBehaviourPunCallbacks
+public class PlayerHandler : MonoBehaviourPunCallbacks
 {
     // Interfaces
     ICharacterMovement[] iMovement;
     ICharacterElement iAttack;
     ICharacterAim[] iAim;
+    HUD Hud;
+
+    PlayerInput input;
 
     private void Start()
     {
+        GetComponentInChildren<IHealthbar>().SetNametag(photonView.Owner.NickName);
+
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
             GetComponent<PlayerInput>().enabled = true;
@@ -20,13 +25,18 @@ public class InputHandler : MonoBehaviourPunCallbacks
             iAttack = GetComponent<ICharacterElement>();
             iAim = GetComponents<ICharacterAim>();
 
+            input = GetComponent<PlayerInput>();
+
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
+        if (CameraManager.Instance)
+        {
+            CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
+        }
         transform.position = Vector3.zero;
     }
 
@@ -138,7 +148,23 @@ public class InputHandler : MonoBehaviourPunCallbacks
     {
         if (context.performed)
         {
+            if (!PhotonNetwork.InRoom || !photonView.IsMine) return;
 
+            if (Hud == null)
+            {
+                Hud = FindObjectOfType<HUD>();
+            }
+
+            if (input.currentActionMap.name == "Gameplay")
+            {
+                input.SwitchCurrentActionMap("UI");
+            }
+            else
+            {
+                input.SwitchCurrentActionMap("Gameplay");
+            }
+
+            Hud.TogglePause();
         }
     }
 }

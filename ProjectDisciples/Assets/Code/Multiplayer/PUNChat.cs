@@ -24,8 +24,8 @@ public class PUNChat : MonoBehaviour, IChatClientListener
     {
         instance = this;
         DontDestroyOnLoad(this);
-        _textfieldname = _textField.gameObject.name;
-        _writeFieldName = _writefield.gameObject.name;
+        //_textfieldname = _textField.gameObject.name;
+        //_writeFieldName = _writefield.gameObject.name;
     }
     private void Start()
     {
@@ -42,7 +42,8 @@ public class PUNChat : MonoBehaviour, IChatClientListener
     #region function
     public void ConnectToPUNChat()
     {
-        Debug.Log("connecting to chat");
+        //Debug.Log("connecting to chat");
+
         _chatclient.AuthValues = new Photon.Chat.AuthenticationValues(_Nickname);
         ChatAppSettings chatSettings = PhotonNetwork.PhotonServerSettings.AppSettings.GetChatSettings();
         _chatclient.ConnectUsingSettings(chatSettings);
@@ -100,12 +101,12 @@ public class PUNChat : MonoBehaviour, IChatClientListener
 
     public void OnDisconnected()
     {
-        print("you are Disconnected to chat");
+        //print("you are Disconnected to chat");
     }
 
     public void OnConnected()
     {
-        print("you are connected to chat");
+        //print("you are connected to chat");
     }
 
     public void OnChatStateChange(ChatState state)
