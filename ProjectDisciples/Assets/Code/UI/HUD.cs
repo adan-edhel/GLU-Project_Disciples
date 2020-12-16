@@ -12,7 +12,7 @@ public class HUD : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        scoreList.text = MatchManager.Instance.scoreList;
+        scoreList.text = MatchManager.Instance.ScoreList;
     }
 
     public void TogglePause()

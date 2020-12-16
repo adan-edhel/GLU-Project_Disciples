@@ -2,7 +2,7 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class MatchManager : MonoBehaviourPunCallbacks
+public class MatchManager : MonoBehaviour
 {
     public static MatchManager Instance;
 
@@ -10,13 +10,15 @@ public class MatchManager : MonoBehaviourPunCallbacks
     [SerializeField] private List<IHealth> Characters;
     [SerializeField] private List<GameObject> characterObject;
     [SerializeField] private Dictionary<GameObject, int> Score;
+    [SerializeField] private string _ScoreList;
 
-    public string scoreList;
+    public string ScoreList
+    {
+        get { return _ScoreList; }
+    }
 
     private void Awake()
     {
-        if (PhotonNetwork.InRoom && !photonView.IsMine) return;
-
         Instance = this;
         Score = new Dictionary<GameObject, int>();
         Characters = new List<IHealth>();
@@ -25,10 +27,6 @@ public class MatchManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        return;
-
-        if (PhotonNetwork.InRoom && !photonView.IsMine) return;
-
         if (SceneController.Instance.GetBuildIndex == 1)
         {
             List<GameObject> AlivePlayers = new List<GameObject>();
@@ -53,7 +51,7 @@ public class MatchManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            //Scan();
+            Scan();
         }
     }
 
@@ -79,10 +77,10 @@ public class MatchManager : MonoBehaviourPunCallbacks
 
     private void ReevaluateScoreBoard()
     {
-        scoreList = "";
+        _ScoreList = "";
         foreach (var item in Score)
         {
-            scoreList += ($"{item.Key.name} : {item.Value} points\n");
+            _ScoreList += ($"{item.Key.name} : {item.Value} points\n");
         }
     }
 

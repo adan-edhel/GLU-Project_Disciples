@@ -75,7 +75,7 @@ public class Lobby : MonoBehaviourPunCallbacks
             print("Player count is: " + (int)PhotonNetwork.CurrentRoom.PlayerCount);
             if (((int)PhotonNetwork.CurrentRoom.PlayerCount) >= 2)
             {
-                //_button.interactable = true;
+                _button.interactable = true;
             }
             else
             {
