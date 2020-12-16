@@ -109,6 +109,18 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
         CherecterAliveManeger.Instance?.RemoveMe(this, gameObject);
     }
 
+    public void LeaveRoom() => PhotonNetwork.LeaveRoom();
+    
+
+    public override void OnLeftRoom()
+    {
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.DestroyPlayerObjects(photonView.ViewID);
+            SceneController.Instance.TransitionScene(0);
+        }
+    }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
