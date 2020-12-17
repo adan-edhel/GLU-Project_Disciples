@@ -6,10 +6,11 @@ using Photon.Pun;
 public class MultiplayerFunctions : MonoBehaviourPunCallbacks
 {
     public static MultiplayerFunctions Instance;
+    private bool _quit;
 
     private void Start()
     {
-        if (photonView.IsMine)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -19,14 +20,42 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
         }
     }
 
-    public void LeaveRoom() => PhotonNetwork.LeaveRoom();
+    public void LeaveMultiplayerRoom()
+    {
+        _quit = false;
+        DisconnectFromRoom();
+    }
+
+    public void QuitMultiplayerRoom()
+    {
+        _quit = true;
+        DisconnectFromRoom();
+    }
+
+    private void DisconnectFromRoom()
+    {
+        PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.LocalPlayer);
+        PhotonNetwork.LeaveRoom();
+    }
 
     public override void OnLeftRoom()
     {
-        if (photonView.IsMine)
+        PhotonNetwork.Disconnect();
+        StartCoroutine(DisconectRoom(_quit));
+    }
+
+    private IEnumerator DisconectRoom(bool QuitGame = false)
+    {
+        PhotonNetwork.Disconnect();
+        while (PhotonNetwork.IsConnected)
+            yield return null;
+
+        if (QuitGame)
         {
-            PhotonNetwork.DestroyPlayerObjects(photonView.ViewID);
-            Destroy(gameObject);
+            SceneController.Instance.QuitGame();
+        }
+        else if (!QuitGame)
+        {
             SceneController.Instance.TransitionScene(0);
         }
     }

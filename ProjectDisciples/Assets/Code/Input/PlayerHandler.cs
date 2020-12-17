@@ -31,6 +31,11 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
         }
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (CameraManager.Instance)

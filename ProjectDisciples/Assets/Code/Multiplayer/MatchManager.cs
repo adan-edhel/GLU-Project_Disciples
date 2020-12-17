@@ -19,10 +19,17 @@ public class MatchManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-        _score = new Dictionary<GameObject, int>();
-        _characters = new List<IHealth>();
-        _characterObject = new List<GameObject>();
+        if (Instance == null)
+        {
+            Instance = this;
+            _score = new Dictionary<GameObject, int>();
+            _characters = new List<IHealth>();
+            _characterObject = new List<GameObject>();
+        }
+        else
+        {
+            Destroy(GetComponent<MatchManager>());
+        }
     }
 
     private void Update()
@@ -51,7 +58,7 @@ public class MatchManager : MonoBehaviour
         }
         else
         {
-            Scan();
+            //Scan();
         }
     }
 
