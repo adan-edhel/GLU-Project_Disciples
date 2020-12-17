@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
 
-public class HUD : MonoBehaviourPunCallbacks
+public class HUD : MonoBehaviourPunCallbacks, ITogglePause
 {
     [SerializeField] TextMeshProUGUI scoreList;
 
@@ -12,16 +12,25 @@ public class HUD : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        scoreList.text = MatchManager.Instance.ScoreList;
+        UpdateScoreList();
     }
 
-    public void TogglePause()
+    private void UpdateScoreList()
     {
-        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        if (!SceneController.Instance.inMenu && scoreList != null)
+        {
+            scoreList.text = MatchManager.Instance.ScoreList;
+        }
+    }
+
+    public void TogglePause(bool toggle)
+    {
+        pauseMenu.SetActive(toggle);
     }
 
     public void ChangeScene(int index)
     {
+        TogglePause(false);
         SceneController.Instance.TransitionScene(index);
     }
 
