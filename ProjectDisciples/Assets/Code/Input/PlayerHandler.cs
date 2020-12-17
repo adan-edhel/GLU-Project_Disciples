@@ -9,25 +9,32 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
     ICharacterMovement[] iMovement;
     ICharacterElement iAttack;
     ICharacterAim[] iAim;
-    HUD Hud;
+    ITogglePause iPause;
 
-    PlayerInput input;
+    PlayerInput _input;
+    GameObject _GUI;
 
     private void Start()
     {
-        GetComponentInChildren<IHealthbar>().SetNametag(photonView.Owner.NickName);
+        _input = GetComponent<PlayerInput>();
+        _GUI = GetComponentInChildren<HUD>().gameObject;
 
-        if (PhotonNetwork.InRoom && photonView.IsMine)
+        if (photonView.IsMine)
         {
-            GetComponent<PlayerInput>().enabled = true;
+            _input.enabled = true;
+            _GUI.SetActive(true);
 
+            iPause = GetComponentInChildren<ITogglePause>();
             iMovement = GetComponents<ICharacterMovement>();
             iAttack = GetComponent<ICharacterElement>();
             iAim = GetComponents<ICharacterAim>();
 
-            input = GetComponent<PlayerInput>();
-
             SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(_input);
+            Destroy(_GUI);
         }
     }
 
@@ -38,6 +45,15 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
             CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
         }
         transform.position = Vector3.zero;
+
+        if (SceneController.Instance.inMenu)
+        {
+            _input.SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            _input.SwitchCurrentActionMap("Gameplay");
+        }
     }
 
     /// <summary>
@@ -148,23 +164,18 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
     {
         if (context.performed)
         {
-            if (!PhotonNetwork.InRoom || !photonView.IsMine) return;
+            if (SceneController.Instance.inMenu) return;
 
-            if (Hud == null)
+            if (_input.currentActionMap.name == "Gameplay")
             {
-                Hud = FindObjectOfType<HUD>();
-            }
-
-            if (input.currentActionMap.name == "Gameplay")
-            {
-                input.SwitchCurrentActionMap("UI");
+                _input.SwitchCurrentActionMap("UI");
+                iPause.TogglePause(true);
             }
             else
             {
-                input.SwitchCurrentActionMap("Gameplay");
+                _input.SwitchCurrentActionMap("Gameplay");
+                iPause.TogglePause(false);
             }
-
-            Hud.TogglePause();
         }
     }
 }

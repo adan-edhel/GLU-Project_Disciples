@@ -3,9 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 {
+    ICharacterInfo _characterInfo;
+
     private const float maxHealth = 300;
     [Range(0, 300), SerializeField] private float health = 300;
 
@@ -20,13 +23,15 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 
         MatchManager.Instance?.RegisterCharacter(this, gameObject);
 
-        GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+        _characterInfo = GetComponentInChildren<ICharacterInfo>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Update()
     {
-        //TODO: Move to Deal Damage
-        GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+        //TODO: Move to Deal Damage and remove it from here
+        _characterInfo.UpdateHealthValue(health, maxHealth);
 
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
@@ -44,9 +49,16 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         }
     }
 
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        _characterInfo.UpdateHealthValue(health, maxHealth);
+        _characterInfo.SetNametag(gameObject.name);
+    }
+
     private void OnDestroy()
     {
         MatchManager.Instance?.RemoveCharacter(this, gameObject);
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public float Health 
@@ -82,7 +94,7 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             health -= Damage;
             health = Mathf.Clamp(health, 0, maxHealth);
 
-            GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+            _characterInfo.UpdateHealthValue(health, maxHealth);
         }
     }
 

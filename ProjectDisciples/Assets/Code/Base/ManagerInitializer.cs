@@ -10,7 +10,7 @@ public class ManagerInitializer : MonoBehaviour
     /// <summary>
     /// Loads the necessary prefabs before the scene is loaded
     /// </summary>
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    [RuntimeInitializeOnLoadMethod()]
     public static void Initialize()
     {
         Instantiate(Resources.Load(ManagerPath));
