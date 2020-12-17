@@ -4,22 +4,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
+public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 {
-    [SerializeField] private float _health;
-    [SerializeField] private float _MaxHealth = 300;
+    private const float maxHealth = 300;
+    [Range(0, 300), SerializeField] private float health = 300;
+
     [SerializeField] private float _MaxStatesEfectTime;
     [SerializeField] private CharacterAttack _CharacterAttack;
     [SerializeField] private Dictionary<int, float> _statesEfects;
     [SerializeField] private ElementInteraction[] _elementInteractions;
 
+    private void Start()
+    {
+        _statesEfects = new Dictionary<int, float>();
+
+        MatchManager.Instance?.RegisterCharacter(this, gameObject);
+
+        GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+    }
+
+    private void Update()
+    {
+        //TODO: Move to Deal Damage
+        GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+
+        if (PhotonNetwork.InRoom && photonView.IsMine)
+        {
+            for (int i = 0; i < Enum.GetNames(typeof(EGameElement)).Length; i++)
+            {
+                if (_statesEfects.ContainsKey(i))
+                {
+                    _statesEfects[i] -= Time.fixedDeltaTime;
+                    if (_statesEfects[i] <= 0)
+                    {
+                        _statesEfects.Remove(i);
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        MatchManager.Instance?.RemoveCharacter(this, gameObject);
+    }
+
     public float Health 
     { 
-        get { return _health;} 
+        get { return health;} 
         set 
         { 
-            _health = value;
-            if (_health == -1f)  _CharacterAttack.CanAttack = false;
+            health = value;
+            if (health == -1f)  _CharacterAttack.CanAttack = false;
             else _CharacterAttack.CanAttack = true;
         } 
     }
@@ -39,12 +75,14 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
     [PunRPC]
     public void NetworkDealDamage(float Damage, EGameElement Element)
     {
-        if (_health > 0)
+        if (health > 0)
         {
             CheckIfPlayerHasStatesEfect(Element);
             Damage *= Multiplier;
-            _health -= Damage;
-            _health = Mathf.Clamp(_health, 0, _MaxHealth);
+            health -= Damage;
+            health = Mathf.Clamp(health, 0, maxHealth);
+
+            GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
         }
     }
 
@@ -79,47 +117,17 @@ public class CharacterHealth : MonoBehaviourPunCallbacks, IHealth
         }
     }
 
-
-    private void Start()
-    {
-        _statesEfects = new Dictionary<int, float>();
-        CherecterAliveManeger.Instance?.addMe(this, gameObject);
-    }
-
-    private void FixedUpdate()
-    {
-        if(PhotonNetwork.InRoom && photonView.IsMine)
-        {
-            for (int i = 0; i < Enum.GetNames(typeof(EGameElement)).Length; i++)
-            {
-                if (_statesEfects.ContainsKey(i))
-                {
-                    _statesEfects[i] -= Time.fixedDeltaTime;
-                    if (_statesEfects[i] <= 0)
-                    {
-                        _statesEfects.Remove(i);
-                    }
-                }
-            }
-        }
-    }
-
-    private void OnDestroy()
-    {
-        CherecterAliveManeger.Instance?.RemoveMe(this, gameObject);
-    }
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
             stream.SendNext(_statesEfects);
-            stream.SendNext(_health);
+            stream.SendNext(health);
         }
         else if (stream.IsReading)
         {
             _statesEfects = (Dictionary<int, float>)stream.ReceiveNext();
-            _health = (float)stream.ReceiveNext();
+            health = (float)stream.ReceiveNext();
         }
     }
 }
