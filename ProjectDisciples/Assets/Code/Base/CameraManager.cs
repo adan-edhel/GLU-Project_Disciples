@@ -1,6 +1,4 @@
 ﻿using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -14,14 +12,15 @@ public class CameraManager : MonoBehaviour
     float ShakeElapsedTime = 0f;
 
     // Cinemachine Virtual Camera
-    public CinemachineVirtualCamera virtualCamera;
+    private CinemachineVirtualCamera virtualCamera;
+
+    // Cinemachine Target Group
+    public CinemachineTargetGroup targetGroup;
 
     // Cinemachine Components
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
     private CinemachineFollowZoom virtualCameraFollowZoom;
-    private CinemachineTargetGroup targetGroup;
     private CinemachineConfiner confiner;
-
 
     private void Awake()
     {
@@ -38,9 +37,56 @@ public class CameraManager : MonoBehaviour
         // If virtual camera exists, get camera noise component
         if (virtualCamera != null)
         {
-            virtualCameraNoise = virtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+            virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             virtualCameraFollowZoom = virtualCamera.GetComponent<CinemachineFollowZoom>();
         }
+    }
+
+    private void Update()
+    {
+        // If the virtual camera is null, avoid update.
+        if (!virtualCamera) return;
+
+        // If required cinemachine components are null, avoid update.
+        //if (!virtualCameraNoise || !virtualCameraFollowZoom) return;
+
+        //----------------------------------------
+
+        // Set Cinemachine Camera Noise parameters
+        if (ShakeElapsedTime > 0)
+        {
+            // Update Shake Timer
+            ShakeElapsedTime -= Time.deltaTime;
+        }
+        else
+        {
+            // If Camera Shake effect is over, reset variables
+            virtualCameraNoise.m_AmplitudeGain = 0f;
+            ShakeElapsedTime = 0f;
+        }
+
+        /*
+
+        // If player is in a dialogue, zoom in
+        if (DialogueManager.inDialogue && virtualCameraFollowZoom.m_Width > 1)
+        {
+            virtualCameraFollowZoom.m_Width -= Time.deltaTime * 10;
+            targetGroup.m_Targets[1].radius = 0;
+        }
+        // If player is no longer in dialogue, zoom out
+        else if (!DialogueManager.inDialogue && virtualCameraFollowZoom.m_Width < 12)
+        {
+            virtualCameraFollowZoom.m_Width += Time.deltaTime * 10;
+            targetGroup.m_Targets[1].radius = 4;
+        }
+
+        */
+    }
+
+    public void AssignFollowTargets(GameObject character, GameObject crosshair)
+    {
+        targetGroup.m_Targets[0].target = character.transform;
+        targetGroup.m_Targets[1].target = crosshair.transform;
     }
 
     /// <summary>
@@ -77,46 +123,5 @@ public class CameraManager : MonoBehaviour
         {
             virtualCameraNoise.m_FrequencyGain = frequency;
         }
-    }
-
-    private void Update()
-    {
-        // If the virtual camera is null, avoid update.
-        if (!virtualCamera) return;
-
-        // If required cinemachine components are null, avoid update.
-        if (!virtualCameraNoise || !virtualCameraFollowZoom) return;
-
-        //----------------------------------------
-
-        // Set Cinemachine Camera Noise parameters
-        if (ShakeElapsedTime > 0)
-        {
-            // Update Shake Timer
-            ShakeElapsedTime -= Time.deltaTime;
-        }
-        else
-        {
-            // If Camera Shake effect is over, reset variables
-            virtualCameraNoise.m_AmplitudeGain = 0f;
-            ShakeElapsedTime = 0f;
-        }
-
-        /*
-
-        // If player is in a dialogue, zoom in
-        if (DialogueManager.inDialogue && virtualCameraFollowZoom.m_Width > 1)
-        {
-            virtualCameraFollowZoom.m_Width -= Time.deltaTime * 10;
-            targetGroup.m_Targets[1].radius = 0;
-        }
-        // If player is no longer in dialogue, zoom out
-        else if (!DialogueManager.inDialogue && virtualCameraFollowZoom.m_Width < 12)
-        {
-            virtualCameraFollowZoom.m_Width += Time.deltaTime * 10;
-            targetGroup.m_Targets[1].radius = 4;
-        }
-
-        */
     }
 }

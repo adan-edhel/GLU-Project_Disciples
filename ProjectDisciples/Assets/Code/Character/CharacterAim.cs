@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
 {
@@ -18,6 +19,13 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
         {
             Crosshair.GetComponent<SpriteRenderer>().enabled = false;
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Update()
@@ -26,6 +34,12 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
 
         HandleAim();
         SetCrosshairPosition();
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        // If not in menu, assign crosshair to camera
+        if (!SceneController.Instance.inMenu) CameraManager.Instance.AssignFollowTargets(gameObject, Crosshair);
     }
 
     /// <summary>

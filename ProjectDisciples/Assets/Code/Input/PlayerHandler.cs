@@ -6,13 +6,13 @@ using Photon.Pun;
 public class PlayerHandler : MonoBehaviourPunCallbacks
 {
     // Interfaces
-    ICharacterMovement[] iMovement;
-    ICharacterElement iAttack;
-    ICharacterAim[] iAim;
-    ITogglePause iPause;
+    private ICharacterMovement[] iMovement;
+    private ICharacterElement iAttack;
+    private ICharacterAim[] iAim;
+    private ITogglePause iPause;
 
-    PlayerInput _input;
-    GameObject _GUI;
+    private PlayerInput _input;
+    private GameObject _GUI;
 
     private void Start()
     {
@@ -45,12 +45,11 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        if (CameraManager.Instance)
-        {
-            CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
-        }
+        // Reset player
         transform.position = Vector3.zero;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
+        // Adjust Input Action Maps
         if (SceneController.Instance.inMenu)
         {
             _input.SwitchCurrentActionMap("UI");

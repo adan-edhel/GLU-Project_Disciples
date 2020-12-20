@@ -2028,12 +2028,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53e07df03dc02144ab5a3b47d49e3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
-  jumpSpeed: 8
-  isGrounded: 0
-  isJumping: 0
-  playerSprite: {fileID: 5723752650136994936}
-  groundCheckLayer:
+  MoveSpeed: 5
+  JumpForce: 8
+  IsGrounded: 0
+  IsJumping: 0
+  _spriteRenderer: {fileID: 5723752650136994936}
+  surfaceLayer:
     serializedVersion: 2
     m_Bits: 1024
   moveInputValue: {x: 0, y: 0}
