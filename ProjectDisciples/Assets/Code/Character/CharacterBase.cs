@@ -1,9 +1,7 @@
-﻿using Photon.Pun;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Photon.Pun;
+using System;
 
 public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 {
@@ -26,7 +24,6 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         _characterInfo = GetComponentInChildren<ICharacterInfo>();
 
         _characterInfo.UpdateHealthValue(health, maxHealth);
-        _characterInfo.SetNametag(gameObject.name);
     }
 
     private void Update()

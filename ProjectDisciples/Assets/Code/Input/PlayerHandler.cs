@@ -11,7 +11,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
     private ICharacterAim[] iAim;
     private ITogglePause iPause;
 
-    private GameObject character;
+    public GameObject _character;
     private PlayerInput _input;
     private GameObject _GUI;
 
@@ -57,16 +57,18 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
 
     private void CreateCharacter()
     {
-        character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
+        _character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
 
         if (photonView.IsMine)
         {
-            character.gameObject.name = $"Character ({photonView.Owner.NickName})";
+            _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
 
-            iPause = character.GetComponentInChildren<ITogglePause>();
-            iMovement = character.GetComponents<ICharacterMovement>();
-            iAttack = character.GetComponent<ICharacterElement>();
-            iAim = character.GetComponents<ICharacterAim>();
+            iPause = _character.GetComponentInChildren<ITogglePause>();
+            iMovement = _character.GetComponents<ICharacterMovement>();
+            iAttack = _character.GetComponent<ICharacterElement>();
+            iAim = _character.GetComponents<ICharacterAim>();
+
+            _character.GetComponentInChildren<ICharacterInfo>()?.SetNametag(photonView.Owner.NickName);
 
             for (int i = 0; i < iAim.Length; i++)
             {

@@ -1,19 +1,18 @@
-﻿using Photon.Pun;
+﻿using UnityEngine.InputSystem;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
 {
     [Header("Aim Variables")]
     public Vector2 aimDirection;
-    public float aimAngle;
-    public float crosshairDistance = 1f;
-    public GameObject Crosshair;
 
+    private float aimAngle;
+    private float crosshairDistance = 1f;
+    private GameObject Crosshair;
     private PlayerInput _input;
 
-    Vector2 i_aimInput;
+    private Vector2 i_aimInput;
 
     private void Start()
     {
