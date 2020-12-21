@@ -26,7 +26,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
         {
             _input.enabled = true;
             _GUI.SetActive(true);
-            gameObject.name = $"{PhotonNetwork.NickName} Observer";
+            gameObject.name = $"Observer ({PhotonNetwork.NickName})";
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
