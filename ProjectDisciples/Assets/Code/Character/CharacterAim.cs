@@ -20,7 +20,9 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
         if (!photonView.IsMine)
         {
             Crosshair.GetComponent<SpriteRenderer>().enabled = false;
-
+        }
+        else
+        {
             // If not in menu, assign crosshair to camera
             CameraManager.Instance.AssignFollowTargets(gameObject, Crosshair);
         }

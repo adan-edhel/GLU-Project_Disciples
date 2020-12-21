@@ -229,8 +229,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnAim
         m_Mode: 0
         m_Arguments:
@@ -245,8 +245,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Aim[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -261,8 +261,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -277,8 +277,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnAttack1
         m_Mode: 0
         m_Arguments:
@@ -293,8 +293,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Attack1[/XInputControllerWindows/leftTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnAttack2
         m_Mode: 0
         m_Arguments:
@@ -309,8 +309,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Attack2[/XInputControllerWindows/rightTrigger,/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0
         m_Arguments:
@@ -325,8 +325,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Pause[/Keyboard/escape,/XInputControllerWindows/start]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnPause
         m_Mode: 0
         m_Arguments:
@@ -341,8 +341,8 @@ MonoBehaviour:
     m_ActionName: UI/Unpause[/Keyboard/escape,/XInputControllerWindows/start]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnPrevElement
         m_Mode: 0
         m_Arguments:
@@ -357,8 +357,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/PrevElement[/Keyboard/q,/XInputControllerWindows/leftShoulder]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5723752650747264582, guid: eb354e16041a64b4b82c331e34a3f4a7, type: 3}
-        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
         m_MethodName: OnNextElement
         m_Mode: 0
         m_Arguments:
