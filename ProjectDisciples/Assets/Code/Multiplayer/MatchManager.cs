@@ -39,7 +39,7 @@ public class MatchManager : MonoBehaviour
 
     private void Update()
     {
-        if (!SceneController.Instance.inMenu)
+        if (!SceneController.Instance.inMenu && PhotonNetwork.IsMasterClient)
         {
             if (_aliveCharacters.Count == 1 && _characterObject.Count != (int)PhotonNetwork.CurrentRoom.PlayerCount)
             {
