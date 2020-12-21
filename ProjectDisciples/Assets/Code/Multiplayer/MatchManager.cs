@@ -34,7 +34,6 @@ public class MatchManager : MonoBehaviour
         else
         {
             Destroy(GetComponent<MatchManager>());
-
         }
     }
 
