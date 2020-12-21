@@ -189,29 +189,32 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         // Ground Impact Particle
-        if (oldVelocity.y < -5)
-        {
-            //if (collision.transform.gameObject.layer == 12)
-            //{
-            //    AudioManager.PlaySound(AudioManager.Sound.PlayerLandWood, transform.position);
-            //}
-            //else if (collision.transform.gameObject.layer == 13)
-            //{
-            //    AudioManager.PlaySound(AudioManager.Sound.PlayerLandGrass, transform.position);
-            //}
-        }
+        //if (oldVelocity.y < -5)
+        //{
+        //    if (collision.transform.gameObject.layer == 12)
+        //    {
+        //        AudioManager.PlaySound(AudioManager.Sound.PlayerLandWood, transform.position);
+        //    }
+        //    else if (collision.transform.gameObject.layer == 13)
+        //    {
+        //        AudioManager.PlaySound(AudioManager.Sound.PlayerLandGrass, transform.position);
+        //    }
+        //}
+
+        if (!photonView.IsMine) return;
 
         //Ground Impact Camera Shake
         if (oldVelocity.y < -7)
         {
             if (oldVelocity.y < -12)
             {
-                CameraManager.Instance.ShakeCamera(2, 6, 0);
+                CameraManager.Instance.ShakeCamera(2, 6);
             }
             else
             {
-                CameraManager.Instance.ShakeCamera(1, 0, 0);
+                CameraManager.Instance.ShakeCamera(1);
             }
         }
     }

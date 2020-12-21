@@ -25,7 +25,8 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 
         _characterInfo = GetComponentInChildren<ICharacterInfo>();
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        _characterInfo.UpdateHealthValue(health, maxHealth);
+        _characterInfo.SetNametag(gameObject.name);
     }
 
     private void Update()
@@ -49,16 +50,9 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         }
     }
 
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        _characterInfo.UpdateHealthValue(health, maxHealth);
-        _characterInfo.SetNametag(gameObject.name);
-    }
-
     private void OnDestroy()
     {
         MatchManager.Instance?.RemoveCharacter(this, gameObject);
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public float Health
