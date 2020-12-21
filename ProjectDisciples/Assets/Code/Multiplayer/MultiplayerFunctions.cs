@@ -64,12 +64,14 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined lobby & waiting...", this);
         PhotonNetwork.Instantiate("Character/Player Observer", Vector3.zero, Quaternion.identity);
+        MatchManager.Instance.RegisterNickname(_nickname);
         _updateNicknamePanel.Invoke();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log($"Another player joined. name = {newPlayer.NickName}", this);
+        MatchManager.Instance.RegisterNickname(newPlayer.NickName);
         _updateNicknamePanel.Invoke();
     }
 
