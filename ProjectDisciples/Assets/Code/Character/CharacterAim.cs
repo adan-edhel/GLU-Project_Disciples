@@ -18,14 +18,10 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
         if (!photonView.IsMine)
         {
             Crosshair.GetComponent<SpriteRenderer>().enabled = false;
+
+            // If not in menu, assign crosshair to camera
+            CameraManager.Instance.AssignFollowTargets(gameObject, Crosshair);
         }
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void Update()
@@ -34,12 +30,6 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
 
         HandleAim();
         SetCrosshairPosition();
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        // If not in menu, assign crosshair to camera
-        if (!SceneController.Instance.inMenu) CameraManager.Instance.AssignFollowTargets(gameObject, Crosshair);
     }
 
     /// <summary>

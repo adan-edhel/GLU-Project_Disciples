@@ -11,11 +11,14 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
     private ICharacterAim[] iAim;
     private ITogglePause iPause;
 
+    private GameObject character;
     private PlayerInput _input;
     private GameObject _GUI;
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         _input = GetComponent<PlayerInput>();
         _GUI = GetComponentInChildren<HUD>().gameObject;
 
@@ -23,11 +26,6 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
         {
             _input.enabled = true;
             _GUI.SetActive(true);
-
-            iPause = GetComponentInChildren<ITogglePause>();
-            iMovement = GetComponents<ICharacterMovement>();
-            iAttack = GetComponent<ICharacterElement>();
-            iAim = GetComponents<ICharacterAim>();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -56,7 +54,23 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
         }
         else
         {
+            CreateCharacter();
             _input.SwitchCurrentActionMap("Gameplay");
+        }
+    }
+
+    private void CreateCharacter()
+    {
+        character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
+
+        if (photonView.IsMine)
+        {
+            character.gameObject.name = photonView.Owner.NickName;
+
+            iPause = character.GetComponentInChildren<ITogglePause>();
+            iMovement = character.GetComponents<ICharacterMovement>();
+            iAttack = character.GetComponent<ICharacterElement>();
+            iAim = character.GetComponents<ICharacterAim>();
         }
     }
 
