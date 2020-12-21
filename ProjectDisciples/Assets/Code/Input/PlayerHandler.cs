@@ -26,7 +26,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
         {
             _input.enabled = true;
             _GUI.SetActive(true);
-
+            gameObject.name = $"{PhotonNetwork.NickName} Observer";
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -43,10 +43,6 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        // Reset player
-        transform.position = Vector3.zero;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
         // Adjust Input Action Maps
         if (SceneController.Instance.inMenu)
         {
