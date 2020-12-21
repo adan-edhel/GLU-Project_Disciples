@@ -61,7 +61,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
 
         if (photonView.IsMine)
         {
-            character.gameObject.name = photonView.Owner.NickName;
+            character.gameObject.name = $"Character ({photonView.Owner.NickName})";
 
             iPause = character.GetComponentInChildren<ITogglePause>();
             iMovement = character.GetComponents<ICharacterMovement>();
