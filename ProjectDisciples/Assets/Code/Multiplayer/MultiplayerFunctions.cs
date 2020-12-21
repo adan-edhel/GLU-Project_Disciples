@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class MultiplayerFunctions : MonoBehaviourPunCallbacks
 {
     public static MultiplayerFunctions Instance;
+    [SerializeField] private GameObject _PlayerObserver;
     [SerializeField] private string _nickname;
     [SerializeField] private string _serverName;
     [SerializeField] private byte _maxPlayers;
@@ -62,6 +63,7 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined lobby & waiting...", this);
+        PhotonNetwork.Instantiate("Character/Player Observer", Vector3.zero, Quaternion.identity);
         _updateNicknamePanel.Invoke();
     }
 
