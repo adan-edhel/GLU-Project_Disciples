@@ -82,7 +82,7 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             CheckIfPlayerHasStatesEfect(Element);
             Damage *= Multiplier;
             health -= Damage;
-            if (health <= 0)
+            if (health <= 0 && photonView.IsMine)
             {
                 PhotonNetwork.Destroy(photonView);
             }
