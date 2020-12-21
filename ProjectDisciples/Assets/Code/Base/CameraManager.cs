@@ -102,7 +102,7 @@ public class CameraManager : MonoBehaviour
     /// <summary>
     /// Shakes the camera with the following parameters: Duration, Amplitude, Frequency. -- Duration always needs to be given a value, amplitude and frequency will use default value when left at 0. Defaults: Amp(1.2f), Freq(2.0f).
     /// </summary>
-    public void ShakeCamera(float duration, float amplitude, float frequency)
+    public void ShakeCamera(float duration, float amplitude = 0, float frequency = 0)
     {
         ShakeElapsedTime = duration / 10;
 
