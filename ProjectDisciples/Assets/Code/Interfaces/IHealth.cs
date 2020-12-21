@@ -5,5 +5,7 @@ public interface IHealth : IPunObservable
 
    
     void DealDamage(float Damage, EGameElement Element);
+
+    PhotonView GetPhotonView { get; }
     
 }

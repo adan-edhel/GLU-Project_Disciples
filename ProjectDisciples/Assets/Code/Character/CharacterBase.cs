@@ -61,30 +61,23 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public float Health 
-    { 
-        get { return health;} 
-        set 
-        { 
+    public float Health
+    {
+        get { return health; }
+        set
+        {
             health = value;
-            if (health == -1f)  _CharacterAttack.CanAttack = false;
+            if (health == -1f) _CharacterAttack.CanAttack = false;
             else _CharacterAttack.CanAttack = true;
-        } 
+        }
     }
 
     public void DealDamage(float Damage, EGameElement Element)
     {
-        if (PhotonNetwork.InRoom)
-        {
-            photonView.RPC("NetworkDealDamage", RpcTarget.Others, Damage, Element);
-        }
-        else
-        {
-            NetworkDealDamage(Damage, Element);
-        }
+        NetworkDealDamage(Damage, Element);
+
     }
 
-    [PunRPC]
     public void NetworkDealDamage(float Damage, EGameElement Element)
     {
         if (health > 0)
@@ -92,8 +85,11 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             CheckIfPlayerHasStatesEfect(Element);
             Damage *= Multiplier;
             health -= Damage;
+            if (health <= 0)
+            {
+                PhotonNetwork.Destroy(photonView);
+            }
             health = Mathf.Clamp(health, 0, maxHealth);
-
             _characterInfo.UpdateHealthValue(health, maxHealth);
         }
     }
@@ -128,6 +124,12 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             return multiplier;
         }
     }
+
+    public PhotonView GetPhotonView
+    {
+        get { return photonView; }
+    }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
