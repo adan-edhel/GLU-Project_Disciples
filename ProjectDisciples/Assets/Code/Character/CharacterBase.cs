@@ -5,6 +5,7 @@ using System;
 
 public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 {
+    public IOnPlayerDeath OnPlayerDeath;
     ICharacterInfo _characterInfo;
 
     private const float maxHealth = 300;
@@ -84,6 +85,7 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             health -= Damage;
             if (health <= 0)
             {
+                OnPlayerDeath?.OnPlayerDeath();
                 PhotonNetwork.Destroy(photonView);
             }
             health = Mathf.Clamp(health, 0, maxHealth);

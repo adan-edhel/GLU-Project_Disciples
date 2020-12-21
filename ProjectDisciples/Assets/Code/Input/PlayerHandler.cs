@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerHandler : MonoBehaviourPunCallbacks
+public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 {
     // Interfaces
     private ICharacterMovement[] iMovement;
@@ -21,12 +21,12 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
 
         _input = GetComponent<PlayerInput>();
         _GUI = GetComponentInChildren<HUD>().gameObject;
+        gameObject.name = $"Observer ({photonView.Owner.NickName})";
 
         if (photonView.IsMine)
         {
             _input.enabled = true;
             _GUI.SetActive(true);
-            gameObject.name = $"Observer ({PhotonNetwork.NickName})";
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -46,27 +46,26 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
         // Adjust Input Action Maps
         if (SceneController.Instance.inMenu)
         {
-            _input.SwitchCurrentActionMap("UI");
         }
         else
         {
             CreateCharacter();
-            _input.SwitchCurrentActionMap("Gameplay");
         }
     }
 
     private void CreateCharacter()
     {
         _character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
+        _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
 
         if (photonView.IsMine)
         {
-            _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
-
             iPause = _character.GetComponentInChildren<ITogglePause>();
             iMovement = _character.GetComponents<ICharacterMovement>();
             iAttack = _character.GetComponent<ICharacterElement>();
             iAim = _character.GetComponents<ICharacterAim>();
+
+            _character.GetComponent<CharacterBase>().OnPlayerDeath = this;
 
             _character.GetComponentInChildren<ICharacterInfo>()?.SetNametag(photonView.Owner.NickName);
 
@@ -75,6 +74,8 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
                 iAim[i].AssignInput(_input);
             }
         }
+
+        _input.SwitchCurrentActionMap("Gameplay");
     }
 
     /// <summary>
@@ -187,16 +188,21 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
         {
             if (SceneController.Instance.inMenu) return;
 
-            if (_input.currentActionMap.name == "Gameplay")
+            if (_input?.currentActionMap.name == "Gameplay")
             {
-                _input.SwitchCurrentActionMap("UI");
-                iPause.TogglePause(true);
+                _input?.SwitchCurrentActionMap("UI");
+                iPause?.TogglePause(true);
             }
             else
             {
                 _input.SwitchCurrentActionMap("Gameplay");
-                iPause.TogglePause(false);
+                iPause?.TogglePause(false);
             }
         }
+    }
+
+    public void OnPlayerDeath()
+    {
+        _input.SwitchCurrentActionMap("UI");
     }
 }
