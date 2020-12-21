@@ -185,8 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimDirection: {x: 0, y: 0}
-  aimAngle: 0
-  crosshairDistance: 1
   Crosshair: {fileID: 4627782473829660959}
 --- !u!114 &723846585617996167
 MonoBehaviour:

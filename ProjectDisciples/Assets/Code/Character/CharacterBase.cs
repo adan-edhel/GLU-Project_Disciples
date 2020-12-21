@@ -65,10 +65,16 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 
     public void DealDamage(float Damage, EGameElement Element)
     {
+        if (PhotonNetwork.InRoom)
+        {
+            photonView.RPC("NetworkDealDamage", RpcTarget.Others, Damage, Element);
+        }
+
         NetworkDealDamage(Damage, Element);
 
     }
 
+    [PunRPC]
     public void NetworkDealDamage(float Damage, EGameElement Element)
     {
         if (health > 0)

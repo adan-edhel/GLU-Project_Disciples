@@ -9,7 +9,7 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
 
     private float aimAngle;
     private float crosshairDistance = 1f;
-    private GameObject Crosshair;
+    [SerializeField] private GameObject Crosshair;
     private PlayerInput _input;
 
     private Vector2 i_aimInput;
