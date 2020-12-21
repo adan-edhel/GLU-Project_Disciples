@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -12,6 +11,8 @@ public class Lobby : MonoBehaviour
     [SerializeField] private TMP_InputField _ServerName;
     [SerializeField] private TMP_Text _playerNicknames;
     [SerializeField] private TMP_Text _ServerNameTextField;
+    [SerializeField] private int _maxPlayers;
+    [SerializeField] private TMP_Text _maxPlayerText;
     [SerializeField] private Button _button;
     //[SerializeField] private string _PrefabLocation;
 
@@ -24,7 +25,7 @@ public class Lobby : MonoBehaviour
 
     public void Multiplayer()
     {
-        MultiplayerFunctions.Instance.Multiplayer(_Nickname.text, _ServerName.text, UpdateNicknamePanel: updateNicknamePanel);
+        MultiplayerFunctions.Instance.Multiplayer(_Nickname.text, _ServerName.text, (byte)_maxPlayers, UpdateNicknamePanel: updateNicknamePanel);
     }
 
     private void updateNicknamePanel()
@@ -49,5 +50,16 @@ public class Lobby : MonoBehaviour
         {
             _playerNicknames.text += (player.Value.NickName + "\n");
         }
+    }
+
+    public void UpdateMaxPlayer(float maxplayer)
+    {
+        _maxPlayers = (int)maxplayer;
+        _maxPlayerText.text = _maxPlayers.ToString(); 
+    }
+
+    private void OnDestroy()
+    {
+        MultiplayerFunctions.Instance.RemoveFromUpdateNicknamePanels(updateNicknamePanel);
     }
 }

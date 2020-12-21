@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -73,6 +72,11 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
     }
 
     #endregion startGame / joinGame
+
+    public void RemoveFromUpdateNicknamePanels(UnityAction Call)
+    {
+        _updateNicknamePanel.RemoveListener(Call);
+    }
 
     #region Leaving game / quiting game
     public void LeaveMultiplayerRoom()
