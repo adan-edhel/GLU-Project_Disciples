@@ -71,6 +71,11 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
             iMovement = character.GetComponents<ICharacterMovement>();
             iAttack = character.GetComponent<ICharacterElement>();
             iAim = character.GetComponents<ICharacterAim>();
+
+            for (int i = 0; i < iAim.Length; i++)
+            {
+                iAim[i].AssignInput(_input);
+            }
         }
     }
 

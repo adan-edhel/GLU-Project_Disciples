@@ -11,6 +11,8 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
     public float crosshairDistance = 1f;
     public GameObject Crosshair;
 
+    private PlayerInput _input;
+
     Vector2 i_aimInput;
 
     private void Start()
@@ -39,7 +41,7 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
     {
         if (!PhotonNetwork.InRoom || !photonView.IsMine) return;
 
-        if (GetComponent<PlayerInput>().currentControlScheme == "PC")
+        if (_input.currentControlScheme == "PC")
         {
             var worldMousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             var facingDirection = worldMousePosition - transform.position;
@@ -80,5 +82,10 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
     public void AimInputValue(Vector2 input)
     {
         i_aimInput = input;
+    }
+
+    public void AssignInput(PlayerInput input)
+    {
+        _input = input;
     }
 }
