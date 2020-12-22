@@ -11,7 +11,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
     private ICharacterAim[] iAim;
     private ITogglePause iPause;
 
-    public GameObject _character;
+    private GameObject _character;
     private PlayerInput _input;
     private GameObject _GUI;
 
@@ -26,7 +26,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
         if (photonView.IsMine)
         {
             _input.enabled = true;
-            _GUI.SetActive(true);
+            _GUI.SetActive(false);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -43,11 +43,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        // Adjust Input Action Maps
-        if (SceneController.Instance.inMenu)
-        {
-        }
-        else
+        if (!SceneController.Instance.inMenu)
         {
             CreateCharacter();
         }
@@ -58,24 +54,21 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
         _character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
         _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
 
-        if (photonView.IsMine)
+        iPause = _character.GetComponentInChildren<ITogglePause>();
+        iMovement = _character.GetComponents<ICharacterMovement>();
+        iAttack = _character.GetComponent<ICharacterElement>();
+        iAim = _character.GetComponents<ICharacterAim>();
+
+        _character.GetComponent<CharacterBase>().OnPlayerDeath = this;
+
+        for (int i = 0; i < iAim.Length; i++)
         {
-            iPause = _character.GetComponentInChildren<ITogglePause>();
-            iMovement = _character.GetComponents<ICharacterMovement>();
-            iAttack = _character.GetComponent<ICharacterElement>();
-            iAim = _character.GetComponents<ICharacterAim>();
-
-            _character.GetComponent<CharacterBase>().OnPlayerDeath = this;
-
-            _character.GetComponentInChildren<ICharacterInfo>()?.SetNametag(photonView.Owner.NickName);
-
-            for (int i = 0; i < iAim.Length; i++)
-            {
-                iAim[i].AssignInput(_input);
-            }
+            iAim[i]?.AssignInput(_input);
         }
 
-        _input.SwitchCurrentActionMap("Gameplay");
+        _GUI.SetActive(true);
+
+        _input?.SwitchCurrentActionMap("Gameplay");
     }
 
     /// <summary>
@@ -195,7 +188,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
             }
             else
             {
-                _input.SwitchCurrentActionMap("Gameplay");
+                _input?.SwitchCurrentActionMap("Gameplay");
                 iPause?.TogglePause(false);
             }
         }
@@ -203,6 +196,6 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 
     public void OnPlayerDeath()
     {
-        _input.SwitchCurrentActionMap("UI");
+        _input?.SwitchCurrentActionMap("UI");
     }
 }

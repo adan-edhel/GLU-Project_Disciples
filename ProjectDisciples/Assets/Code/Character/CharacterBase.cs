@@ -24,6 +24,7 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 
         _characterInfo = GetComponentInChildren<ICharacterInfo>();
 
+        _characterInfo.SetNametag(photonView.Owner.NickName);
         _characterInfo.UpdateHealthValue(health, maxHealth);
     }
 
