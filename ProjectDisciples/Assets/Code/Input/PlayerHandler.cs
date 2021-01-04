@@ -3,41 +3,72 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerHandler : MonoBehaviourPunCallbacks
+public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 {
     // Interfaces
-    ICharacterMovement[] iMovement;
-    ICharacterElement iAttack;
-    ICharacterAim[] iAim;
-    HUD Hud;
+    private ICharacterMovement[] iMovement;
+    private ICharacterElement iAttack;
+    private ICharacterAim[] iAim;
+    private ITogglePause iPause;
 
-    PlayerInput input;
+    private GameObject _character;
+    private PlayerInput _input;
+    private GameObject _GUI;
 
     private void Start()
     {
-        GetComponentInChildren<IHealthbar>().SetNametag(photonView.Owner.NickName);
+        DontDestroyOnLoad(gameObject);
 
-        if (PhotonNetwork.InRoom && photonView.IsMine)
+        _input = GetComponent<PlayerInput>();
+        _GUI = GetComponentInChildren<HUD>().gameObject;
+        gameObject.name = $"Observer ({photonView.Owner.NickName})";
+
+        if (photonView.IsMine)
         {
-            GetComponent<PlayerInput>().enabled = true;
-
-            iMovement = GetComponents<ICharacterMovement>();
-            iAttack = GetComponent<ICharacterElement>();
-            iAim = GetComponents<ICharacterAim>();
-
-            input = GetComponent<PlayerInput>();
-
+            _input.enabled = true;
+            _GUI.SetActive(false);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
+        else
+        {
+            Destroy(_input);
+            Destroy(_GUI);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        if (CameraManager.Instance)
+        if (!SceneController.Instance.inMenu)
         {
-            CameraManager.Instance.virtualCamera.Follow = gameObject.transform;
+            CreateCharacter();
         }
-        transform.position = Vector3.zero;
+    }
+
+    private void CreateCharacter()
+    {
+        _character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
+        _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
+
+        iPause = _character.GetComponentInChildren<ITogglePause>();
+        iMovement = _character.GetComponents<ICharacterMovement>();
+        iAttack = _character.GetComponent<ICharacterElement>();
+        iAim = _character.GetComponents<ICharacterAim>();
+
+        _character.GetComponent<CharacterBase>().OnPlayerDeath = this;
+
+        for (int i = 0; i < iAim.Length; i++)
+        {
+            iAim[i]?.AssignInput(_input);
+        }
+
+        _GUI.SetActive(true);
+
+        _input?.SwitchCurrentActionMap("Gameplay");
     }
 
     /// <summary>
@@ -148,23 +179,23 @@ public class PlayerHandler : MonoBehaviourPunCallbacks
     {
         if (context.performed)
         {
-            if (!PhotonNetwork.InRoom || !photonView.IsMine) return;
+            if (SceneController.Instance.inMenu) return;
 
-            if (Hud == null)
+            if (_input?.currentActionMap.name == "Gameplay")
             {
-                Hud = FindObjectOfType<HUD>();
-            }
-
-            if (input.currentActionMap.name == "Gameplay")
-            {
-                input.SwitchCurrentActionMap("UI");
+                _input?.SwitchCurrentActionMap("UI");
+                iPause?.TogglePause(true);
             }
             else
             {
-                input.SwitchCurrentActionMap("Gameplay");
+                _input?.SwitchCurrentActionMap("Gameplay");
+                iPause?.TogglePause(false);
             }
-
-            Hud.TogglePause();
         }
+    }
+
+    public void OnPlayerDeath()
+    {
+        _input?.SwitchCurrentActionMap("UI");
     }
 }

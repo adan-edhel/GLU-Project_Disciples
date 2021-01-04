@@ -5,43 +5,43 @@ using Photon.Pun;
 
 public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
 {
-    [Header("Movement Attributes")]
-    public float moveSpeed = 3f;
-    public float jumpSpeed = 5f;
+    [Header("Values")]
+    public float MoveSpeed = 5f;
+    public float JumpForce = 8f;
 
-    // Max Slope Climb Angle
+    [Header("Conditions")]
+    public bool IsGrounded;
+    public bool IsJumping;
+
+    [Header("References")]
+    [SerializeField] SpriteRenderer _spriteRenderer;
+    public LayerMask surfaceLayer;
+    Collider2D _collider;
+    Rigidbody2D _rigidBody;
+
+    // Movement Adjusters
+    float fCutJumpHeight = .5f;
     float maxClimbAngle = 50;
     float slopeRayHeight;
 
-    // Jump Merchanics Values
-    float fGroundedRememberTime = .2f;
-    float fGroundedRemember;
-    float fCutJumpHeight = .5f;
-
-    // Ground Collision Checkers
+    // Ground Collision
     bool[] groundCollision = new bool[3];
-    public bool isGrounded;
-    public bool isJumping;
     private float groundColliderSize = .05f;
     private float groundCollidersOffset;
     private float groundHeightOffset;
-
-    [Header("Object Variables")]
-    [SerializeField] SpriteRenderer playerSprite;
-    public LayerMask groundCheckLayer;
-    Collider2D charCollider;
-    Rigidbody2D rigidBody;
+    float _surfaceCheckDelayValue = .2f;
+    float _surfaceCheckDelay;
 
     // Movement Input Value
-    [HideInInspector]
-    public Vector2 moveInputValue;
+    [HideInInspector] public Vector2 moveInputValue;
+
     Vector2 velocity;
     Vector2 oldVelocity;
 
     private void Awake()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-        charCollider = GetComponent<Collider2D>();
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
 
         CalculateColliderValues();
     }
@@ -50,11 +50,11 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     {
         CheckForGroundCollision();
 
-        velocity.x = moveInputValue.x * moveSpeed;
+        velocity.x = moveInputValue.x * MoveSpeed;
 
         if (Time.frameCount % 5 == 0)
         {
-            oldVelocity = rigidBody.velocity;
+            oldVelocity = _rigidBody.velocity;
         }
     }
 
@@ -72,20 +72,19 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     {
         if (moveInputValue.x * System.Math.Sign(moveInputValue.x) > 0.01f)
         {
-            if (isGrounded)
+            if (IsGrounded)
             {
-                var groundForce = moveSpeed * 2f;
-                rigidBody.AddForce(new Vector2((moveInputValue.x * groundForce - rigidBody.velocity.x) * groundForce, 0));
-                rigidBody.velocity = new Vector2(velocity.x, rigidBody.velocity.y);
+                var groundForce = MoveSpeed * 2f;
+                _rigidBody.AddForce(new Vector2((moveInputValue.x * groundForce - _rigidBody.velocity.x) * groundForce, 0));
+                _rigidBody.velocity = new Vector2(velocity.x, _rigidBody.velocity.y);
 
-                RaycastHit2D slopeHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Unity.Mathematics.math.sign(velocity.x), 1.5f, groundCheckLayer);
+                RaycastHit2D slopeHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Unity.Mathematics.math.sign(velocity.x), 1.5f, surfaceLayer);
                 if (slopeHit)
                 {
                     float slopeAngle = Vector2.Angle(slopeHit.normal, Vector2.up);
 
                     if (slopeAngle <= maxClimbAngle)
                     {
-                        //print("Slope: " + slopeHit.transform.name + " - " + slopeAngle);
                         ClimbSlope(ref velocity, slopeAngle);
                     }
                 }
@@ -129,10 +128,10 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     {
         if (!PhotonNetwork.InRoom && !photonView.IsMine) return;
 
-        if (isGrounded)
+        if (IsGrounded)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpSpeed);
-            isJumping = true;
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, JumpForce);
+            IsJumping = true;
         }
     }
 
@@ -143,12 +142,12 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     {
         if (!PhotonNetwork.InRoom && !photonView.IsMine) return;
 
-        if (rigidBody.velocity.y > 0)
+        if (_rigidBody.velocity.y > 0)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, rigidBody.velocity.y * fCutJumpHeight);
+            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _rigidBody.velocity.y * fCutJumpHeight);
         }
 
-        isJumping = false;
+        IsJumping = false;
     }
 
     #endregion
@@ -160,61 +159,64 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     /// </summary>
     void CheckForGroundCollision()
     {
-        groundCollision[0] = Physics2D.OverlapCircle(new Vector2(transform.position.x + groundCollidersOffset, transform.position.y - groundHeightOffset), groundColliderSize, groundCheckLayer);
-        groundCollision[1] = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - groundHeightOffset), groundColliderSize, groundCheckLayer);
-        groundCollision[2] = Physics2D.OverlapCircle(new Vector2(transform.position.x - groundCollidersOffset, transform.position.y - groundHeightOffset), groundColliderSize, groundCheckLayer);
+        groundCollision[0] = Physics2D.OverlapCircle(new Vector2(transform.position.x + groundCollidersOffset, transform.position.y - groundHeightOffset), groundColliderSize, surfaceLayer);
+        groundCollision[1] = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y - groundHeightOffset), groundColliderSize, surfaceLayer);
+        groundCollision[2] = Physics2D.OverlapCircle(new Vector2(transform.position.x - groundCollidersOffset, transform.position.y - groundHeightOffset), groundColliderSize, surfaceLayer);
 
-        fGroundedRemember -= Time.deltaTime;
+        _surfaceCheckDelay -= Time.deltaTime;
 
         for (int i = 0; i < groundCollision.Length; i++)
         {
             if (groundCollision[i])
             {
-                fGroundedRemember = fGroundedRememberTime;
-                isGrounded = true;
+                _surfaceCheckDelay = _surfaceCheckDelayValue;
+                IsGrounded = true;
 
                 return;
             }
 
-            if (fGroundedRemember < 0 && !groundCollision[i])
+            if (_surfaceCheckDelay < 0 && !groundCollision[i])
             {
-                isGrounded = false;
+                IsGrounded = false;
             }
         }
 
-        if (isJumping)
+        if (IsJumping)
         {
-            fGroundedRemember = -1;
+            _surfaceCheckDelay = -1;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ground Impact Particle
-        if (oldVelocity.y < -5)
-        {
-            //if (collision.transform.gameObject.layer == 12)
-            //{
-            //    AudioManager.PlaySound(AudioManager.Sound.PlayerLandWood, transform.position);
-            //}
-            //else if (collision.transform.gameObject.layer == 13)
-            //{
-            //    AudioManager.PlaySound(AudioManager.Sound.PlayerLandGrass, transform.position);
-            //}
-        }
 
-        //Ground Impact Camera Shake
+        // Ground Impact Particle
         //if (oldVelocity.y < -5)
         //{
-        //    if (oldVelocity.y < -12)
+        //    if (collision.transform.gameObject.layer == 12)
         //    {
-        //        CameraManager.Instance.ShakeCamera(2, 6, 0);
+        //        AudioManager.PlaySound(AudioManager.Sound.PlayerLandWood, transform.position);
         //    }
-        //    else
+        //    else if (collision.transform.gameObject.layer == 13)
         //    {
-        //        CameraManager.Instance.ShakeCamera(1, 0, 0);
+        //        AudioManager.PlaySound(AudioManager.Sound.PlayerLandGrass, transform.position);
         //    }
         //}
+
+        if (!photonView.IsMine) return;
+
+        //Ground Impact Camera Shake
+        if (oldVelocity.y < -7)
+        {
+            if (oldVelocity.y < -12)
+            {
+                CameraManager.Instance.ShakeCamera(2, 6);
+            }
+            else
+            {
+                CameraManager.Instance.ShakeCamera(1);
+            }
+        }
     }
 
     #endregion
@@ -226,11 +228,11 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     /// </summary>
     private void CalculateColliderValues()
     {
-        if (charCollider)
+        if (_collider)
         {
-            slopeRayHeight = charCollider.bounds.extents.y;
-            groundHeightOffset = charCollider.bounds.extents.y;
-            groundCollidersOffset = charCollider.bounds.size.x / 2;
+            slopeRayHeight = _collider.bounds.extents.y;
+            groundHeightOffset = _collider.bounds.extents.y;
+            groundCollidersOffset = _collider.bounds.size.x / 2;
         }
     }
 
@@ -245,7 +247,7 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
 
     private void OnDrawGizmos()
     {
-        if (playerSprite)
+        if (_spriteRenderer)
         {
             Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(new Vector3(transform.position.x + groundCollidersOffset, transform.position.y - groundHeightOffset, -2), groundColliderSize);

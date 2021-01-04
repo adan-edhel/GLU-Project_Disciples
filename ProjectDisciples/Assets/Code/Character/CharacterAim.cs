@@ -1,22 +1,29 @@
-﻿using Photon.Pun;
+﻿using UnityEngine.InputSystem;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
 {
     [Header("Aim Variables")]
     public Vector2 aimDirection;
-    public float aimAngle;
-    public float crosshairDistance = 1f;
-    public GameObject Crosshair;
 
-    Vector2 i_aimInput;
+    private float aimAngle;
+    private float crosshairDistance = 1f;
+    [SerializeField] private GameObject Crosshair;
+    private PlayerInput _input;
+
+    private Vector2 i_aimInput;
 
     private void Start()
     {
         if (!photonView.IsMine)
         {
             Crosshair.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else
+        {
+            // If not in menu, assign crosshair to camera
+            CameraManager.Instance.AssignFollowTargets(gameObject, Crosshair);
         }
     }
 
@@ -35,7 +42,7 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
     {
         if (!PhotonNetwork.InRoom || !photonView.IsMine) return;
 
-        if (GetComponent<PlayerInput>().currentControlScheme == "PC")
+        if (_input.currentControlScheme == "PC")
         {
             var worldMousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             var facingDirection = worldMousePosition - transform.position;
@@ -76,5 +83,10 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
     public void AimInputValue(Vector2 input)
     {
         i_aimInput = input;
+    }
+
+    public void AssignInput(PlayerInput input)
+    {
+        _input = input;
     }
 }

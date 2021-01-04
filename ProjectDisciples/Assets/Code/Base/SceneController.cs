@@ -26,6 +26,11 @@ public class SceneController : MonoBehaviourPunCallbacks
     }
 
     /// <summary>
+    /// Returns whether the game is in menu scene
+    /// </summary>
+    public bool inMenu => GetBuildIndex < 1;
+
+    /// <summary>
     /// Returns the build index of the currently active scene
     /// </summary>
     /// <returns></returns>

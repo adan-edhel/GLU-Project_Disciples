@@ -38,11 +38,6 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
     [SerializeField] private float _FirstWaterAttackLifespan = 5;
     [SerializeField] private string _WaterSecondAttackPath;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     private void Start()
     {
         if (_KnownElements == null)
@@ -119,7 +114,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack1()
     {
-        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
         
         switch (_CurrentElement)
         {
@@ -143,7 +138,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack2()
     {
-        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
 
         switch (_CurrentElement)
         {
@@ -167,7 +162,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void SwitchPreviousElement()
     {
-        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
@@ -187,7 +182,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void SwitchNextElement()
     {
-        if (!photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)

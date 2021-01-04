@@ -1,6 +1,4 @@
 ﻿using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -14,14 +12,15 @@ public class CameraManager : MonoBehaviour
     float ShakeElapsedTime = 0f;
 
     // Cinemachine Virtual Camera
-    public CinemachineVirtualCamera virtualCamera;
+    private CinemachineVirtualCamera virtualCamera;
+
+    // Cinemachine Target Group
+    public CinemachineTargetGroup targetGroup;
 
     // Cinemachine Components
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
     private CinemachineFollowZoom virtualCameraFollowZoom;
-    private CinemachineTargetGroup targetGroup;
     private CinemachineConfiner confiner;
-
 
     private void Awake()
     {
@@ -38,44 +37,8 @@ public class CameraManager : MonoBehaviour
         // If virtual camera exists, get camera noise component
         if (virtualCamera != null)
         {
-            virtualCameraNoise = virtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+            virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             virtualCameraFollowZoom = virtualCamera.GetComponent<CinemachineFollowZoom>();
-        }
-    }
-
-    /// <summary>
-    /// Update confiner on the virtual camera
-    /// </summary>
-    /// <param name="collider"></param>
-    public void UpdateConfiner(PolygonCollider2D collider)
-    {
-        confiner.m_BoundingShape2D = collider;
-        confiner.InvalidatePathCache();
-    }
-
-    /// <summary>
-    /// Shakes the camera with the following parameters: Duration, Amplitude, Frequency. -- Duration always needs to be given a value, amplitude and frequency will use default value when left at 0. Defaults: Amp(1.2f), Freq(2.0f).
-    /// </summary>
-    public void ShakeCamera(float duration, float amplitude, float frequency)
-    {
-        ShakeElapsedTime = duration / 10;
-
-        // Set Cinemachine Camera Noise parameters
-        if (amplitude <= 0)
-        {
-            virtualCameraNoise.m_AmplitudeGain = defaultShakeAmplitude;
-        }
-        else
-        {
-            virtualCameraNoise.m_AmplitudeGain = amplitude;
-        }
-        if (frequency <= 0)
-        {
-            virtualCameraNoise.m_FrequencyGain = defaultShakeFrequency;
-        }
-        else
-        {
-            virtualCameraNoise.m_FrequencyGain = frequency;
         }
     }
 
@@ -85,7 +48,7 @@ public class CameraManager : MonoBehaviour
         if (!virtualCamera) return;
 
         // If required cinemachine components are null, avoid update.
-        if (!virtualCameraNoise || !virtualCameraFollowZoom) return;
+        //if (!virtualCameraNoise || !virtualCameraFollowZoom) return;
 
         //----------------------------------------
 
@@ -118,5 +81,47 @@ public class CameraManager : MonoBehaviour
         }
 
         */
+    }
+
+    public void AssignFollowTargets(GameObject character, GameObject crosshair)
+    {
+        targetGroup.m_Targets[0].target = character.transform;
+        targetGroup.m_Targets[1].target = crosshair.transform;
+    }
+
+    /// <summary>
+    /// Update confiner on the virtual camera
+    /// </summary>
+    /// <param name="collider"></param>
+    public void UpdateConfiner(PolygonCollider2D collider)
+    {
+        confiner.m_BoundingShape2D = collider;
+        confiner.InvalidatePathCache();
+    }
+
+    /// <summary>
+    /// Shakes the camera with the following parameters: Duration, Amplitude, Frequency. -- Duration always needs to be given a value, amplitude and frequency will use default value when left at 0. Defaults: Amp(1.2f), Freq(2.0f).
+    /// </summary>
+    public void ShakeCamera(float duration, float amplitude = 0, float frequency = 0)
+    {
+        ShakeElapsedTime = duration / 10;
+
+        // Set Cinemachine Camera Noise parameters
+        if (amplitude <= 0)
+        {
+            virtualCameraNoise.m_AmplitudeGain = defaultShakeAmplitude;
+        }
+        else
+        {
+            virtualCameraNoise.m_AmplitudeGain = amplitude;
+        }
+        if (frequency <= 0)
+        {
+            virtualCameraNoise.m_FrequencyGain = defaultShakeFrequency;
+        }
+        else
+        {
+            virtualCameraNoise.m_FrequencyGain = frequency;
+        }
     }
 }

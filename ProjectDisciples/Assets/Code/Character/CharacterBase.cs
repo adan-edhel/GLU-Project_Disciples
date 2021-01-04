@@ -1,11 +1,13 @@
-﻿using Photon.Pun;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using System;
 
 public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 {
+    public IOnPlayerDeath OnPlayerDeath;
+    ICharacterInfo _characterInfo;
+
     private const float maxHealth = 300;
     [Range(0, 300), SerializeField] private float health = 300;
 
@@ -20,13 +22,16 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
 
         MatchManager.Instance?.RegisterCharacter(this, gameObject);
 
-        GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+        _characterInfo = GetComponentInChildren<ICharacterInfo>();
+
+        _characterInfo.SetNametag(photonView.Owner.NickName);
+        _characterInfo.UpdateHealthValue(health, maxHealth);
     }
 
     private void Update()
     {
-        //TODO: Move to Deal Damage
-        GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+        //TODO: Move to Deal Damage and remove it from here
+        _characterInfo.UpdateHealthValue(health, maxHealth);
 
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
@@ -49,15 +54,15 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         MatchManager.Instance?.RemoveCharacter(this, gameObject);
     }
 
-    public float Health 
-    { 
-        get { return health;} 
-        set 
-        { 
+    public float Health
+    {
+        get { return health; }
+        set
+        {
             health = value;
-            if (health == -1f)  _CharacterAttack.CanAttack = false;
+            if (health == -1f) _CharacterAttack.CanAttack = false;
             else _CharacterAttack.CanAttack = true;
-        } 
+        }
     }
 
     public void DealDamage(float Damage, EGameElement Element)
@@ -66,10 +71,9 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         {
             photonView.RPC("NetworkDealDamage", RpcTarget.Others, Damage, Element);
         }
-        else
-        {
-            NetworkDealDamage(Damage, Element);
-        }
+
+        NetworkDealDamage(Damage, Element);
+
     }
 
     [PunRPC]
@@ -80,9 +84,13 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             CheckIfPlayerHasStatesEfect(Element);
             Damage *= Multiplier;
             health -= Damage;
+            if (health <= 0 && photonView.IsMine)
+            {
+                OnPlayerDeath?.OnPlayerDeath();
+                PhotonNetwork.Destroy(photonView);
+            }
             health = Mathf.Clamp(health, 0, maxHealth);
-
-            GetComponentInChildren<IHealthbar>().UpdateHealthbar(health, maxHealth);
+            _characterInfo.UpdateHealthValue(health, maxHealth);
         }
     }
 
@@ -116,6 +124,12 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             return multiplier;
         }
     }
+
+    public PhotonView GetPhotonView
+    {
+        get { return photonView; }
+    }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
