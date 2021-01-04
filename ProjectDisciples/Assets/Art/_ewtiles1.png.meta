@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: ec7fb4d63a16d1d4cb21f6cce6b03986
+guid: 87fc870340774604d8098135021a8e5b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6109495409288386625
-    second: platformneutral_1
+      213: 2368838739151315508
+    second: _ewtiles1_0
   - first:
-      213: 3192215504578151576
-    second: platformneutral_2
+      213: 8140841625259717212
+    second: _ewtiles1_1
   - first:
-      213: 2435413917741079133
-    second: platformneutral_3
+      213: -5926785771851999660
+    second: _ewtiles1_2
   - first:
-      213: -8425288398777019539
-    second: platformneutral_4
+      213: 6990517376695987117
+    second: _ewtiles1_3
   - first:
-      213: -1830476778571956237
-    second: platformneutral_5
+      213: -1795400054900854408
+    second: _ewtiles1_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -104,97 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: platformneutral_1
+      name: _ewtiles1_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 0
-        width: 180
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 148938b84b949c450800000000000000
-      internalID: 6109495409288386625
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformneutral_2
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 1
-        width: 208
-        height: 166
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89400ec96170d4c20800000000000000
-      internalID: 3192215504578151576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformneutral_3
-      rect:
-        serializedVersion: 2
-        x: 557
-        y: 0
-        width: 210
-        height: 179
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5adff70e045cc120800000000000000
-      internalID: 2435413917741079133
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformneutral_4
-      rect:
-        serializedVersion: 2
-        x: 827
-        y: 0
-        width: 200
-        height: 173
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d631da427dc531b80800000000000000
-      internalID: -8425288398777019539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: platformneutral_5
-      rect:
-        serializedVersion: 2
-        x: 1054
-        y: 13
+        x: 5
+        y: 9
         width: 175
-        height: 170
+        height: 155
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,8 +118,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fffd937117d896e0800000000000000
-      internalID: -1830476778571956237
+      spriteID: 4326c49584ecfd020800000000000000
+      internalID: 2368838739151315508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _ewtiles1_1
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 9
+        width: 175
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c52b15e73541af070800000000000000
+      internalID: 8140841625259717212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _ewtiles1_2
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 9
+        width: 175
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4561ce0fdb3dfbda0800000000000000
+      internalID: -5926785771851999660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _ewtiles1_3
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 9
+        width: 175
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dabe82a448e430160800000000000000
+      internalID: 6990517376695987117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _ewtiles1_4
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 9
+        width: 175
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871fae999257517e0800000000000000
+      internalID: -1795400054900854408
       vertices: []
       indices: 
       edges: []
