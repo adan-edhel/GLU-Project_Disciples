@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: af965559492b629449ee3f032a6ddcc2
+guid: ceb8534c0d95b6f45be82aafd4107af4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6625144855046234785
-    second: broken pillah_0
+      213: 1225022630233187644
+    second: _gtiles3_0
   - first:
-      213: 7882195227775051134
-    second: broken pillah_1
+      213: -3225332381151447780
+    second: _gtiles3_1
   - first:
-      213: -7068501058246482416
-    second: broken pillah_2
+      213: 3530587111008255110
+    second: _gtiles3_2
+  - first:
+      213: 89205539938211415
+    second: _gtiles3_3
+  - first:
+      213: 5260043432852287533
+    second: _gtiles3_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 140
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,64 +104,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: broken pillah_0
+      name: _gtiles3_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 429
-        height: 617
-      alignment: 9
-      pivot: {x: 0.5042591, y: 0.049869798}
+        x: 15
+        y: 9
+        width: 144
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5d56791bd1ce04a0800000000000000
-      internalID: -6625144855046234785
+      spriteID: c352ddc7797200110800000000000000
+      internalID: 1225022630233187644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: broken pillah_1
+      name: _gtiles3_1
       rect:
         serializedVersion: 2
-        x: 484
-        y: 76
-        width: 338
-        height: 486
-      alignment: 9
-      pivot: {x: 0.60271096, y: 0.12027885}
+        x: 195
+        y: 14
+        width: 144
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e75afc94cce236d60800000000000000
-      internalID: 7882195227775051134
+      spriteID: c1537e2b9415d33d0800000000000000
+      internalID: -3225332381151447780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: broken pillah_2
+      name: _gtiles3_2
       rect:
         serializedVersion: 2
-        x: 956
-        y: 0
-        width: 349
-        height: 568
-      alignment: 9
-      pivot: {x: 0.5052354, y: 0.052857246}
+        x: 394
+        y: 14
+        width: 144
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 016eeb0fcb3a7ed90800000000000000
-      internalID: -7068501058246482416
+      spriteID: 68c3838854a2ff030800000000000000
+      internalID: 3530587111008255110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _gtiles3_3
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 14
+        width: 144
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 756930847fbec3100800000000000000
+      internalID: 89205539938211415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _gtiles3_4
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 14
+        width: 144
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d20794e12ad6ff840800000000000000
+      internalID: 5260043432852287533
       vertices: []
       indices: 
       edges: []

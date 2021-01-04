@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: af965559492b629449ee3f032a6ddcc2
+guid: 1492068fdeff8f44b80f997cc1577a0b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6625144855046234785
-    second: broken pillah_0
+      213: -8012708850158089170
+    second: _gtiles4_0
   - first:
-      213: 7882195227775051134
-    second: broken pillah_1
+      213: 9106536631665511066
+    second: _gtiles4_1
   - first:
-      213: -7068501058246482416
-    second: broken pillah_2
+      213: -651869133871969206
+    second: _gtiles4_2
+  - first:
+      213: -511348406667625930
+    second: _gtiles4_3
+  - first:
+      213: -1476099896360065247
+    second: _gtiles4_4
+  - first:
+      213: -4757050561766235930
+    second: _gtiles4_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 140
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,64 +107,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: broken pillah_0
+      name: _gtiles4_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 429
-        height: 617
-      alignment: 9
-      pivot: {x: 0.5042591, y: 0.049869798}
+        x: 35
+        y: 22
+        width: 138
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5d56791bd1ce04a0800000000000000
-      internalID: -6625144855046234785
+      spriteID: e2cc2b101c32dc090800000000000000
+      internalID: -8012708850158089170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: broken pillah_1
+      name: _gtiles4_1
       rect:
         serializedVersion: 2
-        x: 484
-        y: 76
-        width: 338
-        height: 486
-      alignment: 9
-      pivot: {x: 0.60271096, y: 0.12027885}
+        x: 202
+        y: 22
+        width: 138
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e75afc94cce236d60800000000000000
-      internalID: 7882195227775051134
+      spriteID: a9a418861dae06e70800000000000000
+      internalID: 9106536631665511066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: broken pillah_2
+      name: _gtiles4_2
       rect:
         serializedVersion: 2
-        x: 956
-        y: 0
-        width: 349
-        height: 568
-      alignment: 9
-      pivot: {x: 0.5052354, y: 0.052857246}
+        x: 345
+        y: 20
+        width: 138
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 016eeb0fcb3a7ed90800000000000000
-      internalID: -7068501058246482416
+      spriteID: a4c058bf97814f6f0800000000000000
+      internalID: -651869133871969206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _gtiles4_3
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 22
+        width: 138
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63a3d18555357e8f0800000000000000
+      internalID: -511348406667625930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _gtiles4_4
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 22
+        width: 138
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 127a77807f6d38be0800000000000000
+      internalID: -1476099896360065247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _gtiles4_5
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 19
+        width: 138
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e0e95fc7bf8bfdb0800000000000000
+      internalID: -4757050561766235930
       vertices: []
       indices: 
       edges: []
