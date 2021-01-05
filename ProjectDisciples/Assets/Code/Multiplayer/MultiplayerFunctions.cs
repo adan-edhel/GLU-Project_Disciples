@@ -121,7 +121,7 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
         }
         else if (!QuitGame)
         {
-            SceneController.Instance.TransitionScene(0);
+            SceneController.Instance.TransitionScene(1);
         }
     }
 
