@@ -22,13 +22,14 @@ public class SceneController : MonoBehaviourPunCallbacks
 
         LoadingPanel.SetActive(false);
 
+        TransitionScene(1);
         //loadingScreen = GetComponent<LoadingScreen>();
     }
 
     /// <summary>
     /// Returns whether the game is in menu scene
     /// </summary>
-    public bool inMenu => GetBuildIndex < 1;
+    public bool inMenu => GetBuildIndex < 2;
 
     /// <summary>
     /// Returns the build index of the currently active scene
