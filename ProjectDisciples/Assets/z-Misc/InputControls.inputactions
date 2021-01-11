@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Chat",
+                    "type": "Button",
+                    "id": "99ad3986-66be-46f1-94c4-1c6df2caf898",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -367,6 +375,17 @@
                     "action": "NextElement",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70f12b5b-48ab-4f27-a1f9-4b182670f6e3",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Chat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -378,6 +397,14 @@
                     "name": "Unpause",
                     "type": "Button",
                     "id": "6856e80e-1a00-4a78-aaf4-7fa345a23406",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Chat",
+                    "type": "Button",
+                    "id": "f2f9f13a-84fd-4c4a-8885-28a1ce83ae6d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -403,6 +430,17 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Unpause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4fad66d-dbed-4c95-8090-2cf14062f782",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Chat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

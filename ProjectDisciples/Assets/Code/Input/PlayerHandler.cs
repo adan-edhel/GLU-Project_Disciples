@@ -10,6 +10,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
     private ICharacterElement iAttack;
     private ICharacterAim[] iAim;
     private ITogglePause iPause;
+    private IChat iChat;
 
     private GameObject _character;
     private PlayerInput _input;
@@ -27,6 +28,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
         {
             _input.enabled = true;
             _GUI.SetActive(false);
+            iChat = GetComponent<IChat>();
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -54,7 +56,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
         _character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
         _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
 
-        iPause = _character.GetComponentInChildren<ITogglePause>();
+        iPause = GetComponentInChildren<ITogglePause>(includeInactive: true);
         iMovement = _character.GetComponents<ICharacterMovement>();
         iAttack = _character.GetComponent<ICharacterElement>();
         iAim = _character.GetComponents<ICharacterAim>();
@@ -191,6 +193,14 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
                 _input?.SwitchCurrentActionMap("Gameplay");
                 iPause?.TogglePause(false);
             }
+        }
+    }
+
+    public void OnChat(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            iChat?.HandleChat();
         }
     }
 

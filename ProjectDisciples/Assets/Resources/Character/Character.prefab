@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 723846585617996170}
   - component: {fileID: 723846585617996169}
+  - component: {fileID: -8818259042248401911}
   - component: {fileID: 947717589726446484}
   - component: {fileID: 723846585617996167}
   - component: {fileID: 723846585617996164}
@@ -100,7 +101,6 @@ GameObject:
   - component: {fileID: 7240613734416667104}
   - component: {fileID: 1623916627119109508}
   - component: {fileID: 723846585617996165}
-  - component: {fileID: -9156632251206063925}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -141,11 +141,27 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 651be4a14bed0334cb6408f910aabe5c, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!70 &-8818259042248401911
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723846585617996172}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!114 &947717589726446484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,12 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 723846585617996165}
   _renderer: {fileID: 723846583808140213}
-  _playercolors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.43053007, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.20489144, a: 1}
-  - {r: 1, g: 0, b: 0.6324959, a: 1}
-  - {r: 1, g: 0.93979657, b: 0, a: 1}
+  _playercolors: {fileID: 11400000, guid: 68452193681c4cb4ea0ddb0cabc7dd67, type: 2}
   _localColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &723846585617996175
 MonoBehaviour:
@@ -308,22 +319,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &-9156632251206063925
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723846585617996172}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!1 &2469479613990561405
 GameObject:
   m_ObjectHideFlags: 0
