@@ -33,7 +33,7 @@ public class CharecterChatter : MonoBehaviourPunCallbacks
 
     public void RPCSendMessage(string Message)
     {
-        photonView.RPC("SendMessage", RpcTarget.All, Message);
+        photonView.RPC("SetMessage", RpcTarget.All, Message);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
