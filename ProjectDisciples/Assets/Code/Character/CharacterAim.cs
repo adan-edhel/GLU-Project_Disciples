@@ -42,6 +42,8 @@ public class CharacterAim : MonoBehaviourPunCallbacks, ICharacterAim
     {
         if (!PhotonNetwork.InRoom || !photonView.IsMine) return;
 
+        if (_input?.currentActionMap.name == "UI") return;
+
         if (_input.currentControlScheme == "PC")
         {
             var worldMousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());

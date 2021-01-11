@@ -946,6 +946,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e286ca02-87a2-4ce3-bc07-dd274c8d9b67
     m_ActionName: Gameplay/NextElement[/Keyboard/e,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99ad3986-66be-46f1-94c4-1c6df2caf898
+    m_ActionName: Gameplay/Chat[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f2f9f13a-84fd-4c4a-8885-28a1ce83ae6d
+    m_ActionName: UI/Chat[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
