@@ -7,7 +7,7 @@ public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, I
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private Color[] _playercolors;
+    [SerializeField] private CharecterColors _playercolors;
     [SerializeField] private Color _localColor;
 
     private void Awake()
@@ -19,10 +19,15 @@ public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, I
                 Photon.Realtime.Player Player = PhotonNetwork.CurrentRoom.Players[i+1];
                 if (Player != null && Player.IsLocal)
                 {
-                    _renderer.color = _playercolors[i];
+                    _renderer.color = _playercolors.getColors[i];
                 }
             }
         }
+    }
+
+    public void SetRenderColor(Color Color)
+    {
+
     }
 
     public void CutJump()

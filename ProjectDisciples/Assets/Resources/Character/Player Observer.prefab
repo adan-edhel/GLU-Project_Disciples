@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 7
+  m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2860127503462647956}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -406,7 +406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8978286830944413582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -947,11 +947,35 @@ MonoBehaviour:
     m_ActionId: e286ca02-87a2-4ce3-bc07-dd274c8d9b67
     m_ActionName: Gameplay/NextElement[/Keyboard/e,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 856392190044971117}
+        m_TargetAssemblyTypeName: CharecterChatter, Assembly-CSharp
+        m_MethodName: Chatting
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_ActionId: 99ad3986-66be-46f1-94c4-1c6df2caf898
     m_ActionName: Gameplay/Chat[/Keyboard/enter]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 856392190044971117}
+        m_TargetAssemblyTypeName: CharecterChatter, Assembly-CSharp
+        m_MethodName: Chatting
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_ActionId: f2f9f13a-84fd-4c4a-8885-28a1ce83ae6d
     m_ActionName: UI/Chat[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
@@ -971,7 +995,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f67f7cfc6d1f274790bf34c4342dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChatterActive: 0
   _textPanel: {fileID: 2789302776955332806}
+  _charecterColors: {fileID: 11400000, guid: 68452193681c4cb4ea0ddb0cabc7dd67, type: 2}
+  _intPlayerColor: 0
+  _backgrounds:
+  - {fileID: 858917634999594709}
+  - {fileID: 4134001355292720136}
+  _inputfield: {fileID: 8708544456521544165}
 --- !u!1 &4214722753081570412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1354,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 7
+  m_ChildAlignment: 0
   m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -2758,7 +2789,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8056123939418872829}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

@@ -237,12 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 723846585617996165}
   _renderer: {fileID: 723846583808140213}
-  _playercolors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.43053007, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.20489144, a: 1}
-  - {r: 1, g: 0, b: 0.6324959, a: 1}
-  - {r: 1, g: 0.93979657, b: 0, a: 1}
+  _playercolors: {fileID: 11400000, guid: 68452193681c4cb4ea0ddb0cabc7dd67, type: 2}
   _localColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &723846585617996175
 MonoBehaviour:

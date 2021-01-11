@@ -380,7 +380,7 @@
                     "name": "",
                     "id": "70f12b5b-48ab-4f27-a1f9-4b182670f6e3",
                     "path": "<Keyboard>/enter",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Chat",
