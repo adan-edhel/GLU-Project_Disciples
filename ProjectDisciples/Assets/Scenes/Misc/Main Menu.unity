@@ -2066,7 +2066,6 @@ GameObject:
   - component: {fileID: 941219273}
   - component: {fileID: 941219272}
   - component: {fileID: 941219274}
-  - component: {fileID: 941219275}
   m_Layer: 5
   m_Name: Multiplayer Panel
   m_TagString: Untagged
@@ -2153,18 +2152,7 @@ MonoBehaviour:
   _maxPlayers: 2
   _maxPlayerText: {fileID: 288554953}
   _button: {fileID: 1332014599}
---- !u!114 &941219275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 941219270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23d008cd821d0164186e3660d21cfee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _charecterColors: {fileID: 11400000, guid: 68452193681c4cb4ea0ddb0cabc7dd67, type: 2}
 --- !u!1 &971124595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,7 +2242,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

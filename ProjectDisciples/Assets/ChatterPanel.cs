@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Photon.Pun;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ChatterPanel : MonoBehaviour
 {
     public static ChatterPanel Instance;
     [SerializeField] private TMP_Text _textField;
+    [SerializeField] private ScrollRect _scrollRec;
 
     private void Start()
     {
@@ -19,5 +18,6 @@ public class ChatterPanel : MonoBehaviour
     public void SetMessage(string Message)
     {
         _textField.text += Message;
+        _scrollRec.verticalNormalizedPosition = 0f;
     }
 }

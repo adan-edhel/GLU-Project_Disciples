@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -995,7 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f67f7cfc6d1f274790bf34c4342dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatterActive: 0
+  _chatterActive: 0
   _textPanel: {fileID: 2789302776955332806}
   _charecterColors: {fileID: 11400000, guid: 68452193681c4cb4ea0ddb0cabc7dd67, type: 2}
   _intPlayerColor: 0
@@ -1163,7 +1163,7 @@ RectTransform:
   m_GameObject: {fileID: 4732070998548361467}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0092, y: 1.0092, z: 1.0092}
   m_Children: []
   m_Father: {fileID: 5773905944313177211}
   m_RootOrder: 0
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 0
-  m_margin: {x: -270.60898, y: 12.916334, z: -269.41125, w: 0.2543465}
+  m_margin: {x: -273.41772, y: -0.10401642, z: -271.97855, w: 11.297833}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1354,7 +1354,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -2948,3 +2948,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textField: {fileID: 1987190515181369319}
+  _scrollRec: {fileID: 7800807023908800657}

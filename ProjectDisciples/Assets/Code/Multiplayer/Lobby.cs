@@ -14,8 +14,8 @@ public class Lobby : MonoBehaviour
     [SerializeField] private int _maxPlayers;
     [SerializeField] private TMP_Text _maxPlayerText;
     [SerializeField] private Button _button;
-    //[SerializeField] private string _PrefabLocation;
 
+    [SerializeField] private CharecterColors _charecterColors;
     private void Start()
     {
 #if !UNITY_EDITOR
@@ -46,10 +46,12 @@ public class Lobby : MonoBehaviour
         }
         _ServerNameTextField.text = PhotonNetwork.CurrentRoom.Name;
         _playerNicknames.text = "";
-        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+
+        for (int i = 0; i < PhotonNetwork.CurrentRoom.Players.Count; i++)
         {
-            _playerNicknames.text += (player.Value.NickName + "\n");
+            _playerNicknames.text += $"<color=#{ColorUtility.ToHtmlStringRGB(_charecterColors.getColors[i])}> {PhotonNetwork.CurrentRoom.Players[1 + i].NickName} </color>\n";
         }
+
     }
 
     public void UpdateMaxPlayer(float maxplayer)
