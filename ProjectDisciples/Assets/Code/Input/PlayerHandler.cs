@@ -200,7 +200,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
     {
         if (context.performed)
         {
-            
+            iChat?.HandleChat();
         }
     }
 

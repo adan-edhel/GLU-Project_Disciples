@@ -948,10 +948,10 @@ MonoBehaviour:
     m_ActionName: Gameplay/NextElement[/Keyboard/e,/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 856392190044971117}
-        m_TargetAssemblyTypeName: CharecterChatter, Assembly-CSharp
-        m_MethodName: Chatting
-        m_Mode: 6
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
+        m_MethodName: OnChat
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -964,10 +964,10 @@ MonoBehaviour:
     m_ActionName: Gameplay/Chat[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 856392190044971117}
-        m_TargetAssemblyTypeName: CharecterChatter, Assembly-CSharp
-        m_MethodName: Chatting
-        m_Mode: 6
+      - m_Target: {fileID: 4153996842296585222}
+        m_TargetAssemblyTypeName: PlayerHandler, Assembly-CSharp
+        m_MethodName: OnChat
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
