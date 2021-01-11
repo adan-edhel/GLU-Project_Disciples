@@ -6,9 +6,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 
-public class CharecterChatter : MonoBehaviourPunCallbacks
+public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
 {
-    [SerializeField] private bool ChatterActive = false;
+    [SerializeField] private bool _chatterActive = false;
     [SerializeField] private ChatterPanel _textPanel;
     [SerializeField] private CharecterColors _charecterColors;
     [SerializeField] private int _intPlayerColor;
@@ -54,7 +54,6 @@ public class CharecterChatter : MonoBehaviourPunCallbacks
             photonView.RPC("SetMessage", RpcTarget.All, Message);
             _inputfield.text = string.Empty;
         }
-        Chatting(false);
     }
 
     public void Chatting(bool StartChatting)
@@ -86,4 +85,17 @@ public class CharecterChatter : MonoBehaviourPunCallbacks
         }
     }
 
+    public void HandleChat()
+    {
+        if (_chatterActive)
+        {
+            Chatting(false);
+            _chatterActive = false;
+        }
+        else if (!_chatterActive)
+        {
+            Chatting(true);
+            _chatterActive = true;
+        }
+    }
 }
