@@ -29,6 +29,7 @@ public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
                     _intPlayerColor = i;
                 }
             }
+
         }
         else
         {
@@ -44,6 +45,12 @@ public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
         {
             ChatterPanel.Instance.SetMessage(Message);
         }
+    }
+
+    [PunRPC]
+    public void SetScoreBoard(string Board)
+    {
+        MatchManager.Instance.ScoreList = Board;
     }
 
     public void RPCSendMessage(string Message)

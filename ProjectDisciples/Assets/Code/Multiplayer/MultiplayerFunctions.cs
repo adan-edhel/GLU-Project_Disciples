@@ -41,12 +41,11 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = "1.3";
 
-        string tempString = _nickname;
-        if (tempString == "")
+        if (_nickname == "")
         {
-            tempString = RandomName(5);
+            _nickname = RandomName(5);
         }
-        PhotonNetwork.NickName = tempString;
+        PhotonNetwork.NickName = _nickname;
     }
 
     public override void OnConnectedToMaster()
@@ -63,7 +62,7 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined lobby & waiting...", this);
-        PhotonNetwork.Instantiate("Character/Player Observer", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("Character/PlayerObserver", Vector3.zero, Quaternion.identity);
         MatchManager.Instance.RegisterNickname(_nickname);
         _updateNicknamePanel.Invoke();
     }

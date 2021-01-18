@@ -11,6 +11,12 @@ public class Objectile : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject _sender;
     string _senderName;
     [SerializeField] private LayerMask _playerLayers;
+    Rigidbody2D _rigidbody;
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     public GameObject SetSender
     {
@@ -43,6 +49,7 @@ public class Objectile : MonoBehaviourPunCallbacks
                 }
             }
         }
+
         Colliders = Physics2D.OverlapBoxAll(transform.position, transform.lossyScale * 1.01f, transform.rotation.z, ~_playerLayers);
         if (Colliders.Length > 0)
         {
@@ -55,6 +62,12 @@ public class Objectile : MonoBehaviourPunCallbacks
                 Destroy(gameObject);
             }
         }
+
+        if (photonView.IsMine)
+        {
+            transform.up = _rigidbody.velocity;
+        }
+        
     }
 
     public void SetStartingData(int layer, GameObject Sender)
@@ -67,10 +80,9 @@ public class Objectile : MonoBehaviourPunCallbacks
     {
         if (_sender != null)
         {
-            Rigidbody2D RB2D = GetComponent<Rigidbody2D>();
-            if (RB2D != null)
+            if (_rigidbody != null)
             {
-                photonView.RPC("setData", RpcTarget.Others, RB2D.velocity.x, RB2D.velocity.y, gameObject.layer, _sender.name);
+                photonView.RPC("setData", RpcTarget.Others, _rigidbody.velocity.x, _rigidbody.velocity.y, gameObject.layer, _sender.name);
             }
             DestroyAfter(5f);
         }
@@ -79,8 +91,10 @@ public class Objectile : MonoBehaviourPunCallbacks
     [PunRPC]
     public void destroyRPC()
     {
-        Destroy(gameObject);
-        //PhotonNetwork.Destroy(gameObject);
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 
     [PunRPC]

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 public class MatchManager : MonoBehaviour
@@ -11,10 +12,13 @@ public class MatchManager : MonoBehaviour
     [SerializeField] private List<GameObject> _characterObject;
     [SerializeField] private Dictionary<string, int> _score;
     [SerializeField] private string _coreList;
+    [SerializeField] private List<PlayerHandler> _playerHandelers;
+    bool _checkAllivePLayers;
 
     public string ScoreList
     {
         get { return _coreList; }
+        set { _coreList = value; }
     }
 
     public List<GameObject> GetCharacterObjects
@@ -30,6 +34,8 @@ public class MatchManager : MonoBehaviour
             _score = new Dictionary<string, int>();
             _aliveCharacters = new List<IHealth>();
             _characterObject = new List<GameObject>();
+            _playerHandelers = new List<PlayerHandler>();
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
         else
         {
@@ -37,21 +43,33 @@ public class MatchManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void OnSceneUnloaded(Scene arg0)
     {
-        if (!SceneController.Instance.inMenu && PhotonNetwork.IsMasterClient)
+        _checkAllivePLayers = false;
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (!SceneController.Instance.inMenu && PhotonNetwork.IsMasterClient && _checkAllivePLayers)
         {
             if (_aliveCharacters.Count == 1 && _characterObject.Count != (int)PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 _score[_aliveCharacters[0].GetPhotonView.Owner.NickName] += 1;
-                ResetStage();
+                _aliveCharacters[0].ResetHealth();
+                ResetStage(); 
             }
         }
+        
     }
 
     public void ResetStage()
     {
-        SceneController.Instance.ResetScene();
+        _checkAllivePLayers = false;
+        for (int i = 0; i < _playerHandelers.Count; i++)
+        {
+            _playerHandelers[i].RPCCreateCharacter();
+        }
         ReevaluateScoreBoard();
     }
 
@@ -70,6 +88,10 @@ public class MatchManager : MonoBehaviour
         {
             _aliveCharacters.Add(Health);
             _characterObject.Add(Gameobject);
+            if (_aliveCharacters.Count == _playerHandelers.Count)
+            {
+                _checkAllivePLayers = true;
+            }
             ReevaluateScoreBoard();
         }
     }
@@ -93,6 +115,21 @@ public class MatchManager : MonoBehaviour
     public void RemoveNickname(string nickname)
     {
         _score.Remove(nickname);
+        ReevaluateScoreBoard();
+    }
+
+    public void RegisterPlayerHandler(PlayerHandler playerHandler)
+    {
+        if (!_playerHandelers.Contains(playerHandler))
+        {
+            _playerHandelers.Add(playerHandler);
+            ReevaluateScoreBoard();
+        }
+    }
+
+    public void RemovePlayerHandler(PlayerHandler playerHandler)
+    {
+        _playerHandelers.Remove(playerHandler);
         ReevaluateScoreBoard();
     }
 }

@@ -718,11 +718,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4153996842296585223}
   - component: {fileID: 4153996842296585222}
-  - component: {fileID: 4153996842296585216}
   - component: {fileID: 4153996842296585217}
+  - component: {fileID: 4153996842296585216}
   - component: {fileID: 856392190044971117}
   m_Layer: 0
-  m_Name: Player Observer
+  m_Name: PlayerObserver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -755,28 +755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838b3bcb63443a849b4fb8028c2f7c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4153996842296585216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4153996842296585219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents: []
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &4153996842296585217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,6 +961,28 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4153996842296585216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153996842296585219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &856392190044971117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,6 +1793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b2ca1bba132924ebc1a78743be3d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 4153996842296585216}
   scoreList: {fileID: 7966904153044220952}
   pauseMenu: {fileID: 7966904153098055242}
 --- !u!1 &7966904151858349623

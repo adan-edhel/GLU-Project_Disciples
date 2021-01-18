@@ -6,6 +6,8 @@ using TMPro;
 
 public class HUD : MonoBehaviourPunCallbacks, ITogglePause
 {
+    [SerializeField] private PhotonView _photonView;
+
     [SerializeField] TextMeshProUGUI scoreList;
 
     [SerializeField] GameObject pauseMenu;
@@ -21,7 +23,15 @@ public class HUD : MonoBehaviourPunCallbacks, ITogglePause
         {
             scoreList.text = MatchManager.Instance.ScoreList;
         }
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            _photonView.RPC("SetScoreBoard", RpcTarget.Others, MatchManager.Instance.ScoreList);
+        }
     }
+
+
+
 
     public void TogglePause(bool toggle)
     {

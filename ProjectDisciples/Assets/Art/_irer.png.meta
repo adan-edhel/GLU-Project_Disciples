@@ -1,7 +1,64 @@
 fileFormatVersion: 2
 guid: 1eaaef53f3b0f28469320c73fd23bf9a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3535123087441818085
+    second: _irer_0
+  - first:
+      213: 8849637397112692482
+    second: _irer_1
+  - first:
+      213: 2968395651407919836
+    second: _irer_2
+  - first:
+      213: 1056461279035632055
+    second: _irer_3
+  - first:
+      213: 6411614945481301833
+    second: _irer_4
+  - first:
+      213: 1846311372197240641
+    second: _irer_5
+  - first:
+      213: -2148288976222274737
+    second: _irer_6
+  - first:
+      213: -1015993551856309292
+    second: _irer_7
+  - first:
+      213: 4518697854249718972
+    second: _irer_8
+  - first:
+      213: 7047883649154531475
+    second: _irer_0
+  - first:
+      213: -7648278296160821715
+    second: _irer_1
+  - first:
+      213: 4972525085956377909
+    second: _irer_2
+  - first:
+      213: 4501939286578403036
+    second: _irer_3
+  - first:
+      213: -2409009335784839216
+    second: _irer_4
+  - first:
+      213: 1394841072764268712
+    second: _irer_5
+  - first:
+      213: 943758885650738069
+    second: _irer_6
+  - first:
+      213: -3254465235285468731
+    second: _irer_7
+  - first:
+      213: 6830028610394140587
+    second: _irer_8
+  - first:
+      213: -594400478985771458
+    second: _irer_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +98,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -73,9 +130,246 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: _irer_0
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 311
+        width: 433
+        height: 239
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 390c32e66dc1fc160800000000000000
+      internalID: 7047883649154531475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 241
+        width: 43
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e1106796bdbd590800000000000000
+      internalID: -7648278296160821715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_2
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 212
+        width: 185
+        height: 96
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53d06295835f10540800000000000000
+      internalID: 4972525085956377909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_3
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 208
+        width: 35
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd691e8cde91a7e30800000000000000
+      internalID: 4501939286578403036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 174
+        width: 43
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d7e1f7c5ca719ed0800000000000000
+      internalID: -2409009335784839216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_5
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 171
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a03d34c0987b5310800000000000000
+      internalID: 1394841072764268712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_6
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 126
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ba4dcc4b7e81d00800000000000000
+      internalID: 943758885650738069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_7
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 109
+        width: 47
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c993f48c11d5d2d0800000000000000
+      internalID: -3254465235285468731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _irer_8
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 0
+        width: 289
+        height: 148
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baf2c4885d229ce50800000000000000
+      internalID: 6830028610394140587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
