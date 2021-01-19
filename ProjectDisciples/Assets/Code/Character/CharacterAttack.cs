@@ -130,9 +130,6 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
             case EGameElement.Earth:
                 EarthAttack1();
                 break;
-            default:
-                Debug.LogError("this is not posseble", this);
-                break;
         }
     }
 
@@ -154,15 +151,12 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
             case EGameElement.Earth:
                 EarthAttack2();
                 break;
-            default:
-                Debug.LogError("this is not posseble", this);
-                break;
         }
     }
 
     public void SwitchPreviousElement()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom && _KnownElements.Count == 0) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
@@ -182,7 +176,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void SwitchNextElement()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom && _KnownElements.Count == 0) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
