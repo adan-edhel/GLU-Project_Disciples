@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using Photon.Realtime;
 
 public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 {
@@ -43,6 +44,10 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public override void OnLeftRoom()
+    {
         photonView.RPC("Register", RpcTarget.All, true);
     }
 
@@ -79,6 +84,11 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 
         _character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
         _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
+
+        if (SpawnArea.Instance != null)
+        {
+            _character.transform.position = SpawnArea.Instance.RandomPosition;
+        }
 
         iPause = GetComponentInChildren<ITogglePause>(includeInactive: true);
         iMovement = _character.GetComponents<ICharacterMovement>();

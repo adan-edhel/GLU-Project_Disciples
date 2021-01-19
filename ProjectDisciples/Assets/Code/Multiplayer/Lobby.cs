@@ -60,6 +60,14 @@ public class Lobby : MonoBehaviour
         _maxPlayerText.text = _maxPlayers.ToString(); 
     }
 
+    public void LeaveLobby()
+    {
+        if (PhotonNetwork.InRoom)
+        {
+            MultiplayerFunctions.Instance.LeaveMultiplayerRoom();
+        }
+    }
+
     private void OnDestroy()
     {
         MultiplayerFunctions.Instance.RemoveFromUpdateNicknamePanels(updateNicknamePanel);

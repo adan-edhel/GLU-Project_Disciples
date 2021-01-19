@@ -30,9 +30,6 @@ public class HUD : MonoBehaviourPunCallbacks, ITogglePause
         }
     }
 
-
-
-
     public void TogglePause(bool toggle)
     {
         pauseMenu.SetActive(toggle);
@@ -46,6 +43,11 @@ public class HUD : MonoBehaviourPunCallbacks, ITogglePause
 
     public void QuitGame()
     {
-        Application.Quit();
+        MultiplayerFunctions.Instance.QuitMultiplayerRoom();
+    }
+
+    public void LeaveGame()
+    {
+        MultiplayerFunctions.Instance.LeaveMultiplayerRoom();
     }
 }

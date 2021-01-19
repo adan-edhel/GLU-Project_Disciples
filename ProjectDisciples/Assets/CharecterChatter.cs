@@ -105,4 +105,5 @@ public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
             _chatterActive = true;
         }
     }
+
 }

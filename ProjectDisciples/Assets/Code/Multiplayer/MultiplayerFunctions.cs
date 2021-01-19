@@ -106,7 +106,7 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
         StartCoroutine(DisconectRoom(_quit));
     }
 
-    private IEnumerator DisconectRoom(bool QuitGame = false)
+    private IEnumerator DisconectRoom(bool QuitGame)
     {
         PhotonNetwork.Disconnect();
         while (PhotonNetwork.IsConnected)
