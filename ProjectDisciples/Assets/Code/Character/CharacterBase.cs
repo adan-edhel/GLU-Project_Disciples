@@ -65,29 +65,47 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         MatchManager.Instance?.RemoveCharacter(this, gameObject);
     }
 
-    public void DealDamage(float Damage, EGameElement Element)
+    public void DealDamage(float Damage, EGameElement Element, string NicknameDamegeDealer)
     {
         if (PhotonNetwork.InRoom)
         {
-            photonView.RPC("NetworkDealDamage", RpcTarget.Others, Damage, Element);
+            photonView.RPC("NetworkDealDamage", RpcTarget.Others, Damage, Element, NicknameDamegeDealer);
         }
 
-        NetworkDealDamage(Damage, Element);
+        NetworkDealDamage(Damage, Element, NicknameDamegeDealer);
 
     }
 
     [PunRPC]
-    public void NetworkDealDamage(float Damage, EGameElement Element)
+    public void NetworkDealDamage(float Damage, EGameElement Element, string NicknameDamegeDealer)
     {
         if (_health > 0)
         {
             CheckIfPlayerHasStatesEfect(Element);
-            Damage *= Multiplier;
+            Damage *= Multiplier(out EGameElement[] effects);
             _health -= Damage;
             if (_health <= 0 && photonView.IsMine)
             {
                 OnPlayerDeath?.OnPlayerDeath();
                 PhotonNetwork.Destroy(photonView);
+                string Message = $"{NicknameDamegeDealer} has defeated {photonView.Owner.NickName} with ";
+                if (effects.Length != 0)
+                {
+                    for (int i = 0; i < effects.Length; i++)
+                    {
+                        if (i != 0)
+                        {
+                            Message += " & ";
+                        }
+                        Message += $"<sprite={(int)effects[i]}>";
+                    }
+                }
+                else
+                {
+                    Message += $"<sprite={(int)Element}>";
+                }
+
+                CharecterChatter.Instance.RPCSendDeathMessage(Message+"\n");
             }
             _health = Mathf.Clamp(_health, 0, _maxHealth);
             _characterInfo.UpdateHealthValue(_health, _maxHealth);
@@ -107,22 +125,24 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         }
     }
 
-    private float Multiplier
+    private float Multiplier(out EGameElement[] Effects)
     {
-        get
+        float multiplier = 1f;
+        List<EGameElement> elements = new List<EGameElement>();
+        for (int i = 0; i < _elementInteractions.Length; i++)
         {
-            float multiplier = 1f;
-            for (int i = 0; i < _elementInteractions.Length; i++)
+            if (_statesEfects.ContainsKey((int)_elementInteractions[i].GetFirstElement) && _statesEfects.ContainsKey((int)_elementInteractions[i].GetSecondElement))
             {
-                if (_statesEfects.ContainsKey((int)_elementInteractions[i].GetFirstElement) && _statesEfects.ContainsKey((int)_elementInteractions[i].GetSecondElement))
-                {
-                    multiplier *= _elementInteractions[i].GetMultplier;
-                    _statesEfects.Remove((int)_elementInteractions[i].GetFirstElement);
-                    _statesEfects.Remove((int)_elementInteractions[i].GetSecondElement);
-                }
+                multiplier *= _elementInteractions[i].GetMultplier;
+                _statesEfects.Remove((int)_elementInteractions[i].GetFirstElement);
+                _statesEfects.Remove((int)_elementInteractions[i].GetSecondElement);
+
+                elements.Add(_elementInteractions[i].GetFirstElement);
+                elements.Add(_elementInteractions[i].GetSecondElement);
             }
-            return multiplier;
         }
+        Effects = elements.ToArray();
+        return multiplier;
     }
 
     public PhotonView GetPhotonView

@@ -36,7 +36,7 @@ public class Objectile : MonoBehaviourPunCallbacks
                     CharacterBase health = Colliders[i].GetComponent<CharacterBase>();
                     if (health != null)
                     {
-                        health.DealDamage(_damageAmmound, _Element);
+                        health.DealDamage(_damageAmmound, _Element, photonView.Owner.NickName);
                     }
                     if (PhotonNetwork.InRoom)
                     {
