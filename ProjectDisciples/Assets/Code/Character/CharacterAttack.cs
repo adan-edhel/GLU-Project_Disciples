@@ -125,6 +125,8 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMa
         }
     }
 
+    public float MaxMana { get => _maxMana; }
+
     public float CurrentMana { get => _currentMana;}
 
     public void ResetMana()

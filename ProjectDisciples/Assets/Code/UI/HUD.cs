@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections;
+﻿using UnityEngine.UI;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
@@ -11,6 +10,10 @@ public class HUD : MonoBehaviourPunCallbacks, ITogglePause
     [SerializeField] TextMeshProUGUI scoreList;
 
     [SerializeField] GameObject pauseMenu;
+
+    [SerializeField] Image healthBar;
+    [SerializeField] Image manaBar;
+
 
     void Update()
     {

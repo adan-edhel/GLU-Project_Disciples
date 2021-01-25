@@ -1,9 +1,8 @@
 ﻿
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using Photon.Pun;
-using UnityEngine.SceneManagement;
-using Photon.Realtime;
 
 public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 {
@@ -40,6 +39,8 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
             Destroy(_GUI);
         }
     }
+
+    public GameObject characterObject { get => _character; }
 
     private void OnDestroy()
     {
