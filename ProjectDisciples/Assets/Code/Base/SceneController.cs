@@ -69,7 +69,8 @@ public class SceneController : MonoBehaviourPunCallbacks
 
     public void ResetScene()
     {
-        requestedIndex = GetBuildIndex;
+        //requestedIndex = GetBuildIndex;
+        TransitionScene(GetBuildIndex);
         //loadingScreen.UpdateAnimatorValues(true, requestedIndex);
     }
 

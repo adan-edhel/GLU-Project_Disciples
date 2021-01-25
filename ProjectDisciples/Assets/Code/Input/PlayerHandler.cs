@@ -1,7 +1,8 @@
-﻿using UnityEngine.SceneManagement;
+﻿
 using UnityEngine.InputSystem;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 {
@@ -29,6 +30,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
             _input.enabled = true;
             _GUI.SetActive(false);
             iChat = GetComponent<IChat>();
+            photonView.RPC("Register", RpcTarget.All, false);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -41,6 +43,20 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        photonView.RPC("Register", RpcTarget.All, true);
+    }
+
+    [PunRPC]
+    public void Register(bool Remove = false)
+    {
+        if (Remove)
+        {
+            MatchManager.Instance.RemovePlayerHandler(this);
+        }
+        else
+        {
+            MatchManager.Instance.RegisterPlayerHandler(this);
+        }
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -51,8 +67,16 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
         }
     }
 
-    private void CreateCharacter()
+    public void RPCCreateCharacter()
     {
+        photonView.RPC("CreateCharacter", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void CreateCharacter()
+    {
+        if (!photonView.IsMine || _character != null) return;
+
         _character = PhotonNetwork.Instantiate("Character/Character", Vector3.zero, Quaternion.identity);
         _character.gameObject.name = $"Character ({photonView.Owner.NickName})";
 

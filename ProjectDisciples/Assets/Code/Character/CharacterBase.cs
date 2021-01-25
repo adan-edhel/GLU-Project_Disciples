@@ -8,8 +8,8 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
     public IOnPlayerDeath OnPlayerDeath;
     ICharacterInfo _characterInfo;
 
-    private const float maxHealth = 300;
-    [Range(0, 300), SerializeField] private float health = 300;
+    private const float _maxHealth = 300;
+    [Range(0, 300), SerializeField] private float _health = 300;
 
     [SerializeField] private float _MaxStatesEfectTime;
     [SerializeField] private CharacterAttack _CharacterAttack;
@@ -25,13 +25,14 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         _characterInfo = GetComponentInChildren<ICharacterInfo>();
 
         _characterInfo.SetNametag(photonView.Owner.NickName);
-        _characterInfo.UpdateHealthValue(health, maxHealth);
+        _characterInfo.UpdateHealthValue(_health, _maxHealth);
+
     }
 
     private void Update()
     {
         //TODO: Move to Deal Damage and remove it from here
-        _characterInfo.UpdateHealthValue(health, maxHealth);
+        _characterInfo.UpdateHealthValue(_health, _maxHealth);
 
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
@@ -48,21 +49,20 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             }
         }
     }
+    public float Health
+    {
+        get { return _health; }
+        set
+        {
+            _health = value;
+            if (_health == -1f) _CharacterAttack.CanAttack = false;
+            else _CharacterAttack.CanAttack = true;
+        }
+    }
 
     private void OnDestroy()
     {
         MatchManager.Instance?.RemoveCharacter(this, gameObject);
-    }
-
-    public float Health
-    {
-        get { return health; }
-        set
-        {
-            health = value;
-            if (health == -1f) _CharacterAttack.CanAttack = false;
-            else _CharacterAttack.CanAttack = true;
-        }
     }
 
     public void DealDamage(float Damage, EGameElement Element)
@@ -79,18 +79,18 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
     [PunRPC]
     public void NetworkDealDamage(float Damage, EGameElement Element)
     {
-        if (health > 0)
+        if (_health > 0)
         {
             CheckIfPlayerHasStatesEfect(Element);
             Damage *= Multiplier;
-            health -= Damage;
-            if (health <= 0 && photonView.IsMine)
+            _health -= Damage;
+            if (_health <= 0 && photonView.IsMine)
             {
                 OnPlayerDeath?.OnPlayerDeath();
                 PhotonNetwork.Destroy(photonView);
             }
-            health = Mathf.Clamp(health, 0, maxHealth);
-            _characterInfo.UpdateHealthValue(health, maxHealth);
+            _health = Mathf.Clamp(_health, 0, _maxHealth);
+            _characterInfo.UpdateHealthValue(_health, _maxHealth);
         }
     }
 
@@ -136,12 +136,23 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
         if (stream.IsWriting)
         {
             stream.SendNext(_statesEfects);
-            stream.SendNext(health);
+            stream.SendNext(_health);
         }
         else if (stream.IsReading)
         {
             _statesEfects = (Dictionary<int, float>)stream.ReceiveNext();
-            health = (float)stream.ReceiveNext();
+            _health = (float)stream.ReceiveNext();
         }
+    }
+
+    public void ResetHealth()
+    {
+        photonView.RPC("NetworkReset", RpcTarget.All);
+    }
+    
+    [PunRPC]
+    public void NetworkReset()
+    {
+        _health = _maxHealth;
     }
 }

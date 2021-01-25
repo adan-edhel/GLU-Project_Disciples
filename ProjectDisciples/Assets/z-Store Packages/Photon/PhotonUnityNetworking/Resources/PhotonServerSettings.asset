@@ -43,6 +43,11 @@ MonoBehaviour:
   - NetworkDealDamage
   - GameTimer
   - SetMessage
+  - CreateCharacter
+  - LoadIn
+  - Register
+  - NetworkReset
+  - SetScoreBoard
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
