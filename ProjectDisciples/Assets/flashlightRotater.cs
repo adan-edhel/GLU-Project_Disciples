@@ -18,6 +18,15 @@ public class flashlightRotater : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
-        _flashlicht.transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(gameObject.transform.up, _characterAimGameobject.aimDirection));
+        if (_characterAimGameobject.aimDirection.x > 0)
+        {
+            _flashlicht.transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(gameObject.transform.up, _characterAimGameobject.aimDirection) * -1f);
+        }
+        else
+        {
+            _flashlicht.transform.rotation = Quaternion.Euler(0, 0, Vector2.Angle(gameObject.transform.up, _characterAimGameobject.aimDirection));
+        }
+
+        
     }
 }
