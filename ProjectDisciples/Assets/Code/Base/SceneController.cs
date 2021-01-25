@@ -52,7 +52,7 @@ public class SceneController : MonoBehaviourPunCallbacks
     /// <summary>
     /// Ends the application
     /// </summary>
-    public void QuitGame() => Application.Quit();
+    public void QuitGame() => Application.Quit(0);
 
     /// <summary>
     /// Transitions to a specified scene with a loading screen

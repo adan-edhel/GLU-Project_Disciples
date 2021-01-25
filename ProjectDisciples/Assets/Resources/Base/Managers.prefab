@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1611362234518324780}
   - component: {fileID: 7251445948866743003}
   - component: {fileID: 7910974416769703261}
+  - component: {fileID: 1998379968}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -255,6 +256,7 @@ MonoBehaviour:
   _startHealth: 300
   _characterObject: []
   _coreList: 
+  _playerHandelers: []
 --- !u!114 &7910974416769703261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,10 +269,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e760071b7359f4492baafafc802b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Nickname: {fileID: 0}
-  _ServerName: {fileID: 0}
-  _playerNicknames: {fileID: 0}
-  _ServerNameTextField: {fileID: 0}
+  _PlayerObserver: {fileID: 0}
+  _nickname: 
+  _serverName: 
+  _maxPlayers: 0
+  _updateNicknamePanel:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1998379968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5164568422902668690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ecf226d862ea54da0c3785184839ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _orbPrefabLocations:
+  - Elements/Orbs/FireOrb
+  - Elements/Orbs/WaterOrb
+  _spawnPerRound: 1
+  _downtime: 10
 --- !u!1 &7006958079093637337
 GameObject:
   m_ObjectHideFlags: 0

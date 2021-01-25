@@ -14,36 +14,50 @@ public enum EGameElement
     NoElement,
 }
 
-public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
+public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMana
 {
     [SerializeField] private List<EGameElement> _KnownElements;
     [SerializeField] private EGameElement _CurrentElement = EGameElement.Fire;
 
+    [Header("mana")]
+    [SerializeField] private float _maxMana = 300f;
+    [SerializeField] private float _currentMana;
+    [SerializeField] private float _regenPerFixedUpdete;
+    [SerializeField] private float _firstAtackPrice;
+    [SerializeField] private float _secondAtackPrice;
+
     [Header("renderer")]
-    [SerializeField] private SpriteRenderer _SpriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [Header("aimer")]
-    [SerializeField] private CharacterAim _CharacterAim;
+    [SerializeField] private CharacterAim _characterAim;
     [SerializeField] private bool _canAttack;
  
     [Header("fire")]
-    [SerializeField] private string _FireFirstAtackPath = "Elements/Fire/BaseAtack";
+    [SerializeField] private string _fireFirstAtackPath = "Elements/Fire/BaseAtack";
     [SerializeField] private Vector2 _firevelocity;
-    [SerializeField] private float _FirstFireAttackLifespan = 5;
-    [SerializeField] private string _FireSecondAttackPath;
+    [SerializeField] private float _firstFireAttackLifespan = 5;
+    [SerializeField] private string _fireSecondAttackPath;
 
     [Header("Water")]
-    [SerializeField] private string _WaterFirstAtackPath = "Elements/Water/BaseAtack";
-    [SerializeField] private Vector2 _Watervelocity;
-    [SerializeField] private float _FirstWaterAttackLifespan = 5;
-    [SerializeField] private string _WaterSecondAttackPath;
+    [SerializeField] private string _waterFirstAtackPath = "Elements/Water/BaseAtack";
+    [SerializeField] private Vector2 _watervelocity;
+    [SerializeField] private float _firstWaterAttackLifespan = 5;
+    [SerializeField] private string _waterSecondAttackPath;
 
     private void Start()
     {
         if (_KnownElements == null)
         {
             _KnownElements = new List<EGameElement>();
+            _currentMana = _maxMana;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        _currentMana += _regenPerFixedUpdete;
+        _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
     }
 
     public bool CanAttack
@@ -53,16 +67,16 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
             _canAttack = value;
             if (!_canAttack)
             {
-                Color TempColor = _SpriteRenderer.color;
+                Color TempColor = _spriteRenderer.color;
                 TempColor.a = 0.5f;
-                _SpriteRenderer.color = TempColor;
+                _spriteRenderer.color = TempColor;
                 return;
             }
             else if (_canAttack)
             {
-                Color TempColor = _SpriteRenderer.color;
+                Color TempColor = _spriteRenderer.color;
                 TempColor.a = 1f;
-                _SpriteRenderer.color = TempColor;
+                _spriteRenderer.color = TempColor;
             }
         }
     }
@@ -111,58 +125,65 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         }
     }
 
+    public float CurrentMana { get => _currentMana;}
+
+    public void ResetMana()
+    {
+        _currentMana = _maxMana;
+    }
 
     public void Attack1()
     {
         if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
-        
-        switch (_CurrentElement)
+
+        if (_currentMana >= _firstAtackPrice)
         {
-            case EGameElement.Fire:
-                FireAttack1();
-                break;
-            case EGameElement.Water:
-                WaterAttack1();
-                break;
-            case EGameElement.Wind:
-                WindAttack1();
-                break;
-            case EGameElement.Earth:
-                EarthAttack1();
-                break;
-            default:
-                Debug.LogError("this is not posseble", this);
-                break;
+            _currentMana -= _firstAtackPrice;
+            switch (_CurrentElement)
+            {
+                case EGameElement.Fire:
+                    FireAttack1();
+                    break;
+                case EGameElement.Water:
+                    WaterAttack1();
+                    break;
+                case EGameElement.Wind:
+                    WindAttack1();
+                    break;
+                case EGameElement.Earth:
+                    EarthAttack1();
+                    break;
+            }
         }
     }
 
     public void Attack2()
     {
         if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
-
-        switch (_CurrentElement)
+        if (_currentMana >= _secondAtackPrice)
         {
-            case EGameElement.Fire:
-                FireAttack2();
-                break;
-            case EGameElement.Water:
-                WaterAttack2();
-                break;
-            case EGameElement.Wind:
-                WindAttack2();
-                break;
-            case EGameElement.Earth:
-                EarthAttack2();
-                break;
-            default:
-                Debug.LogError("this is not posseble", this);
-                break;
+            _currentMana -= _secondAtackPrice;
+            switch (_CurrentElement)
+            {
+                case EGameElement.Fire:
+                    FireAttack2();
+                    break;
+                case EGameElement.Water:
+                    WaterAttack2();
+                    break;
+                case EGameElement.Wind:
+                    WindAttack2();
+                    break;
+                case EGameElement.Earth:
+                    EarthAttack2();
+                    break;
+            }
         }
     }
 
     public void SwitchPreviousElement()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom && _KnownElements.Count == 0) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
@@ -182,7 +203,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void SwitchNextElement()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom && _KnownElements.Count == 0) return;
         int Current = (int)_CurrentElement;
         int Enumength = System.Enum.GetNames(typeof(EGameElement)).Length;
         for (int i = 1; i < Enumength; i++)
@@ -199,13 +220,13 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
     private Vector2 VelocityCalculater(Vector2 StartVelocity)
     {
         Vector2 NewVelocity = Vector2.zero;
-        if (_CharacterAim != null)
+        if (_characterAim != null)
         {
-            NewVelocity = StartVelocity * _CharacterAim.aimDirection;
+            NewVelocity = StartVelocity * _characterAim.aimDirection;
         }
-        else if(_CharacterAim == null)
+        else if(_characterAim == null)
         {
-            NewVelocity = new Vector2(StartVelocity.x * (_SpriteRenderer.flipX ? -1 : 1), StartVelocity.y);
+            NewVelocity = new Vector2(StartVelocity.x * (_spriteRenderer.flipX ? -1 : 1), StartVelocity.y);
         }
         return NewVelocity;
     }
@@ -217,11 +238,11 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         GameObject tempObject;
         if (PhotonNetwork.InRoom && photonView.IsMine)
         {
-            tempObject = PhotonNetwork.Instantiate(_FireFirstAtackPath, transform.position, Quaternion.identity);
+            tempObject = PhotonNetwork.Instantiate(_fireFirstAtackPath, transform.position, Quaternion.identity);
         }
         else
         {
-            tempObject = Instantiate(Resources.Load(_FireFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
+            tempObject = Instantiate(Resources.Load(_fireFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
         }
 
         tempObject.layer = gameObject.layer;
@@ -243,7 +264,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
             }
             else
             {
-                Destroy(tempObject, _FirstFireAttackLifespan);
+                Destroy(tempObject, _firstFireAttackLifespan);
             }
         }
     }
@@ -261,18 +282,18 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         GameObject tempObject;
         if (PhotonNetwork.InRoom)
         {
-            tempObject = PhotonNetwork.Instantiate(_WaterFirstAtackPath, transform.position, Quaternion.identity);
+            tempObject = PhotonNetwork.Instantiate(_waterFirstAtackPath, transform.position, Quaternion.identity);
         }
         else
         {
-            tempObject = Instantiate(Resources.Load(_WaterFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
+            tempObject = Instantiate(Resources.Load(_waterFirstAtackPath) as GameObject, transform.position, Quaternion.identity);
         }
         tempObject.layer = gameObject.layer;
 
         Rigidbody2D RB = tempObject.GetComponent<Rigidbody2D>();
         if (RB != null)
         {
-            RB.velocity = VelocityCalculater(_Watervelocity);
+            RB.velocity = VelocityCalculater(_watervelocity);
         }
 
         Objectile objectileDamage = tempObject.GetComponent<Objectile>();
@@ -280,7 +301,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         {
             objectileDamage.SetSender = this.gameObject;
         }
-        Destroy(tempObject,_FirstWaterAttackLifespan);
+        Destroy(tempObject,_firstWaterAttackLifespan);
     }
 
     private void WaterAttack2()
@@ -315,7 +336,6 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
     {
 
     }
-
     #endregion Eurth
 }
 

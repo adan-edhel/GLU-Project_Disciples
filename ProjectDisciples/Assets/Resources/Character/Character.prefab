@@ -128,19 +128,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7c2921e4f820243968d19b621cec48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _KnownElements: 0000000002000000
-  _CurrentElement: 0
-  _SpriteRenderer: {fileID: 2110728306277904872}
-  _CharacterAim: {fileID: 947717589726446484}
+  _KnownElements: 
+  _CurrentElement: 6
+  _maxMana: 300
+  _currentMana: 0
+  _regenPerFixedUpdete: 0.3
+  _firstAtackPrice: 20
+  _secondAtackPrice: 50
+  _spriteRenderer: {fileID: 2110728306277904872}
+  _characterAim: {fileID: 947717589726446484}
   _canAttack: 0
-  _FireFirstAtackPath: Elements/Fire/BaseAtack
+  _fireFirstAtackPath: Elements/Fire/BaseAtack
   _firevelocity: {x: 20, y: 20}
-  _FirstFireAttackLifespan: 2
-  _FireSecondAttackPath: 
-  _WaterFirstAtackPath: Elements/Water/BaseAtack
-  _Watervelocity: {x: 22, y: 22}
-  _FirstWaterAttackLifespan: 2
-  _WaterSecondAttackPath: 
+  _firstFireAttackLifespan: 5
+  _fireSecondAttackPath: 
+  _waterFirstAtackPath: Elements/Water/BaseAtack
+  _watervelocity: {x: 0, y: 0}
+  _firstWaterAttackLifespan: 5
+  _waterSecondAttackPath: 
 --- !u!114 &723846585617996166
 MonoBehaviour:
   m_ObjectHideFlags: 0

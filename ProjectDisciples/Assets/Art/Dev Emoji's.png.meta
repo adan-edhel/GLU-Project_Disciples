@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: 138b6256b7d91be4b8be41b40c458c03
+guid: c24c3f8cb8166c24ba6e77b33f7344f1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2814984919994958427
-    second: _allz_0
+      213: -7180377012285097129
+    second: Dev Emoji's_0
   - first:
-      213: 722069425378468310
-    second: _allz_1
+      213: -3116775585464602651
+    second: Dev Emoji's_1
   - first:
-      213: -4425330311322756033
-    second: _allz_0
+      213: 1874836295338084986
+    second: Dev Emoji's_2
   - first:
-      213: 3071374177025905783
-    second: _allz_1
+      213: 284501294918764312
+    second: Dev Emoji's_3
+  - first:
+      213: -804001750956443837
+    second: Dev Emoji's_0
+  - first:
+      213: -4691249525545853901
+    second: Dev Emoji's_1
+  - first:
+      213: 7184266301952065136
+    second: Dev Emoji's_2
+  - first:
+      213: 4288232552804014555
+    second: Dev Emoji's_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +70,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 909
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -137,43 +149,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _allz_0
+      name: Dev Emoji's_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 351
-        height: 351
-      alignment: 0
+        y: 104
+        width: 256
+        height: 256
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3c96db37811692c0800000000000000
-      internalID: -4425330311322756033
+      spriteID: 347f273daac97d4f0800000000000000
+      internalID: -804001750956443837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _allz_1
+      name: Dev Emoji's_1
       rect:
         serializedVersion: 2
-        x: 558
-        y: 2
-        width: 351
-        height: 351
-      alignment: 0
+        x: 289
+        y: 104
+        width: 256
+        height: 256
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 774dfe98a86bf9a20800000000000000
-      internalID: 3071374177025905783
+      spriteID: 33c9e1d696555eeb0800000000000000
+      internalID: -4691249525545853901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dev Emoji's_2
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 104
+        width: 256
+        height: 256
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07e79a34324a3b360800000000000000
+      internalID: 7184266301952065136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dev Emoji's_3
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 104
+        width: 256
+        height: 256
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9562869ccd28b30800000000000000
+      internalID: 4288232552804014555
       vertices: []
       indices: 
       edges: []

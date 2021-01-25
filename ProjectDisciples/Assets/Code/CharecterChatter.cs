@@ -8,11 +8,11 @@ using UnityEngine.UI;
 
 public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
 {
+    public static CharecterChatter Instance;
     [SerializeField] private bool _chatterActive = false;
     [SerializeField] private ChatterPanel _textPanel;
     [SerializeField] private CharecterColors _charecterColors;
     [SerializeField] private int _intPlayerColor;
-
     [SerializeField] private Image[] _backgrounds;
     [SerializeField] private TMP_InputField _inputfield;
 
@@ -21,6 +21,7 @@ public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
         if (photonView.IsMine)
         {
             _textPanel.SetAsStatic();
+            Instance = this;
             for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++)
             {
                 Photon.Realtime.Player Player = PhotonNetwork.CurrentRoom.Players[i + 1];
@@ -29,7 +30,6 @@ public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
                     _intPlayerColor = i;
                 }
             }
-
         }
         else
         {
@@ -60,6 +60,14 @@ public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
             Message = $"<color=#{ColorUtility.ToHtmlStringRGB(_charecterColors.getColors[_intPlayerColor])}> {photonView.Owner.NickName} </color>: {Message}\n";
             photonView.RPC("SetMessage", RpcTarget.All, Message);
             _inputfield.text = string.Empty;
+        }
+    }
+
+    public void RPCSendDeathMessage(string message)
+    {
+        if (message != string.Empty)
+        {
+            photonView.RPC("SetMessage", RpcTarget.All, message);
         }
     }
 
@@ -105,4 +113,5 @@ public class CharecterChatter : MonoBehaviourPunCallbacks, IChat
             _chatterActive = true;
         }
     }
+
 }
