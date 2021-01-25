@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 4153996842296585216}
   - component: {fileID: 856392190044971117}
   m_Layer: 0
-  m_Name: PlayerObserver
+  m_Name: Player Observer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

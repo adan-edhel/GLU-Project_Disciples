@@ -62,7 +62,7 @@ public class MultiplayerFunctions : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined lobby & waiting...", this);
-        PhotonNetwork.Instantiate("Character/PlayerObserver", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("Character/Player Observer", Vector3.zero, Quaternion.identity);
         MatchManager.Instance.RegisterNickname(_nickname);
         _updateNicknamePanel.Invoke();
     }
