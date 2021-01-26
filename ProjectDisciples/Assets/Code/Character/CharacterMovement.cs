@@ -72,38 +72,19 @@ public class CharacterMovement : MonoBehaviourPunCallbacks, ICharacterMovement
     {
         if (moveInputValue.x * System.Math.Sign(moveInputValue.x) > 0.01f)
         {
-            if (IsGrounded)
+            var groundForce = MoveSpeed * 2f;
+            _rigidBody.AddForce(new Vector2((moveInputValue.x * groundForce - _rigidBody.velocity.x) * groundForce, 0));
+            _rigidBody.velocity = new Vector2(velocity.x, _rigidBody.velocity.y);
+
+            RaycastHit2D slopeHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Unity.Mathematics.math.sign(velocity.x), 1.5f, surfaceLayer);
+            if (slopeHit)
             {
-                var groundForce = MoveSpeed * 2f;
-                _rigidBody.AddForce(new Vector2((moveInputValue.x * groundForce - _rigidBody.velocity.x) * groundForce, 0));
-                _rigidBody.velocity = new Vector2(velocity.x, _rigidBody.velocity.y);
+                float slopeAngle = Vector2.Angle(slopeHit.normal, Vector2.up);
 
-                RaycastHit2D slopeHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - slopeRayHeight), Vector2.right * Unity.Mathematics.math.sign(velocity.x), 1.5f, surfaceLayer);
-                if (slopeHit)
+                if (slopeAngle <= maxClimbAngle)
                 {
-                    float slopeAngle = Vector2.Angle(slopeHit.normal, Vector2.up);
-
-                    if (slopeAngle <= maxClimbAngle)
-                    {
-                        ClimbSlope(ref velocity, slopeAngle);
-                    }
+                    ClimbSlope(ref velocity, slopeAngle);
                 }
-
-
-                // Step sound playback
-
-                //RaycastHit2D groundHit = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundCheckLayer);
-                //if (groundHit.collider != null)
-                //{
-                //    if (groundHit.transform.gameObject.layer == 12)
-                //    {
-                //        AudioManager.PlaySound(AudioManager.Sound.PlayerWalkWood, transform.position);
-                //    }
-                //    else if (groundHit.transform.gameObject.layer == 13)
-                //    {
-                //        AudioManager.PlaySound(AudioManager.Sound.PlayerWalkGrass, transform.position);
-                //    }
-                //}
             }
         }
     }
