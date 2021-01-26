@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 3071374177025905783
     second: _allz_1
+  - first:
+      213: 514960029122189266
+    second: _allz_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,7 +148,7 @@ TextureImporter:
         width: 351
         height: 351
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,7 +169,7 @@ TextureImporter:
         width: 351
         height: 351
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,6 +177,27 @@ TextureImporter:
       bones: []
       spriteID: 774dfe98a86bf9a20800000000000000
       internalID: 3071374177025905783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _allz_2
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 211
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d75a590b61852700800000000000000
+      internalID: 514960029122189266
       vertices: []
       indices: 
       edges: []
