@@ -14,15 +14,13 @@ public enum EGameElement
     NoElement,
 }
 
-public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMana
+public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 {
     [SerializeField] private List<EGameElement> _KnownElements;
     [SerializeField] private EGameElement _CurrentElement = EGameElement.Fire;
 
     [Header("mana")]
-    [SerializeField] private float _maxMana = 300f;
-    [SerializeField] private float _currentMana;
-    [SerializeField] private float _regenPerFixedUpdete;
+    [SerializeField] private CharacterBase _characterBase;
     [SerializeField] private float _firstAtackPrice;
     [SerializeField] private float _secondAtackPrice;
 
@@ -32,14 +30,16 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMa
     [Header("aimer")]
     [SerializeField] private CharacterAim _characterAim;
     [SerializeField] private bool _canAttack;
- 
+
     [Header("fire")]
+    [SerializeField] private Sprite _fireSprite;
     [SerializeField] private string _fireFirstAtackPath = "Elements/Fire/BaseAtack";
     [SerializeField] private Vector2 _firevelocity;
     [SerializeField] private float _firstFireAttackLifespan = 5;
     [SerializeField] private string _fireSecondAttackPath;
 
     [Header("Water")]
+    [SerializeField] private Sprite _waterSprite;
     [SerializeField] private string _waterFirstAtackPath = "Elements/Water/BaseAtack";
     [SerializeField] private Vector2 _watervelocity;
     [SerializeField] private float _firstWaterAttackLifespan = 5;
@@ -50,15 +50,11 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMa
         if (_KnownElements == null)
         {
             _KnownElements = new List<EGameElement>();
-            _currentMana = _maxMana;
         }
+        _characterBase = GetComponent<CharacterBase>();
     }
 
-    private void FixedUpdate()
-    {
-        _currentMana += _regenPerFixedUpdete;
-        _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
-    }
+    
 
     public bool CanAttack
     {
@@ -96,11 +92,13 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMa
         if (_KnownElements.Contains(Element))
         {
             _CurrentElement = Element;
+            CheckSpriteChange();
         }
         else
         {
             Debug.LogError("element not in List", this);
         }
+        
     }
 
     /// <summary>
@@ -125,20 +123,13 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMa
         }
     }
 
-    public float CurrentMana { get => _currentMana;}
-
-    public void ResetMana()
-    {
-        _currentMana = _maxMana;
-    }
-
     public void Attack1()
     {
         if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
 
-        if (_currentMana >= _firstAtackPrice)
+        if (_characterBase.CurrentMana >= _firstAtackPrice)
         {
-            _currentMana -= _firstAtackPrice;
+            _characterBase.CurrentMana -= _firstAtackPrice;
             switch (_CurrentElement)
             {
                 case EGameElement.Fire:
@@ -160,9 +151,9 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMa
     public void Attack2()
     {
         if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
-        if (_currentMana >= _secondAtackPrice)
+        if (_characterBase.CurrentMana >= _secondAtackPrice)
         {
-            _currentMana -= _secondAtackPrice;
+            _characterBase.CurrentMana -= _secondAtackPrice;
             switch (_CurrentElement)
             {
                 case EGameElement.Fire:
@@ -214,6 +205,17 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement, IMa
                 SetElement((EGameElement)Current);
                 break;
             }
+        }
+    }
+
+    private void CheckSpriteChange()
+    {
+        switch (_CurrentElement)
+        {
+            case EGameElement.Fire:
+                break;
+            case EGameElement.Water:
+                break;
         }
     }
 

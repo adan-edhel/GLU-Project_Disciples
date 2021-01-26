@@ -3,7 +3,7 @@ using UnityEngine;
 using Photon.Pun;
 using System;
 
-public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
+public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
 {
     public IOnPlayerDeath OnPlayerDeath;
     ICharacterInfo _characterInfo;
@@ -15,13 +15,17 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
     [SerializeField] private CharacterAttack _CharacterAttack;
     [SerializeField] private Dictionary<int, float> _statesEfects;
     [SerializeField] private ElementInteraction[] _elementInteractions;
+    [Header("mana")]
+    [SerializeField] private float _currentMana;
+    [SerializeField] private float _maxMana = 300f;
+    [SerializeField] private float _regenPerFixedUpdete;
 
     private void Start()
     {
         _statesEfects = new Dictionary<int, float>();
 
         MatchManager.Instance?.RegisterCharacter(this, gameObject);
-
+        _currentMana = _maxMana;
         _characterInfo = GetComponentInChildren<ICharacterInfo>();
 
         _characterInfo.SetNametag(photonView.Owner.NickName);
@@ -58,6 +62,23 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth
             if (_health == -1f) _CharacterAttack.CanAttack = false;
             else _CharacterAttack.CanAttack = true;
         }
+    }
+
+    public float CurrentMana { get => _currentMana;
+        set { _currentMana = value; }
+    }
+    
+    public float MaxMana { get => _maxMana; }
+
+    public void ResetMana()
+    {
+        _currentMana = _maxMana;
+    }
+
+    private void FixedUpdate()
+    {
+        _currentMana += _regenPerFixedUpdete;
+        _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
     }
 
     private void OnDestroy()

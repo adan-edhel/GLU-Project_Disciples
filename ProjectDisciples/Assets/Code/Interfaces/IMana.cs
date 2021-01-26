@@ -2,7 +2,9 @@
 
 public interface IMana
 {
-    float CurrentMana { get; }
+    float MaxMana { get; }
+
+    float CurrentMana { get; set; }
 
     void ResetMana();
 }

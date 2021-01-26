@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, IPunObservable
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private CharecterColors _playercolors;
     [SerializeField] private Color _localColor;
+    private int _movementState;
 
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, I
                     _renderer.color = _playercolors.getColors[i];
                 }
             }
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
     }
 
@@ -52,6 +56,30 @@ public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, I
             {
                 _renderer.flipX = false;
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_rigidbody.velocity.y > 0.20f )
+        {
+            _movementState = 2;
+            _animator.SetInteger("Movementstate", _movementState);
+        }
+        else if (_rigidbody.velocity.y < -0.20f)
+        {
+            _movementState = 3;
+            _animator.SetInteger("Movementstate", _movementState);
+        }
+        else if ( Vector2.Distance(Vector2.zero, _rigidbody.velocity) <= 1 && _movementState != 0)
+        {
+            _movementState = 0;
+            _animator.SetInteger("Movementstate", _movementState);
+        }
+        else if (_rigidbody.velocity.x != 0 && _movementState != 1)
+        {
+            _movementState = 1;
+            _animator.SetInteger("Movementstate", _movementState);
         }
     }
 
