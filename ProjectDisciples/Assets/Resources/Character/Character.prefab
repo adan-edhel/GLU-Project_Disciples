@@ -208,14 +208,16 @@ MonoBehaviour:
   _firstAtackPrice: 20
   _secondAtackPrice: 50
   _spriteRenderer: {fileID: 2110728306277904872}
+  _elementImage: {fileID: 0}
+  _defaultSprite: {fileID: 514960029122189266, guid: 138b6256b7d91be4b8be41b40c458c03, type: 3}
   _characterAim: {fileID: 947717589726446484}
   _canAttack: 0
-  _fireSprite: {fileID: 0}
+  _fireSprite: {fileID: 722069425378468310, guid: 138b6256b7d91be4b8be41b40c458c03, type: 3}
   _fireFirstAtackPath: Elements/Fire/BaseAtack
   _firevelocity: {x: 20, y: 20}
   _firstFireAttackLifespan: 5
   _fireSecondAttackPath: 
-  _waterSprite: {fileID: 0}
+  _waterSprite: {fileID: -2814984919994958427, guid: 138b6256b7d91be4b8be41b40c458c03, type: 3}
   _waterFirstAtackPath: Elements/Water/BaseAtack
   _watervelocity: {x: 20, y: 20}
   _firstWaterAttackLifespan: 5

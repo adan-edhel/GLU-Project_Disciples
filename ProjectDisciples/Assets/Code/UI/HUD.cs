@@ -12,7 +12,7 @@ public class HUD : MonoBehaviourPunCallbacks, ITogglePause
 
     [SerializeField] GameObject pauseMenu;
 
-    [SerializeField] Image elementIcon;
+    [SerializeField] public Image elementIcon;
     [SerializeField] ResourceBarController healthController;
     [SerializeField] ResourceBarController manaController;
 

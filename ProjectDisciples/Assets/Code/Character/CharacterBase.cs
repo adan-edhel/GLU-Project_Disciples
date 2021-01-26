@@ -30,7 +30,6 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
 
         _characterInfo.SetNametag(photonView.Owner.NickName);
         _characterInfo.UpdateHealthValue(_health, _maxHealth);
-
     }
 
     private void Update()
@@ -63,6 +62,8 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
             else _CharacterAttack.CanAttack = true;
         }
     }
+
+    public float MaxHealth { get => _maxHealth; }
 
     public float CurrentMana { get => _currentMana;
         set { _currentMana = value; }
