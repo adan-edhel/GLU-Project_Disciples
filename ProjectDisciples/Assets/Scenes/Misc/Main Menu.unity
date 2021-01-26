@@ -1941,7 +1941,7 @@ MonoBehaviour:
   _ServerNameTextField: {fileID: 5399552317248726931}
   _maxPlayers: 2
   _maxPlayerText: {fileID: 288554953}
-  _startButton: {fileID: 0}
+  _startButton: {fileID: 1804904599}
   _charecterColors: {fileID: 11400000, guid: 68452193681c4cb4ea0ddb0cabc7dd67, type: 2}
 --- !u!1 &1028704838
 GameObject:

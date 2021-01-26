@@ -70,7 +70,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _FadeAreaHeight: 0.108
-    - _FillLevel: 1
+    - _FillLevel: 0.3200081
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -94,3 +94,4 @@ Material:
     - _Speed1: {r: -1, g: 0, b: -1, a: 0}
     - _Speed2: {r: -1, g: -1, b: 0, a: 0}
     - _Speed3: {r: -2, g: -2, b: 0, a: 0}
+  m_BuildTextureStacks: []

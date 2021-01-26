@@ -189,7 +189,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87e666c422607a94aade885ffccfdbf9, type: 2}
   _currentMana: 0
   _maxMana: 300
-  _regenPerFixedUpdete: 0.3
+  _regenPerFixedUpdete: 0.6
 --- !u!114 &723846585617996164
 MonoBehaviour:
   m_ObjectHideFlags: 0
