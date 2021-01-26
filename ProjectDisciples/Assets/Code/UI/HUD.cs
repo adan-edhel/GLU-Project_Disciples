@@ -22,7 +22,7 @@ public class HUD : MonoBehaviourPunCallbacks, ITogglePause
         UpdateScoreList();
     }
 
-    public void UpdateHUDStats(float maxHP, float hp, float maxMana, float mana)
+    public void UpdateHUDStats(float hp, float maxHP, float mana, float maxMana)
     {
         float healthSliderValue = hp / maxHP;
         float manaSliderValue = mana / maxMana;
