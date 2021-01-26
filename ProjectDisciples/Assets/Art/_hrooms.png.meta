@@ -1,0 +1,610 @@
+fileFormatVersion: 2
+guid: 87dd729761aa8bc44b2e54a8709e18b1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1545160330015146265
+    second: _hrooms_0
+  - first:
+      213: -1440080527850312762
+    second: _hrooms_1
+  - first:
+      213: -1474202903029475392
+    second: _hrooms_2
+  - first:
+      213: 7758511912918792488
+    second: _hrooms_3
+  - first:
+      213: -910111518870724663
+    second: _hrooms_4
+  - first:
+      213: -1953865823938926910
+    second: _hrooms_5
+  - first:
+      213: -7768215745024524787
+    second: _hrooms_6
+  - first:
+      213: -4066617400593346834
+    second: _hrooms_7
+  - first:
+      213: 5241017378167524327
+    second: _hrooms_8
+  - first:
+      213: -8171557115364604642
+    second: _hrooms_9
+  - first:
+      213: 6527144975763612709
+    second: _hrooms_10
+  - first:
+      213: -1452928097727736163
+    second: _hrooms_11
+  - first:
+      213: 7857264481279239747
+    second: _hrooms_12
+  - first:
+      213: 2451388674963594798
+    second: _hrooms_13
+  - first:
+      213: -5354181840699490086
+    second: _hrooms_14
+  - first:
+      213: -4105278457853414586
+    second: _hrooms_15
+  - first:
+      213: -839334110864571970
+    second: _hrooms_16
+  - first:
+      213: -4291553778827430252
+    second: _hrooms_17
+  - first:
+      213: 2185109215610953442
+    second: _hrooms_18
+  - first:
+      213: -6003446291980213212
+    second: _hrooms_19
+  - first:
+      213: -4757054973446267417
+    second: _hrooms_20
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: _hrooms_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 497
+        width: 223
+        height: 187
+      alignment: 9
+      pivot: {x: 0.10452253, y: 0.4831566}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 911049f2223817510800000000000000
+      internalID: 1545160330015146265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 329
+        width: 171
+        height: 129
+      alignment: 9
+      pivot: {x: 0.15617359, y: 0.48372254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cb6689c36ec30ce0800000000000000
+      internalID: -1440080527850312762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 223
+        width: 71
+        height: 60
+      alignment: 9
+      pivot: {x: 0.14510472, y: 0.517498}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7141635449a8be0800000000000000
+      internalID: -1474202903029475392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_3
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 447
+        width: 223
+        height: 248
+      alignment: 9
+      pivot: {x: 0.6877332, y: 0.16640288}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829392b7a75cbab60800000000000000
+      internalID: 7758511912918792488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_4
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 237
+        width: 156
+        height: 169
+      alignment: 9
+      pivot: {x: 0.71085614, y: 0.16970861}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf18b34562ae53f0800000000000000
+      internalID: -910111518870724663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 111
+        width: 73
+        height: 80
+      alignment: 9
+      pivot: {x: 0.6501996, y: 0.26326656}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c62859926972e4e0800000000000000
+      internalID: -1953865823938926910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_6
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 419
+        width: 320
+        height: 309
+      alignment: 9
+      pivot: {x: 0.41901246, y: 0.13871029}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0e773b00f0c13490800000000000000
+      internalID: -7768215745024524787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_7
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 176
+        width: 225
+        height: 214
+      alignment: 9
+      pivot: {x: 0.42468858, y: 0.122716956}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee063025097097c0800000000000000
+      internalID: -4066617400593346834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_8
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 0
+        width: 111
+        height: 98
+      alignment: 9
+      pivot: {x: 0.46408108, y: 0.21520792}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eb035f8985dbb840800000000000000
+      internalID: 5241017378167524327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_9
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 417
+        width: 167
+        height: 326
+      alignment: 9
+      pivot: {x: 0.14187859, y: 0.07193826}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1580ec291cc89e80800000000000000
+      internalID: -8171557115364604642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_10
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 170
+        width: 117
+        height: 221
+      alignment: 9
+      pivot: {x: 0.15252998, y: 0.061532274}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 524addde5c3159a50800000000000000
+      internalID: 6527144975763612709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_11
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 0
+        width: 70
+        height: 110
+      alignment: 9
+      pivot: {x: 0.2336949, y: 0.089711756}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9611c2d79926dbe0800000000000000
+      internalID: -1452928097727736163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_12
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 449
+        width: 200
+        height: 221
+      alignment: 9
+      pivot: {x: 0.64877135, y: 0.1530585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34661f88a6c9a0d60800000000000000
+      internalID: 7857264481279239747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_13
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 233
+        width: 147
+        height: 151
+      alignment: 9
+      pivot: {x: 0.63234496, y: 0.14379933}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2ede990305150220800000000000000
+      internalID: 2451388674963594798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_14
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 52
+        width: 83
+        height: 77
+      alignment: 9
+      pivot: {x: 0.6068777, y: 0.21167776}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad0824acbff12b5b0800000000000000
+      internalID: -5354181840699490086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_15
+      rect:
+        serializedVersion: 2
+        x: 1535
+        y: 147
+        width: 75
+        height: 106
+      alignment: 9
+      pivot: {x: 0.59643066, y: 0.16962922}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64375974efe1707c0800000000000000
+      internalID: -4105278457853414586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_16
+      rect:
+        serializedVersion: 2
+        x: 1628
+        y: 160
+        width: 117
+        height: 44
+      alignment: 9
+      pivot: {x: 0.5, y: 0.35293266}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb18c0ab2161a54f0800000000000000
+      internalID: -839334110864571970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_17
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 183
+        width: 103
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5362869, y: 0.15134442}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496718663965174c0800000000000000
+      internalID: -4291553778827430252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_18
+      rect:
+        serializedVersion: 2
+        x: 1764
+        y: 72
+        width: 96
+        height: 69
+      alignment: 9
+      pivot: {x: 0.4805336, y: 0.1546789}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee5cef1141135e10800000000000000
+      internalID: 2185109215610953442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_19
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 74
+        width: 119
+        height: 45
+      alignment: 9
+      pivot: {x: 0.49680156, y: 0.16164975}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4242262b7697faca0800000000000000
+      internalID: -6003446291980213212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _hrooms_20
+      rect:
+        serializedVersion: 2
+        x: 1522
+        y: 45
+        width: 80
+        height: 102
+      alignment: 9
+      pivot: {x: 0.57137144, y: 0.13428265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eddab2a4bb8bfdb0800000000000000
+      internalID: -4757054973446267417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

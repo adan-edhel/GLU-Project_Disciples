@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 8971212824773499580}
   - component: {fileID: 8971212824773499581}
   - component: {fileID: 8971212824773499577}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WaterOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
