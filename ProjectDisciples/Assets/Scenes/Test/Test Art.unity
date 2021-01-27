@@ -40007,8 +40007,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4542727ea5dc2b94389510e2ee2717c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Center: {x: 0.51, y: 14.8, z: 0}
-  _scale: {x: 38.71, y: 11.92, z: 1}
+  _Center: {x: 0.51, y: 15, z: 0}
+  _scale: {x: 38.71, y: 13.6, z: 1}
+  _checkRadius: 0.4
 --- !u!4 &1723398620
 Transform:
   m_ObjectHideFlags: 0
@@ -40092,7 +40093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7885723490258168177, guid: f46a67acab84d3b41966aeb1019318ae, type: 3}
       propertyPath: orthographic size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f46a67acab84d3b41966aeb1019318ae, type: 3}
