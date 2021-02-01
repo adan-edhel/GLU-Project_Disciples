@@ -4935,7 +4935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f92c0990f9b4d4b951336efc2ca7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Element: 1
+  _Element: 2
   _damageAmmound: 5
   _sender: {fileID: 0}
   _playerLayers:

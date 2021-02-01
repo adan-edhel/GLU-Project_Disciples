@@ -206,7 +206,7 @@ MonoBehaviour:
   _CurrentElement: 6
   _characterBase: {fileID: 0}
   _firstAtackPrice: 20
-  _secondAtackPrice: 50
+  _secondAtackPrice: 250
   _spriteRenderer: {fileID: 2110728306277904872}
   _elementImage: {fileID: 0}
   _defaultSprite: {fileID: 514960029122189266, guid: 138b6256b7d91be4b8be41b40c458c03, type: 3}

@@ -97,6 +97,10 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         {
             _CurrentElement = Element;
             CheckSpriteChange();
+            if (AddToKnownElements)
+            {
+                _characterBase.CurrentMana += (_characterBase.MaxMana * 0.60f);
+            }
         }
         else
         {
@@ -154,25 +158,27 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack2()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom || _CurrentElement == EGameElement.NoElement) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom || _characterBase.Health == _characterBase.MaxHealth) return;
         if (_characterBase.CurrentMana >= _secondAtackPrice)
         {
             _characterBase.CurrentMana -= _secondAtackPrice;
-            switch (_CurrentElement)
-            {
-                case EGameElement.Fire:
-                    FireAttack2();
-                    break;
-                case EGameElement.Water:
-                    WaterAttack2();
-                    break;
-                case EGameElement.Wind:
-                    WindAttack2();
-                    break;
-                case EGameElement.Earth:
-                    EarthAttack2();
-                    break;
-            }
+
+            _characterBase.Health += (_characterBase.MaxHealth * 0.05f);
+            //switch (_CurrentElement)
+            //{
+            //    case EGameElement.Fire:
+            //        FireAttack2();
+            //        break;
+            //    case EGameElement.Water:
+            //        WaterAttack2();
+            //        break;
+            //    case EGameElement.Wind:
+            //        WindAttack2();
+            //        break;
+            //    case EGameElement.Earth:
+            //        EarthAttack2();
+            //        break;
+            //}
         }
     }
 
