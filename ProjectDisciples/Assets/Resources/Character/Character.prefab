@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 300
-  _MaxStatesEfectTime: 5
+  _MaxStatesEfectTime: 10
   _CharacterAttack: {fileID: 723846585617996164}
   _elementInteractions:
   - {fileID: 11400000, guid: 6e13a7d943099484b834c105db0a37be, type: 2}
