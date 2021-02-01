@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using Photon.Pun;
+using System.Collections;
 
 public class ElementalOrb : MonoBehaviourPunCallbacks
 {
     [SerializeField] private LayerMask _layer;
     [SerializeField] private float _radius;
     [SerializeField] private EGameElement _element;
+    [SerializeField] private float _LifeTime = 120f;
+
+    private void Start()
+    {
+        StartCoroutine(DestroyAfterLifeTime());
+    }
 
     private void FixedUpdate()
     {
@@ -19,6 +26,12 @@ public class ElementalOrb : MonoBehaviourPunCallbacks
                 photonView.RPC("NetworkDestoyObject", RpcTarget.All);
             }
         }
+    }
+
+    IEnumerator DestroyAfterLifeTime()
+    {
+        yield return new WaitForSeconds(_LifeTime);
+        photonView.RPC("NetworkDestoyObject", RpcTarget.All);
     }
 
     [PunRPC]
