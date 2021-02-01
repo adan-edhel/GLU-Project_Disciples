@@ -1,12 +1,13 @@
 ﻿
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using Photon.Pun;
-using UnityEngine.SceneManagement;
-using Photon.Realtime;
+using UnityEngine.UI;
 
 public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
 {
+    
     // Interfaces
     private ICharacterMovement[] iMovement;
     private ICharacterElement iAttack;
@@ -15,6 +16,7 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
     private IChat iChat;
 
     private GameObject _character;
+    private CharacterBase _characterBase;
     private PlayerInput _input;
     private GameObject _GUI;
 
@@ -40,6 +42,16 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
             Destroy(_GUI);
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (_character != null && _characterBase != null)
+        {
+            _GUI.GetComponent<HUD>().UpdateHUDStats(_characterBase.Health, _characterBase.MaxHealth, _characterBase.CurrentMana, _characterBase.MaxMana);
+        }
+    }
+
+    public GameObject characterObject { get => _character; }
 
     private void OnDestroy()
     {
@@ -95,8 +107,10 @@ public class PlayerHandler : MonoBehaviourPunCallbacks, IOnPlayerDeath
         iAttack = _character.GetComponent<ICharacterElement>();
         iAim = _character.GetComponents<ICharacterAim>();
 
-        _character.GetComponent<CharacterBase>().OnPlayerDeath = this;
-
+         _characterBase = _character.GetComponent<CharacterBase>();
+        _characterBase.OnPlayerDeath = this;
+        _character.GetComponent<CharacterAttack>().SetElementImage = _GUI.GetComponent<HUD>().elementIcon;
+        
         for (int i = 0; i < iAim.Length; i++)
         {
             iAim[i]?.AssignInput(_input);

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections;
+﻿using CryptUI.Scripts;
+using UnityEngine.UI;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
@@ -12,9 +12,23 @@ public class HUD : MonoBehaviourPunCallbacks, ITogglePause
 
     [SerializeField] GameObject pauseMenu;
 
+    [SerializeField] public Image elementIcon;
+    [SerializeField] ResourceBarController healthController;
+    [SerializeField] ResourceBarController manaController;
+
+
     void Update()
     {
         UpdateScoreList();
+    }
+
+    public void UpdateHUDStats(float hp, float maxHP, float mana, float maxMana)
+    {
+        float healthSliderValue = hp / maxHP;
+        float manaSliderValue = mana / maxMana;
+
+        healthController.ApplyValue(healthSliderValue);
+        manaController.ApplyValue(manaSliderValue);
     }
 
     private void UpdateScoreList()

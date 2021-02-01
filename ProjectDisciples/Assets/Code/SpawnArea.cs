@@ -7,6 +7,7 @@ public class SpawnArea : MonoBehaviour
     public static SpawnArea Instance;
     [SerializeField] private Vector3 _Center;
     [SerializeField] private Vector3 _scale;
+    [SerializeField] private float _checkRadius;
 
     private void Awake()
     {
@@ -17,10 +18,21 @@ public class SpawnArea : MonoBehaviour
     {
         get
         {
-            float TempX = Random.Range((_Center.x - (_scale.x/2)), _Center.x + (_scale.x / 2));
-            float TempY = Random.Range((_Center.y - (_scale.y / 2)), _Center.y + (_scale.y / 2));
-            float TempZ = Random.Range((_Center.z - (_scale.z / 2)), _Center.z + (_scale.z / 2));
-            return new Vector3(TempX, TempY, TempZ);
+            Vector3 TempVector = new Vector3();
+            bool spawnSafe = false;
+            while (!spawnSafe)
+            {
+                float TempX = Random.Range((_Center.x - (_scale.x / 2)), _Center.x + (_scale.x / 2));
+                float TempY = Random.Range((_Center.y - (_scale.y / 2)), _Center.y + (_scale.y / 2));
+                float TempZ = Random.Range((_Center.z - (_scale.z / 2)), _Center.z + (_scale.z / 2));
+                TempVector.Set(TempX, TempY, TempZ);
+
+                if (Physics2D.OverlapCircleAll(TempVector, _checkRadius).Length == 0)
+                {
+                    spawnSafe = true;
+                }
+            }
+            return TempVector;
         }
     }
 
@@ -28,5 +40,7 @@ public class SpawnArea : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(_Center, _scale);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(_Center, _checkRadius);
     }
 }
