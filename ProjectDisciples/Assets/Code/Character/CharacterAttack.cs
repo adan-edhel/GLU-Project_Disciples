@@ -163,7 +163,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         {
             _characterBase.CurrentMana -= _secondAtackPrice;
 
-            _characterBase.Health += (_characterBase.MaxHealth * 0.05f);
+            _characterBase.Health += (_characterBase.MaxHealth * 0.1f);
             //switch (_CurrentElement)
             //{
             //    case EGameElement.Fire:
