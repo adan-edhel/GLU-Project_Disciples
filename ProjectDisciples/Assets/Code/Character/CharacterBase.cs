@@ -13,7 +13,7 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
 
     [SerializeField] private float _MaxStatesEfectTime;
     [SerializeField] private CharacterAttack _CharacterAttack;
-    [SerializeField] private Dictionary<int, float> _statesEfects;
+    [SerializeField] private Dictionary<int, float> _statesEffects;
     [SerializeField] private ElementInteraction[] _elementInteractions;
     [Header("mana")]
     [SerializeField] private float _currentMana;
@@ -22,7 +22,7 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
 
     private void Start()
     {
-        _statesEfects = new Dictionary<int, float>();
+        _statesEffects = new Dictionary<int, float>();
 
         MatchManager.Instance?.RegisterCharacter(this, gameObject);
         _currentMana = _maxMana;
@@ -41,12 +41,12 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
         {
             for (int i = 0; i < Enum.GetNames(typeof(EGameElement)).Length; i++)
             {
-                if (_statesEfects.ContainsKey(i))
+                if (_statesEffects.ContainsKey(i))
                 {
-                    _statesEfects[i] -= Time.fixedDeltaTime;
-                    if (_statesEfects[i] <= 0)
+                    _statesEffects[i] -= Time.fixedDeltaTime;
+                    if (_statesEffects[i] <= 0)
                     {
-                        _statesEfects.Remove(i);
+                        _statesEffects.Remove(i);
                     }
                 }
             }
@@ -137,13 +137,13 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
 
     private void CheckIfPlayerHasStatesEfect(EGameElement Element)
     {
-        if (!_statesEfects.ContainsKey((int)Element))
+        if (!_statesEffects.ContainsKey((int)Element))
         {
-            _statesEfects.Add((int)Element, _MaxStatesEfectTime);
+            _statesEffects.Add((int)Element, _MaxStatesEfectTime);
         }
         else
         {
-            _statesEfects[(int)Element] = _MaxStatesEfectTime;
+            _statesEffects[(int)Element] = _MaxStatesEfectTime;
         }
     }
 
@@ -153,11 +153,11 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
         List<EGameElement> elements = new List<EGameElement>();
         for (int i = 0; i < _elementInteractions.Length; i++)
         {
-            if (_statesEfects.ContainsKey((int)_elementInteractions[i].GetFirstElement) && _statesEfects.ContainsKey((int)_elementInteractions[i].GetSecondElement))
+            if (_statesEffects.ContainsKey((int)_elementInteractions[i].GetFirstElement) && _statesEffects.ContainsKey((int)_elementInteractions[i].GetSecondElement))
             {
                 multiplier *= _elementInteractions[i].GetMultplier;
-                _statesEfects.Remove((int)_elementInteractions[i].GetFirstElement);
-                _statesEfects.Remove((int)_elementInteractions[i].GetSecondElement);
+                _statesEffects.Remove((int)_elementInteractions[i].GetFirstElement);
+                _statesEffects.Remove((int)_elementInteractions[i].GetSecondElement);
 
                 elements.Add(_elementInteractions[i].GetFirstElement);
                 elements.Add(_elementInteractions[i].GetSecondElement);
@@ -172,17 +172,32 @@ public class CharacterBase : MonoBehaviourPunCallbacks, IHealth, IMana
         get { return photonView; }
     }
 
+    public bool HasStatusEffects 
+    {
+        get
+        {
+            if (_statesEffects.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(_statesEfects);
+            stream.SendNext(_statesEffects);
             stream.SendNext(_health);
         }
         else if (stream.IsReading)
         {
-            _statesEfects = (Dictionary<int, float>)stream.ReceiveNext();
+            _statesEffects = (Dictionary<int, float>)stream.ReceiveNext();
             _health = (float)stream.ReceiveNext();
         }
     }

@@ -158,7 +158,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack2()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom || _characterBase.Health == _characterBase.MaxHealth) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom || _characterBase.Health >= (_characterBase.MaxHealth - 10) || _characterBase.HasStatusEffects) return;
         if (_characterBase.CurrentMana >= _secondAtackPrice)
         {
             _characterBase.CurrentMana -= _secondAtackPrice;
