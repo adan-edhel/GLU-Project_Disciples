@@ -13,7 +13,7 @@ public class Lobby : MonoBehaviour
     [SerializeField] private TMP_Text _ServerNameTextField;
     [SerializeField] private int _maxPlayers;
     [SerializeField] private TMP_Text _maxPlayerText;
-    [SerializeField] private Button _button;
+    [SerializeField] private Button _startButton;
 
     [SerializeField] private CharecterColors _charecterColors;
     private void Start()
@@ -35,7 +35,7 @@ public class Lobby : MonoBehaviour
             print("Player count is: " + (int)PhotonNetwork.CurrentRoom.PlayerCount);
             if (((int)PhotonNetwork.CurrentRoom.PlayerCount) >= 2)
             {
-                _button.interactable = true;
+                _startButton.interactable = true;
             }
             else
             {

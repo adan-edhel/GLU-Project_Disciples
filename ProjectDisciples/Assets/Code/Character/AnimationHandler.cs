@@ -25,8 +25,8 @@ public class AnimationHandler : MonoBehaviourPunCallbacks, ICharacterMovement, I
                     _renderer.color = _playercolors.getColors[i];
                 }
             }
-            _rigidbody = GetComponent<Rigidbody2D>();
         }
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     public void SetRenderColor(Color Color)

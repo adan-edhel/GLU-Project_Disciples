@@ -25,11 +25,6 @@ public class CharacterInfoBarUI : MonoBehaviour, ICharacterInfo
         Nametag.text = name;
     }
 
-    public void UpdateManaValue(float currentMana, float maxMana)
-    {
-        manaPercentage = currentMana / maxMana;
-    }
-
     public void UpdateHealthValue(float currentHealth, float maxHealth)
     {
         healthPercentage = currentHealth / maxHealth;

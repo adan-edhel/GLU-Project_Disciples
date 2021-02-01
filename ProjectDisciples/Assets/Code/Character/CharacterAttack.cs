@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public enum EGameElement
 {
@@ -26,6 +27,8 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     [Header("renderer")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Image _elementImage;
+    [SerializeField] private Sprite _defaultSprite;
 
     [Header("aimer")]
     [SerializeField] private CharacterAim _characterAim;
@@ -51,10 +54,11 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         {
             _KnownElements = new List<EGameElement>();
         }
+        CheckSpriteChange();
         _characterBase = GetComponent<CharacterBase>();
     }
 
-    
+    public Image SetElementImage { set => _elementImage = value; }
 
     public bool CanAttack
     {
@@ -125,7 +129,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack1()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom || _CurrentElement == EGameElement.NoElement) return;
 
         if (_characterBase.CurrentMana >= _firstAtackPrice)
         {
@@ -150,7 +154,7 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
 
     public void Attack2()
     {
-        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom) return;
+        if (photonView == null && !photonView.IsMine && PhotonNetwork.InRoom || _CurrentElement == EGameElement.NoElement) return;
         if (_characterBase.CurrentMana >= _secondAtackPrice)
         {
             _characterBase.CurrentMana -= _secondAtackPrice;
@@ -213,8 +217,10 @@ public class CharacterAttack : MonoBehaviourPunCallbacks, ICharacterElement
         switch (_CurrentElement)
         {
             case EGameElement.Fire:
+                _elementImage.sprite = _fireSprite;
                 break;
             case EGameElement.Water:
+                _elementImage.sprite = _waterSprite;
                 break;
         }
     }
