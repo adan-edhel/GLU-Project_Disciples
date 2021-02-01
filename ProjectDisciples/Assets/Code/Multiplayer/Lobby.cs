@@ -13,13 +13,16 @@ public class Lobby : MonoBehaviour
     [SerializeField] private TMP_Text _ServerNameTextField;
     [SerializeField] private int _maxPlayers;
     [SerializeField] private TMP_Text _maxPlayerText;
-    [SerializeField] private Button _startButton;
+    [SerializeField] private Button[] _startButtons;
 
     [SerializeField] private CharecterColors _charecterColors;
     private void Start()
     {
 #if !UNITY_EDITOR
-                _button.interactable = false;
+        for (int i = 0; i < _startButtons.Length; i++)
+        {
+            _startButtons[i].interactable = false;
+        }
 #endif
     }
 
@@ -35,12 +38,18 @@ public class Lobby : MonoBehaviour
             print("Player count is: " + (int)PhotonNetwork.CurrentRoom.PlayerCount);
             if (((int)PhotonNetwork.CurrentRoom.PlayerCount) >= 2)
             {
-                _startButton.interactable = true;
+                for (int i = 0; i < _startButtons.Length; i++)
+                {
+                    _startButtons[i].interactable = true;
+                }
             }
             else
             {
 #if !UNITY_EDITOR
-                _button.interactable = false;
+                for (int i = 0; i < _startButtons.Length; i++)
+                {
+                    _startButtons[i].interactable = false;
+                }
 #endif
             }
         }
